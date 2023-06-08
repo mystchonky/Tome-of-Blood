@@ -1,10 +1,10 @@
-package com.example.an_addon;
+package com.luiq54.ArsCruor;
 
-import com.example.an_addon.glyphs.TestEffect;
-import com.example.an_addon.registry.ModRegistry;
 import com.hollingsworth.arsnouveau.api.ArsNouveauAPI;
 import com.hollingsworth.arsnouveau.api.sound.SpellSound;
 import com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart;
+import com.luiq54.ArsCruor.common.glyphs.TestEffect;
+import com.luiq54.ArsCruor.registry.ModRegistry;
 import net.minecraft.network.chat.Component;
 
 import java.util.ArrayList;
@@ -14,13 +14,15 @@ public class ArsNouveauRegistry {
 
     public static List<AbstractSpellPart> registeredSpells = new ArrayList<>(); //this will come handy for datagen
 
-    public static void registerGlyphs(){
+    public static void registerGlyphs() {
         register(TestEffect.INSTANCE);
     }
-    public static void registerSounds(){
+
+    public static void registerSounds() {
         ModRegistry.EXAMPLE_SPELL_SOUND = ArsNouveauAPI.getInstance().registerSpellSound(new SpellSound(ModRegistry.EXAMPLE_FAMILY.get(), Component.literal("Example")));
     }
-    public static void register(AbstractSpellPart spellPart){
+
+    public static void register(AbstractSpellPart spellPart) {
         ArsNouveauAPI.getInstance().registerSpell(spellPart);
         registeredSpells.add(spellPart);
     }

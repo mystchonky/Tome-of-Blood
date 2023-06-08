@@ -1,6 +1,6 @@
-package com.example.an_addon;
+package com.luiq54.ArsCruor;
 
-import com.example.an_addon.registry.ModRegistry;
+import com.luiq54.ArsCruor.registry.ModRegistry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -14,14 +14,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
-@Mod(ExampleANAddon.MODID)
-public class ExampleANAddon
-{
-    public static final String MODID = "an_addon";
+@Mod(ArsCruor.MODID)
+public class ArsCruor {
+    public static final String MODID = "arscruor";
 
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public ExampleANAddon() {
+    public ArsCruor() {
         IEventBus modbus = FMLJavaModLoadingContext.get().getModEventBus();
         ModRegistry.registerRegistries(modbus);
         ArsNouveauRegistry.registerGlyphs();
@@ -30,12 +29,11 @@ public class ExampleANAddon
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    public static ResourceLocation prefix(String path){
+    public static ResourceLocation prefix(String path) {
         return new ResourceLocation(MODID, path);
     }
 
-    private void setup(final FMLCommonSetupEvent event)
-    {
+    private void setup(final FMLCommonSetupEvent event) {
         ArsNouveauRegistry.registerSounds();
     }
 

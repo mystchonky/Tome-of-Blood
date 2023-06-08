@@ -1,4 +1,4 @@
-package com.example.an_addon.item;
+package com.luiq54.ArsCruor.common.items;
 
 import com.hollingsworth.arsnouveau.api.entity.IDecoratable;
 import com.hollingsworth.arsnouveau.api.item.ICosmeticItem;
@@ -21,7 +21,7 @@ public class ExampleCosmetic extends ModItem implements ICosmeticItem {
 
     @Override
     public InteractionResult interactLivingEntity(ItemStack pStack, Player pPlayer, LivingEntity entity, InteractionHand pUsedHand) {
-        if(entity instanceof IDecoratable starbuncle ){ //&& canWear(entity)
+        if (entity instanceof IDecoratable starbuncle) { //&& canWear(entity)
             starbuncle.setCosmeticItem(pStack.split(1));
             return InteractionResult.SUCCESS;
         }
@@ -40,12 +40,12 @@ public class ExampleCosmetic extends ModItem implements ICosmeticItem {
 
     @Override
     public Vec3 getTranslations() {
-        return new Vec3(0,0.43,0);
+        return new Vec3(0, 0.43, 0);
     }
 
     @Override
     public Vec3 getScaling() {
-        return new Vec3(1,1,1);
+        return new Vec3(1, 1, 1);
     }
 
 }

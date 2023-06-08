@@ -1,4 +1,4 @@
-package com.example.an_addon;
+package com.luiq54.ArsCruor;
 
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -8,8 +8,10 @@ import net.minecraftforge.fml.event.config.ModConfigEvent;
 public class ExampleConfig {
 
     @SubscribeEvent
-    public static void onLoad(final ModConfigEvent.Loading configEvent) { }
+    public static void onLoad(final ModConfigEvent.Loading configEvent) {
+    }
 
     @SubscribeEvent
-    public static void onReload(final ModConfigEvent.Reloading configEvent) { }
+    public static void onReload(final ModConfigEvent.Reloading configEvent) {
+    }
 }

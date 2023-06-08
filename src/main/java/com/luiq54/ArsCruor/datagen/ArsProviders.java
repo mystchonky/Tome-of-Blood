@@ -1,8 +1,5 @@
-package com.example.an_addon.datagen;
+package com.luiq54.ArsCruor.datagen;
 
-import com.example.an_addon.ArsNouveauRegistry;
-import com.example.an_addon.ExampleANAddon;
-import com.example.an_addon.glyphs.TestEffect;
 import com.hollingsworth.arsnouveau.api.enchanting_apparatus.EnchantingApparatusRecipe;
 import com.hollingsworth.arsnouveau.api.familiar.AbstractFamiliarHolder;
 import com.hollingsworth.arsnouveau.api.ritual.AbstractRitual;
@@ -15,6 +12,9 @@ import com.hollingsworth.arsnouveau.common.datagen.ApparatusRecipeProvider;
 import com.hollingsworth.arsnouveau.common.datagen.GlyphRecipeProvider;
 import com.hollingsworth.arsnouveau.common.datagen.ImbuementRecipeProvider;
 import com.hollingsworth.arsnouveau.common.datagen.patchouli.*;
+import com.luiq54.ArsCruor.ArsCruor;
+import com.luiq54.ArsCruor.ArsNouveauRegistry;
+import com.luiq54.ArsCruor.common.glyphs.TestEffect;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
@@ -31,7 +31,7 @@ import static com.hollingsworth.arsnouveau.api.RegistryHelper.getRegistryName;
 
 public class ArsProviders {
 
-    static String root = ExampleANAddon.MODID;
+    static String root = ArsCruor.MODID;
 
     public static class GlyphProvider extends GlyphRecipeProvider {
 
@@ -52,6 +52,7 @@ public class ArsProviders {
             }
 
         }
+
         protected static Path getScribeGlyphPath(Path pathIn, Item glyph) {
             return pathIn.resolve("data/" + root + "/recipes/" + getRegistryName(glyph).getPath() + ".json");
         }
@@ -82,8 +83,8 @@ public class ArsProviders {
              */
 
             Path output = this.generator.getOutputFolder();
-            for (EnchantingApparatusRecipe g : recipes){
-                if (g != null){
+            for (EnchantingApparatusRecipe g : recipes) {
+                if (g != null) {
                     Path path = getRecipePath(output, g.getId().getPath());
                     DataProvider.saveStable(cache, g.asRecipe(), path);
                 }
@@ -91,8 +92,8 @@ public class ArsProviders {
 
         }
 
-        protected static Path getRecipePath(Path pathIn, String str){
-            return pathIn.resolve("data/"+ root +"/recipes/" + str + ".json");
+        protected static Path getRecipePath(Path pathIn, String str) {
+            return pathIn.resolve("data/" + root + "/recipes/" + str + ".json");
         }
 
         @Override
@@ -103,7 +104,7 @@ public class ArsProviders {
 
     public static class ImbuementProvider extends ImbuementRecipeProvider {
 
-        public ImbuementProvider(DataGenerator generatorIn){
+        public ImbuementProvider(DataGenerator generatorIn) {
             super(generatorIn);
         }
 
@@ -117,15 +118,15 @@ public class ArsProviders {
             */
 
             Path output = generator.getOutputFolder();
-            for(ImbuementRecipe g : recipes){
+            for (ImbuementRecipe g : recipes) {
                 Path path = getRecipePath(output, g.getId().getPath());
                 DataProvider.saveStable(cache, g.asRecipe(), path);
             }
 
         }
 
-        protected Path getRecipePath(Path pathIn, String str){
-            return pathIn.resolve("data/"+ root +"/recipes/" + str + ".json");
+        protected Path getRecipePath(Path pathIn, String str) {
+            return pathIn.resolve("data/" + root + "/recipes/" + str + ".json");
         }
 
         @Override
@@ -157,7 +158,7 @@ public class ArsProviders {
         }
 
         @Override
-        public PatchouliPage addBasicItem(ItemLike item, ResourceLocation category, IPatchouliPage recipePage){
+        public PatchouliPage addBasicItem(ItemLike item, ResourceLocation category, IPatchouliPage recipePage) {
             PatchouliBuilder builder = new PatchouliBuilder(category, item.asItem().getDescriptionId())
                     .withIcon(item.asItem())
                     .withPage(new TextPage(root + ".page." + getRegistryName(item.asItem()).getPath()))
@@ -220,10 +221,10 @@ public class ArsProviders {
 
         @Override
         public Path getPath(ResourceLocation category, String fileName) {
-            return this.generator.getOutputFolder().resolve("data/"+ root +"/patchouli_books/example/en_us/entries/" + category.getPath() + "/" + fileName + ".json");
+            return this.generator.getOutputFolder().resolve("data/" + root + "/patchouli_books/example/en_us/entries/" + category.getPath() + "/" + fileName + ".json");
         }
 
-        ImbuementPage ImbuementPage(ItemLike item){
+        ImbuementPage ImbuementPage(ItemLike item) {
             return new ImbuementPage(root + ":imbuement_" + getRegistryName(item.asItem()).getPath());
         }
 

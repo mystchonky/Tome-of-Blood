@@ -1,8 +1,8 @@
-package com.example.an_addon.registry;
+package com.luiq54.ArsCruor.registry;
 
-import com.example.an_addon.item.ExampleCosmetic;
 import com.hollingsworth.arsnouveau.ArsNouveau;
 import com.hollingsworth.arsnouveau.api.sound.SpellSound;
+import com.luiq54.ArsCruor.common.items.ExampleCosmetic;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.Item;
@@ -12,7 +12,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import static com.example.an_addon.ExampleANAddon.MODID;
+import static com.luiq54.ArsCruor.ArsCruor.MODID;
 
 public class ModRegistry {
 
@@ -21,7 +21,7 @@ public class ModRegistry {
     public static final DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, MODID);
 
 
-    public static void registerRegistries(IEventBus bus){
+    public static void registerRegistries(IEventBus bus) {
         BLOCKS.register(bus);
         ITEMS.register(bus);
         SOUNDS.register(bus);

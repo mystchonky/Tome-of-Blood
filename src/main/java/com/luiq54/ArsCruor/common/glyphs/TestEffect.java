@@ -1,4 +1,4 @@
-package com.example.an_addon.glyphs;
+package com.luiq54.ArsCruor.common.glyphs;
 
 import com.hollingsworth.arsnouveau.api.spell.*;
 import com.hollingsworth.arsnouveau.common.spell.augment.AugmentAmplify;
@@ -8,10 +8,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.HitResult;
 
 import javax.annotation.Nonnull;
-
 import java.util.Set;
 
-import static com.example.an_addon.ExampleANAddon.prefix;
+import static com.luiq54.ArsCruor.ArsCruor.prefix;
 
 public class TestEffect extends AbstractEffect {
 
