@@ -5,10 +5,12 @@ import com.hollingsworth.arsnouveau.api.spell.Spell;
 import com.luiq54.ArsCruor.ArsCruor;
 import com.luiq54.ArsCruor.client.ClientInfo;
 import com.luiq54.ArsCruor.common.capability.CapabilityRegistry;
+import com.luiq54.ArsCruor.common.commands.EssenceCommand;
 import com.luiq54.ArsCruor.common.glyphs.SuckEffect;
 import com.luiq54.ArsCruor.common.network.Networking;
 import com.luiq54.ArsCruor.common.network.PacketUpdateEssence;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -21,6 +23,11 @@ public class EventHandler {
         if (event.phase == TickEvent.Phase.END) {
             ClientInfo.ticksInGame++;
         }
+    }
+
+    @SubscribeEvent
+    public static void commandRegister(RegisterCommandsEvent event) {
+        EssenceCommand.register(event.getDispatcher());
     }
 
     @SubscribeEvent
