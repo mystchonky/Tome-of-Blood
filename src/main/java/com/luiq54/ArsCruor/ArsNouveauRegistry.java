@@ -3,7 +3,7 @@ package com.luiq54.ArsCruor;
 import com.hollingsworth.arsnouveau.api.ArsNouveauAPI;
 import com.hollingsworth.arsnouveau.api.sound.SpellSound;
 import com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart;
-import com.luiq54.ArsCruor.common.glyphs.TestEffect;
+import com.luiq54.ArsCruor.common.glyphs.SuckEffect;
 import com.luiq54.ArsCruor.registry.ModRegistry;
 import net.minecraft.network.chat.Component;
 
@@ -15,7 +15,7 @@ public class ArsNouveauRegistry {
     public static List<AbstractSpellPart> registeredSpells = new ArrayList<>(); //this will come handy for datagen
 
     public static void registerGlyphs() {
-        register(TestEffect.INSTANCE);
+        register(SuckEffect.INSTANCE);
     }
 
     public static void registerSounds() {
