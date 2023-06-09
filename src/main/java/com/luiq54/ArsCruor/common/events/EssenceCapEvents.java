@@ -24,7 +24,13 @@ public class EssenceCapEvents {
 
     @SubscribeEvent
     public static void playerRespawn(PlayerEvent.PlayerRespawnEvent e) {
-        syncPlayerEvent(e.getEntity());
+        if (e.getEntity() instanceof ServerPlayer playerEntity) {
+            CapabilityRegistry.getEssence(playerEntity).ifPresent(essence -> {
+                essence.setEssence(0);
+                essence.setMaxEssence(EssenceUtil.getMaxEssence(playerEntity));
+                Networking.INSTANCE.send(PacketDistributor.PLAYER.with(() -> playerEntity), new PacketUpdateEssence(essence.getCurrentEssence(), essence.getMaxEssence()));
+            });
+        }
     }
 
     @SubscribeEvent
