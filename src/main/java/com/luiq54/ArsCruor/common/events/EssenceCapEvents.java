@@ -1,4 +1,4 @@
-package com.luiq54.ArsCruor.common.event;
+package com.luiq54.ArsCruor.common.events;
 
 import com.luiq54.ArsCruor.ArsCruor;
 import com.luiq54.ArsCruor.common.capability.CapabilityRegistry;
