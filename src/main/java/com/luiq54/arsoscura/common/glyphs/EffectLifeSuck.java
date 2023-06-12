@@ -1,6 +1,7 @@
 package com.luiq54.arsoscura.common.glyphs;
 
 import com.hollingsworth.arsnouveau.api.spell.*;
+import com.hollingsworth.arsnouveau.common.lib.GlyphLib;
 import com.hollingsworth.arsnouveau.common.spell.augment.AugmentAmplify;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -16,11 +17,12 @@ import java.util.Set;
 
 import static com.luiq54.arsoscura.ArsOscura.prefix;
 
-public class SuckEffect extends AbstractEffect implements IDamageEffect {
+public class EffectLifeSuck extends AbstractEffect implements IDamageEffect {
 
-    public static SuckEffect INSTANCE = new SuckEffect(prefix("suck"), "Sucks the life out of things");
+    private static final String id = GlyphLib.prependGlyph("suck");
+    public static EffectLifeSuck INSTANCE = new EffectLifeSuck(prefix(id), "Life Suck");
 
-    public SuckEffect(ResourceLocation tag, String description) {
+    public EffectLifeSuck(ResourceLocation tag, String description) {
         super(tag, description);
     }
 

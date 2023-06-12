@@ -2,12 +2,15 @@ package com.luiq54.arsoscura;
 
 import com.hollingsworth.arsnouveau.setup.ClientProxy;
 import com.hollingsworth.arsnouveau.setup.IProxy;
+import com.hollingsworth.arsnouveau.setup.ItemsRegistry;
 import com.hollingsworth.arsnouveau.setup.ServerProxy;
 import com.luiq54.arsoscura.common.items.ArsOscuraItems;
+import com.luiq54.arsoscura.common.lang.ArsOscuraLang;
 import com.luiq54.arsoscura.common.network.Networking;
-import com.luiq54.arsoscura.registry.ModRegistry;
 import com.tterrag.registrate.Registrate;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.Lazy;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -30,6 +33,13 @@ public class ArsOscura {
     public static final Lazy<Registrate> REGISTRATE = Lazy.of(() -> Registrate.create(MODID));
     private static final Logger LOGGER = LogManager.getLogger();
 
+    public static CreativeModeTab ArsOscuraTab = new CreativeModeTab(CreativeModeTab.getGroupCountSafe(), MODID) {
+        @Override
+        public ItemStack makeIcon() {
+            return ItemsRegistry.BLANK_GLYPH.get().getDefaultInstance();
+        }
+    };
+
     public static Registrate registrate() {
         return REGISTRATE.get();
     }
@@ -38,7 +48,7 @@ public class ArsOscura {
         IEventBus modbus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ArsOscuraItems.register();
-        ModRegistry.registerRegistries(modbus);
+        ArsOscuraLang.register();
         ArsNouveauRegistry.registerGlyphs();
 
         modbus.addListener(this::setup);

@@ -6,7 +6,7 @@ import com.luiq54.arsoscura.ArsOscura;
 import com.luiq54.arsoscura.client.ClientInfo;
 import com.luiq54.arsoscura.common.capability.CapabilityRegistry;
 import com.luiq54.arsoscura.common.commands.EssenceCommand;
-import com.luiq54.arsoscura.common.glyphs.SuckEffect;
+import com.luiq54.arsoscura.common.glyphs.EffectLifeSuck;
 import com.luiq54.arsoscura.common.network.Networking;
 import com.luiq54.arsoscura.common.network.PacketUpdateEssence;
 import net.minecraft.server.level.ServerPlayer;
@@ -33,7 +33,7 @@ public class EventHandler {
     @SubscribeEvent
     public static void spellDamage(SpellDamageEvent.Post event) {
         Spell spell = event.context.getSpell();
-        if (spell.recipe.get(event.context.getCurrentIndex() - 1) == SuckEffect.INSTANCE) {
+        if (spell.recipe.get(event.context.getCurrentIndex() - 1) == EffectLifeSuck.INSTANCE) {
             CapabilityRegistry.getEssence(event.caster).ifPresent(essence -> {
                 essence.addEssence(event.damage * 10);
                 Networking.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) event.caster), new PacketUpdateEssence(essence.getCurrentEssence(), essence.getMaxEssence()));

@@ -1,11 +1,9 @@
 package com.luiq54.arsoscura;
 
 import com.hollingsworth.arsnouveau.api.ArsNouveauAPI;
-import com.hollingsworth.arsnouveau.api.sound.SpellSound;
 import com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart;
-import com.luiq54.arsoscura.common.glyphs.SuckEffect;
-import com.luiq54.arsoscura.registry.ModRegistry;
-import net.minecraft.network.chat.Component;
+import com.luiq54.arsoscura.common.glyphs.EffectLifeSuck;
+import com.luiq54.arsoscura.common.glyphs.EffectSigilGenerate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +13,11 @@ public class ArsNouveauRegistry {
     public static List<AbstractSpellPart> registeredSpells = new ArrayList<>(); //this will come handy for datagen
 
     public static void registerGlyphs() {
-        register(SuckEffect.INSTANCE);
+        register(EffectLifeSuck.INSTANCE);
+        register(EffectSigilGenerate.INSTANCE);
     }
 
     public static void registerSounds() {
-        ModRegistry.EXAMPLE_SPELL_SOUND = ArsNouveauAPI.getInstance().registerSpellSound(new SpellSound(ModRegistry.EXAMPLE_FAMILY.get(), Component.literal("Example")));
     }
 
     public static void register(AbstractSpellPart spellPart) {

@@ -1,2 +1,3 @@
-// 1.19.2	2023-06-12T00:37:25.066740199	Example Patchouli Datagen
-0ef1c25ad4a87a8ba2b5322ba6c9aea86135a00d data/ars_oscura/patchouli_books/example/en_us/entries/glyphs_1/suck.json
+// 1.19.2	2023-06-12T20:02:27.457699119	Example Patchouli Datagen
+6687eff4e74fe0a39ab83a90407234ced3097da7 data/ars_oscura/patchouli_books/example/en_us/entries/glyphs_1/glyph_sigil_generate.json
+fe5928033ec4e243d65f3bf182d76786e1050af6 data/ars_oscura/patchouli_books/example/en_us/entries/glyphs_1/glyph_suck.json

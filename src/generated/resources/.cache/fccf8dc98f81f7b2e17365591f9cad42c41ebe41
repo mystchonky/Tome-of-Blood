@@ -1,0 +1,5 @@
+// 1.19.2	2023-06-12T18:53:26.231839451	Registrate Provider for ars_oscura [Recipes, Advancements, Loot tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+9396ff4c8222e2a7c192bec9a9c274e90d509f1f assets/ars_oscura/lang/en_ud.json
+cbde197a8bdc18764f191e8cf258a699878057a8 assets/ars_oscura/lang/en_us.json
+942000e7ec0cb7b3c96677a21a459deb1974e342 assets/ars_oscura/models/item/sigil.json
+76085a42f755bc758e16a2395e210642d47e60e7 assets/ars_oscura/models/item/star_hat.json
