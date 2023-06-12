@@ -9,11 +9,12 @@ public class ArsOscuraItems {
 
     public static final ItemEntry<ExampleCosmetic> EXAMPLE = REGISTRATE.item("star_hat", ExampleCosmetic::new)
             .lang("Example Hat")
+            .model((ctx, prov) -> {
+            })
             .tab(() -> ArsOscura.ArsOscuraTab)
             .register();
 
     public static final ItemEntry<Sigil> SIGIL = REGISTRATE.item("sigil", Sigil::new)
-            .defaultModel()
             .lang("Sigil")
             .tab(() -> ArsOscura.ArsOscuraTab)
             .register();

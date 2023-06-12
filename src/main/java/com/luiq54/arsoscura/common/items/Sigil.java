@@ -1,6 +1,8 @@
 package com.luiq54.arsoscura.common.items;
 
 import com.luiq54.arsoscura.common.lang.ArsOscuraLang;
+import com.luiq54.arsoscura.common.util.TooltipUtil;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -9,12 +11,9 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 public class Sigil extends Item {
 
-    private Optional<UUID> entity = Optional.empty();
 
     public Sigil(Properties pProperties) {
         super(pProperties);
@@ -24,21 +23,17 @@ public class Sigil extends Item {
         this(new Properties());
     }
 
-    public Optional<UUID> getEntity() {
-        return entity;
-    }
-
-    public void setEntity(UUID entity) {
-        this.entity = Optional.of(entity);
-    }
-
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
-        if (entity.isPresent()) {
-            pTooltipComponents.add(Component.translatable(ArsOscuraLang.SIGIL_WITH_ENTITY.getString(), "mango"));
+
+        CompoundTag tag = pStack.getTag();
+        if (tag != null) {
+            String type = tag.getString("entity_type");
+            pTooltipComponents.add(TooltipUtil.withArgs(ArsOscuraLang.SIGIL_WITH_ENTITY, type));
         } else {
             pTooltipComponents.add(Component.translatable(ArsOscuraLang.SIGIL_EMPTY.getString()));
         }
     }
+
 }

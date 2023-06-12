@@ -8,11 +8,11 @@ import com.hollingsworth.arsnouveau.common.lib.GlyphLib;
 import com.luiq54.arsoscura.common.capability.CapabilityRegistry;
 import com.luiq54.arsoscura.common.capability.IEssenceCap;
 import com.luiq54.arsoscura.common.items.ArsOscuraItems;
-import com.luiq54.arsoscura.common.items.Sigil;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
@@ -40,15 +40,18 @@ public class EffectSigilGenerate extends AbstractEssenceEffect {
     public void onResolveEntity(EntityHitResult rayTraceResult, Level world, @NotNull LivingEntity shooter, SpellStats spellStats, SpellContext spellContext, SpellResolver resolver) {
         super.onResolveEntity(rayTraceResult, world, shooter, spellStats, spellContext, resolver);
 
-        if (!(rayTraceResult.getEntity() instanceof ItemEntity)) {
-            Entity entity = rayTraceResult.getEntity();
+        if (rayTraceResult.getEntity() instanceof LivingEntity entity) {
             LazyOptional<IEssenceCap> essenceCap = CapabilityRegistry.getEssence(shooter);
             if (essenceCap.isPresent()) {
                 essenceCap.ifPresent(essence -> {
                     if (essence.getCurrentEssence() > getEssenceCost()) {
-                        Sigil sigil = ArsOscuraItems.SIGIL.get();
-                        sigil.setEntity(entity.getUUID());
-                        world.addFreshEntity(new ItemEntity(world, entity.getX(), entity.getY(), entity.getZ(), new ItemStack(sigil)));
+                        ItemStack sigil = new ItemStack(ArsOscuraItems.SIGIL.get());
+                        CompoundTag tag = sigil.getOrCreateTag();
+                        String type = entity instanceof Player player ? player.getGameProfile().getName() : entity.getName().getString();
+                        tag.putString("entity_type", type);
+                        tag.putString("entity_uuid", entity.getStringUUID());
+                        sigil.setTag(tag);
+                        world.addFreshEntity(new ItemEntity(world, entity.getX(), entity.getY(), entity.getZ(), sigil));
                         essence.removeEssence(getEssenceCost());
                     }
                 });
