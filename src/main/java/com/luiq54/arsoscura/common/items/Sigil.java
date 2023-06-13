@@ -14,7 +14,6 @@ import java.util.List;
 
 public class Sigil extends Item {
 
-
     public Sigil(Properties pProperties) {
         super(pProperties);
     }
@@ -26,7 +25,6 @@ public class Sigil extends Item {
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
-
         CompoundTag tag = pStack.getTag();
         if (tag != null) {
             String type = tag.getString("entity_type");
@@ -34,6 +32,11 @@ public class Sigil extends Item {
         } else {
             pTooltipComponents.add(Component.translatable(ArsOscuraLang.SIGIL_EMPTY.getString()));
         }
+    }
+
+    @Override
+    public boolean isFoil(ItemStack pStack) {
+        return true;
     }
 
 }
