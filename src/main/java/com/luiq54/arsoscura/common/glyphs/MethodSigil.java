@@ -23,6 +23,7 @@ import net.minecraftforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
@@ -40,80 +41,51 @@ public class MethodSigil extends AbstractCastMethod implements IEssenceEffect {
 
     @Override
     public CastResolveType onCast(@Nullable ItemStack stack, LivingEntity caster, Level world, SpellStats spellStats, SpellContext context, SpellResolver resolver) {
-        Entity entity = getEntityFromCasterSigil(caster, world);
-        if (CapabilityRegistry.getEssence(caster).isPresent()) {
-            IEssenceCap essence = CapabilityRegistry.getEssence(caster).orElse(null);
-            if (essence.getCurrentEssence() > getEssenceCost()) {
-                if (entity != null) {
-                    resolver.onResolveEffect(world, new EntityHitResult(entity));
-                    essence.removeEssence(getEssenceCost());
-                    Networking.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) caster), new PacketUpdateEssence(essence.getCurrentEssence(), essence.getMaxEssence()));
-                    return CastResolveType.SUCCESS;
-                }
-
+        Optional<ItemStack> item = getSigilFromCaster(caster);
+        if (item.isPresent() && caster instanceof Player player) {
+            if (!player.getCooldowns().isOnCooldown(item.get().getItem())) {
+                return castUsingSigil(player, item.get(), world, resolver);
             }
-
         }
-
         return CastResolveType.FAILURE;
     }
 
     @Override
     public CastResolveType onCastOnBlock(UseOnContext context, SpellStats spellStats, SpellContext spellContext, SpellResolver resolver) {
-
         Level world = context.getLevel();
-        Player caster = context.getPlayer();
-        Entity entity = getEntityFromCasterSigil(context.getPlayer(), world);
-        if (CapabilityRegistry.getEssence(caster).isPresent()) {
-            IEssenceCap essence = CapabilityRegistry.getEssence(caster).orElse(null);
-            if (essence.getCurrentEssence() > getEssenceCost()) {
-                if (entity != null) {
-                    resolver.onResolveEffect(world, new EntityHitResult(entity));
-                    essence.removeEssence(getEssenceCost());
-                    Networking.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) caster), new PacketUpdateEssence(essence.getCurrentEssence(), essence.getMaxEssence()));
-                    return CastResolveType.SUCCESS;
+        Player player = context.getPlayer();
+        if (player != null) {
+            Optional<ItemStack> item = getSigilFromCaster(player);
+            if (item.isPresent()) {
+                if (!player.getCooldowns().isOnCooldown(item.get().getItem())) {
+                    return castUsingSigil(player, item.get(), world, resolver);
                 }
             }
         }
-
         return CastResolveType.FAILURE;
     }
 
     @Override
     public CastResolveType onCastOnBlock(BlockHitResult blockRayTraceResult, LivingEntity caster, SpellStats spellStats, SpellContext spellContext, SpellResolver resolver) {
         Level world = caster.level;
-        Entity entity = getEntityFromCasterSigil(caster, world);
-        if (CapabilityRegistry.getEssence(caster).isPresent()) {
-            IEssenceCap essence = CapabilityRegistry.getEssence(caster).orElse(null);
-            if (essence.getCurrentEssence() > getEssenceCost()) {
-                if (entity != null) {
-                    resolver.onResolveEffect(world, new EntityHitResult(entity));
-                    essence.removeEssence(getEssenceCost());
-                    Networking.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) caster), new PacketUpdateEssence(essence.getCurrentEssence(), essence.getMaxEssence()));
-                    return CastResolveType.SUCCESS;
-                }
+        Optional<ItemStack> item = getSigilFromCaster(caster);
+        if (item.isPresent() && caster instanceof Player player) {
+            if (!player.getCooldowns().isOnCooldown(item.get().getItem())) {
+                return castUsingSigil(player, item.get(), world, resolver);
             }
         }
-
         return CastResolveType.FAILURE;
     }
 
     @Override
     public CastResolveType onCastOnEntity(@Nullable ItemStack stack, LivingEntity caster, Entity target, InteractionHand hand, SpellStats spellStats, SpellContext spellContext, SpellResolver resolver) {
         Level world = caster.level;
-        Entity entity = getEntityFromCasterSigil(caster, world);
-        if (CapabilityRegistry.getEssence(caster).isPresent()) {
-            IEssenceCap essence = CapabilityRegistry.getEssence(caster).orElse(null);
-            if (essence.getCurrentEssence() > getEssenceCost()) {
-                if (entity != null) {
-                    resolver.onResolveEffect(world, new EntityHitResult(entity));
-                    essence.removeEssence(getEssenceCost());
-                    Networking.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) caster), new PacketUpdateEssence(essence.getCurrentEssence(), essence.getMaxEssence()));
-                    return CastResolveType.SUCCESS;
-                }
+        Optional<ItemStack> item = getSigilFromCaster(caster);
+        if (item.isPresent() && caster instanceof Player player) {
+            if (!player.getCooldowns().isOnCooldown(item.get().getItem())) {
+                return castUsingSigil(player, item.get(), world, resolver);
             }
         }
-
         return CastResolveType.FAILURE;
     }
 
@@ -132,26 +104,45 @@ public class MethodSigil extends AbstractCastMethod implements IEssenceEffect {
         return 100;
     }
 
-    @Nullable
-    private Entity getEntityFromCasterSigil(LivingEntity caster, Level world) {
-        if (world instanceof ServerLevel level) {
-            if (caster.isHolding(ArsOscuraItems.SIGIL.get())) {
-                ItemStack sigil = getSigilFromCaster(caster);
-                CompoundTag tag = sigil.getTag();
-                if (tag != null && tag.contains("entity_uuid")) {
-                    String uuid = tag.getString("entity_uuid");
-                    return level.getEntity(UUID.fromString(uuid));
+    private CastResolveType castUsingSigil(Player caster, ItemStack sigil, Level world, SpellResolver resolver) {
+        if (CapabilityRegistry.getEssence(caster).isPresent()) {
+            Entity entity = getEntityFromCasterSigil(world, sigil);
+            IEssenceCap essence = CapabilityRegistry.getEssence(caster).orElse(null);
+            if (essence.getCurrentEssence() > getEssenceCost()) {
+                if (entity != null) {
+                    resolver.onResolveEffect(world, new EntityHitResult(entity));
+                    essence.removeEssence(getEssenceCost());
+                    caster.getCooldowns().addCooldown(sigil.getItem(), 100);
+                    Networking.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) caster), new PacketUpdateEssence(essence.getCurrentEssence(), essence.getMaxEssence()));
+                    return CastResolveType.SUCCESS;
                 }
             }
+
+        }
+
+        return CastResolveType.FAILURE;
+    }
+
+    @Nullable
+    private Entity getEntityFromCasterSigil(Level world, ItemStack sigil) {
+        if (world instanceof ServerLevel level) {
+            CompoundTag tag = sigil.getTag();
+            if (tag != null && tag.contains("entity_uuid")) {
+                String uuid = tag.getString("entity_uuid");
+                return level.getEntity(UUID.fromString(uuid));
+            }
+
         }
         return null;
     }
 
     @NotNull
-    private ItemStack getSigilFromCaster(LivingEntity caster) {
-        ItemStack main = caster.getItemInHand(InteractionHand.MAIN_HAND);
-        if (main.is(ArsOscuraItems.SIGIL.get()))
-            return main;
-        return caster.getItemInHand(InteractionHand.OFF_HAND);
+    private Optional<ItemStack> getSigilFromCaster(LivingEntity caster) {
+        if (caster.isHolding(ArsOscuraItems.SIGIL.get())) {
+            ItemStack main = caster.getItemInHand(InteractionHand.MAIN_HAND);
+            if (main.is(ArsOscuraItems.SIGIL.get())) return Optional.of(main);
+            return Optional.of(caster.getItemInHand(InteractionHand.OFF_HAND));
+        }
+        return Optional.empty();
     }
 }
