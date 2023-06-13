@@ -1,9 +1,6 @@
 package com.luiq54.arsoscura.common.glyphs;
 
-import com.hollingsworth.arsnouveau.api.spell.AbstractAugment;
-import com.hollingsworth.arsnouveau.api.spell.SpellContext;
-import com.hollingsworth.arsnouveau.api.spell.SpellResolver;
-import com.hollingsworth.arsnouveau.api.spell.SpellStats;
+import com.hollingsworth.arsnouveau.api.spell.*;
 import com.hollingsworth.arsnouveau.common.lib.GlyphLib;
 import com.luiq54.arsoscura.common.capability.CapabilityRegistry;
 import com.luiq54.arsoscura.common.capability.IEssenceCap;
@@ -23,7 +20,7 @@ import java.util.Set;
 
 import static com.luiq54.arsoscura.ArsOscura.prefix;
 
-public class EffectSigilGenerate extends AbstractEssenceEffect {
+public class EffectSigilGenerate extends AbstractEffect implements IEssenceEffect {
     private static final String id = GlyphLib.prependGlyph("sigil_generate");
     public static EffectSigilGenerate INSTANCE = new EffectSigilGenerate(prefix(id), "Generate sigil");
 
@@ -31,8 +28,8 @@ public class EffectSigilGenerate extends AbstractEssenceEffect {
         super(tag, description);
     }
 
-    @Override
-    protected int getEssenceCost() {
+
+    public int getEssenceCost() {
         return 50;
     }
 
@@ -64,11 +61,11 @@ public class EffectSigilGenerate extends AbstractEssenceEffect {
 
     @Override
     public int getDefaultManaCost() {
-        return 0;
+        return 10;
     }
 
     @Override
     protected @NotNull Set<AbstractAugment> getCompatibleAugments() {
-        return Set.of();
+        return augmentSetOf();
     }
 }

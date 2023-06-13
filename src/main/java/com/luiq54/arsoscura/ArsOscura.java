@@ -31,7 +31,7 @@ public class ArsOscura {
     public static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new); //TODO: Change to our own
 
     public static final Lazy<Registrate> REGISTRATE = Lazy.of(() -> Registrate.create(MODID));
-    private static final Logger LOGGER = LogManager.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger();
 
     public static CreativeModeTab ArsOscuraTab = new CreativeModeTab(CreativeModeTab.getGroupCountSafe(), MODID) {
         @Override
