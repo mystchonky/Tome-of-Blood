@@ -132,12 +132,19 @@ repositories {
     mavenLocal()
 }
 
+repositories {
+    flatDir {
+        dirs 'lib'
+    }
+}
+
 jarJar.enable()
 
 dependencies {
     minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
 
     implementation fg.deobf("com.hollingsworth.ars_nouveau:ars_nouveau-${mc_version}:${ars_version}")
+    implementation fg.deobf("wayoftime.bloodmagic:BloodMagic-${mc_version}:${bm_version}")
 
     // Registrate
     implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")

@@ -20,7 +20,7 @@ import java.util.Set;
 
 import static com.luiq54.arsoscura.ArsOscura.prefix;
 
-public class EffectSigilGenerate extends AbstractEffect implements IEssenceEffect {
+public class EffectSigilGenerate extends AbstractEffect implements IEssenceSpellPart {
     private static final String id = GlyphLib.prependGlyph("sigil_generate");
     public static EffectSigilGenerate INSTANCE = new EffectSigilGenerate(prefix(id), "Generate sigil");
 

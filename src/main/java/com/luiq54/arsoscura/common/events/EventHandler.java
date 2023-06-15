@@ -1,11 +1,14 @@
 package com.luiq54.arsoscura.common.events;
 
+import com.hollingsworth.arsnouveau.api.ArsNouveauAPI;
 import com.hollingsworth.arsnouveau.api.event.SpellDamageEvent;
+import com.hollingsworth.arsnouveau.api.spell.AbstractAugment;
 import com.hollingsworth.arsnouveau.api.spell.Spell;
 import com.luiq54.arsoscura.ArsOscura;
 import com.luiq54.arsoscura.client.ClientInfo;
 import com.luiq54.arsoscura.common.capability.CapabilityRegistry;
 import com.luiq54.arsoscura.common.commands.EssenceCommand;
+import com.luiq54.arsoscura.common.glyphs.AugmentMimic;
 import com.luiq54.arsoscura.common.glyphs.EffectLifeSuck;
 import com.luiq54.arsoscura.common.network.Networking;
 import com.luiq54.arsoscura.common.network.PacketUpdateEssence;
@@ -14,6 +17,7 @@ import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.network.PacketDistributor;
 
 @Mod.EventBusSubscriber(modid = ArsOscura.MODID)
@@ -28,6 +32,18 @@ public class EventHandler {
     @SubscribeEvent
     public static void commandRegister(RegisterCommandsEvent event) {
         EssenceCommand.register(event.getDispatcher());
+    }
+
+    @SubscribeEvent
+    public static void updateAugmentsforMimic(FMLLoadCompleteEvent event) {
+        ArsNouveauAPI.getInstance()
+                .getGlyphItemMap()
+                .values()
+                .stream()
+                .filter(spell -> spell instanceof AbstractAugment)
+                .forEach(spell -> {
+                    ((AbstractAugment) spell).getCompatibleAugments().add(AugmentMimic.INSTANCE);
+                });
     }
 
     @SubscribeEvent

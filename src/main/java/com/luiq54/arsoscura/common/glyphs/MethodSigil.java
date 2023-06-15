@@ -29,7 +29,7 @@ import java.util.UUID;
 
 import static com.luiq54.arsoscura.ArsOscura.prefix;
 
-public class MethodSigil extends AbstractCastMethod implements IEssenceEffect {
+public class MethodSigil extends AbstractCastMethod implements IEssenceSpellPart {
 
     private static final String id = GlyphLib.prependGlyph("sigil_cast");
     public static MethodSigil INSTANCE = new MethodSigil();
