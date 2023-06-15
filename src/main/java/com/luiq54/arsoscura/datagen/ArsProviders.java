@@ -14,7 +14,6 @@ import com.hollingsworth.arsnouveau.common.datagen.ImbuementRecipeProvider;
 import com.hollingsworth.arsnouveau.common.datagen.patchouli.*;
 import com.luiq54.arsoscura.ArsNouveauRegistry;
 import com.luiq54.arsoscura.ArsOscura;
-import com.luiq54.arsoscura.common.glyphs.EffectLifeSuck;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
@@ -44,7 +43,7 @@ public class ArsProviders {
 
             Path output = this.generator.getOutputFolder();
 
-            recipes.add(get(EffectLifeSuck.INSTANCE).withItem(Items.DIRT));
+//            recipes.add(get(EffectLifeSuck.INSTANCE).withItem(Items.DIRT));
 
             for (GlyphRecipe recipe : recipes) {
                 Path path = getScribeGlyphPath(output, recipe.output.getItem());

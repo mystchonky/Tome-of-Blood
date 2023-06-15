@@ -2,14 +2,9 @@ package com.luiq54.arsoscura.common.glyphs;
 
 import com.hollingsworth.arsnouveau.api.spell.*;
 import com.hollingsworth.arsnouveau.common.lib.GlyphLib;
-import com.luiq54.arsoscura.common.capability.CapabilityRegistry;
-import com.luiq54.arsoscura.common.capability.IEssenceCap;
 import com.luiq54.arsoscura.common.items.ArsOscuraItems;
-import com.luiq54.arsoscura.common.network.Networking;
-import com.luiq54.arsoscura.common.network.PacketUpdateEssence;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -18,8 +13,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.EntityHitResult;
-import net.minecraftforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -29,7 +22,7 @@ import java.util.UUID;
 
 import static com.luiq54.arsoscura.ArsOscura.prefix;
 
-public class MethodSigil extends AbstractCastMethod implements IEssenceSpellPart {
+public class MethodSigil extends AbstractCastMethod {
 
     private static final String id = GlyphLib.prependGlyph("sigil_cast");
     public static MethodSigil INSTANCE = new MethodSigil();
@@ -99,26 +92,21 @@ public class MethodSigil extends AbstractCastMethod implements IEssenceSpellPart
         return augmentSetOf();
     }
 
-    @Override
-    public int getEssenceCost() {
-        return 100;
-    }
-
     private CastResolveType castUsingSigil(Player caster, ItemStack sigil, Level world, SpellResolver resolver) {
-        if (CapabilityRegistry.getEssence(caster).isPresent()) {
-            Entity entity = getEntityFromCasterSigil(world, sigil);
-            IEssenceCap essence = CapabilityRegistry.getEssence(caster).orElse(null);
-            if (essence.getCurrentEssence() > getEssenceCost()) {
-                if (entity != null) {
-                    resolver.onResolveEffect(world, new EntityHitResult(entity));
-                    essence.removeEssence(getEssenceCost());
-                    caster.getCooldowns().addCooldown(sigil.getItem(), 100);
-                    Networking.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) caster), new PacketUpdateEssence(essence.getCurrentEssence(), essence.getMaxEssence()));
-                    return CastResolveType.SUCCESS;
-                }
-            }
-
-        }
+//        if (CapabilityRegistry.getEssence(caster).isPresent()) {
+//            Entity entity = getEntityFromCasterSigil(world, sigil);
+//            IEssenceCap essence = CapabilityRegistry.getEssence(caster).orElse(null);
+//            if (essence.getCurrentEssence() > getEssenceCost()) {
+//                if (entity != null) {
+//                    resolver.onResolveEffect(world, new EntityHitResult(entity));
+//                    essence.removeEssence(getEssenceCost());
+//                    caster.getCooldowns().addCooldown(sigil.getItem(), 100);
+//                    Networking.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) caster), new PacketUpdateEssence(essence.getCurrentEssence(), essence.getMaxEssence()));
+//                    return CastResolveType.SUCCESS;
+//                }
+//            }
+//
+//        }
 
         return CastResolveType.FAILURE;
     }
