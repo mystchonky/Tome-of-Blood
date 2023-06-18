@@ -1,4 +1,8 @@
 {
+  "alert.ars_oscura.no_lp": "Your soul feels weak..",
+  "item.ars_oscura.apprentice_tome_of_blood": "Apprentice Tome of Blood",
+  "item.ars_oscura.archmage_tome_of_blood": "Archmage Tome of Blood",
+  "item.ars_oscura.novice_tome_of_blood": "Novice Tome of Blood",
   "item.ars_oscura.sigil": "Sigil",
   "item.ars_oscura.star_hat": "Example Hat",
   "tooltip.ars_oscura.sigil_empty": "No entity stored",
