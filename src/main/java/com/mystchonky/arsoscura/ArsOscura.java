@@ -63,9 +63,9 @@ public class ArsOscura {
         ctx.registerConfig(ModConfig.Type.COMMON, BaseConfig.COMMON_SPEC, MODID + "/base-common.toml");
         ctx.registerConfig(ModConfig.Type.CLIENT, BaseConfig.CLIENT_SPEC, MODID + "/base-client.toml");
 
+        ArsNouveauRegistry.registerGlyphs();
         ArsOscuraItems.register();
         ArsOscuraLang.register();
-        ArsNouveauRegistry.registerGlyphs();
 
         IEventBus modbus = FMLJavaModLoadingContext.get().getModEventBus();
         modbus.addListener(this::setup);

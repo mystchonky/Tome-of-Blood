@@ -22,7 +22,7 @@ public class Setup {
 
         gen.addProvider(event.includeServer(), new ArsProviders.PatchouliProvider(gen));
 
-        gen.addProvider(event.includeClient(), new ItemModelGenerator(gen, event.getExistingFileHelper()));
+        gen.addProvider(event.includeClient(), new GlyphItemModelProvider(gen, event.getExistingFileHelper()));
     }
 
 }

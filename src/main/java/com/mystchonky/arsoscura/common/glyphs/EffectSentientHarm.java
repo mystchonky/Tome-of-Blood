@@ -26,7 +26,6 @@ public class EffectSentientHarm extends AbstractEffect implements IDamageEffect 
 
     public EffectSentientHarm() {
         super(ArsOscura.prefix(GlyphLib.EffectSentientHarmID), "Sentient Harm");
-
     }
 
     @Override
@@ -112,7 +111,7 @@ public class EffectSentientHarm extends AbstractEffect implements IDamageEffect 
 
     @Override
     public SpellTier defaultTier() {
-        return SpellTier.TWO;
+        return SpellTier.ONE;
     }
 
     @Override
