@@ -2,7 +2,6 @@ package com.luiq54.arsoscura.common.glyphs;
 
 import com.hollingsworth.arsnouveau.api.spell.*;
 import com.hollingsworth.arsnouveau.common.lib.GlyphLib;
-import com.luiq54.arsoscura.common.items.ArsOscuraItems;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
@@ -126,11 +125,11 @@ public class MethodSigil extends AbstractCastMethod {
 
     @NotNull
     private Optional<ItemStack> getSigilFromCaster(LivingEntity caster) {
-        if (caster.isHolding(ArsOscuraItems.SIGIL.get())) {
-            ItemStack main = caster.getItemInHand(InteractionHand.MAIN_HAND);
-            if (main.is(ArsOscuraItems.SIGIL.get())) return Optional.of(main);
-            return Optional.of(caster.getItemInHand(InteractionHand.OFF_HAND));
-        }
+//        if (caster.isHolding(ArsOscuraItems.SIGIL.get())) {
+//            ItemStack main = caster.getItemInHand(InteractionHand.MAIN_HAND);
+//            if (main.is(ArsOscuraItems.SIGIL.get())) return Optional.of(main);
+//            return Optional.of(caster.getItemInHand(InteractionHand.OFF_HAND));
+//        }
         return Optional.empty();
     }
 }

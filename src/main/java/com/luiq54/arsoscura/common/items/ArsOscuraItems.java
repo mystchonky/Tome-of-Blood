@@ -8,18 +8,6 @@ import com.tterrag.registrate.util.entry.ItemEntry;
 public class ArsOscuraItems {
     private static final Registrate REGISTRATE = ArsOscura.registrate();
 
-    public static final ItemEntry<ExampleCosmetic> EXAMPLE = REGISTRATE.item("star_hat", ExampleCosmetic::new)
-            .lang("Example Hat")
-            .model((ctx, prov) -> {
-            })
-            .tab(() -> ArsOscura.ArsOscuraTab)
-            .register();
-
-    public static final ItemEntry<Sigil> SIGIL = REGISTRATE.item("sigil", Sigil::new)
-            .lang("Sigil")
-            .tab(() -> ArsOscura.ArsOscuraTab)
-            .register();
-
     public static final ItemEntry<TomeOfBlood> NOVICE_TOME = REGISTRATE.item("novice_tome_of_blood", (properties) -> new TomeOfBlood(properties, SpellTier.ONE))
             .lang("Novice Tome of Blood")
             .properties((properties -> properties.stacksTo(1)))

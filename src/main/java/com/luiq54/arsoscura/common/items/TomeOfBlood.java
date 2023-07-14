@@ -5,7 +5,6 @@ import com.hollingsworth.arsnouveau.api.spell.SpellContext;
 import com.hollingsworth.arsnouveau.api.spell.SpellResolver;
 import com.hollingsworth.arsnouveau.api.spell.SpellTier;
 import com.hollingsworth.arsnouveau.common.items.SpellBook;
-import com.luiq54.arsoscura.ArsOscura;
 import com.luiq54.arsoscura.client.renderer.item.TomeOfBloodRenderer;
 import com.luiq54.arsoscura.common.spell.BloodSpellResolver;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
@@ -19,10 +18,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.function.Consumer;
 
 public class TomeOfBlood extends SpellBook {
-
-    public TomeOfBlood(SpellTier tier) {
-        super(new Properties().stacksTo(1).tab(ArsOscura.ArsOscuraTab), tier);
-    }
 
     public TomeOfBlood(Properties properties, SpellTier tier) {
         super(properties, tier);
