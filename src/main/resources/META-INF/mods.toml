@@ -28,7 +28,7 @@ displayName = "Example Ars Nouveau Addon" #mandatory
 # A text field displayed in the mod UI
 credits = "Thanks for this example mod goes to Java" #optional
 # A text field displayed in the mod UI
-authors = "chonky :)" #optional
+authors = "mystchonky" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description = '''
 Starbuncles will conquer the world

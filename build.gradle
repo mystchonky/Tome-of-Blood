@@ -29,7 +29,7 @@ apply plugin: 'maven-publish'
 
 
 version = "${mc_version}-${mod_version}"
-group = 'com.luiq54.ars_oscura' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = 'com.mystchonky.ars_oscura' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'ars_oscura'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
