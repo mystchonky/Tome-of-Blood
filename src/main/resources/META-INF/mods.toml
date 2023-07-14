@@ -18,7 +18,7 @@ modId = "ars_oscura" #mandatory
 # The version number of the mod - there's a few well known ${} variables useable here or just hardcode it
 version = "${file.jarVersion}" #mandatory
 # A display name for the mod
-displayName = "Example Ars Nouveau Addon" #mandatory
+displayName = "Ars Oscura" #mandatory
 # A URL to query for updates for this mod. See the JSON update specification <here>
 #updateJSONURL="http://myurl.me/" #optional
 # A URL for the "homepage" for this mod, displayed in the mod UI
@@ -26,12 +26,12 @@ displayName = "Example Ars Nouveau Addon" #mandatory
 # A file name (in the root of the mod JAR) containing a logo for display
 #logoFile="examplemod.png" #optional
 # A text field displayed in the mod UI
-credits = "Thanks for this example mod goes to Java" #optional
+credits = "Thanks to the original author of Tome of Blood SadieLuna" #optional
 # A text field displayed in the mod UI
 authors = "mystchonky" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description = '''
-Starbuncles will conquer the world
+Ars Nouveau tainted by Blood Magic
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.ars_oscura]] #optional
@@ -64,5 +64,12 @@ side = "BOTH"
 modId = "ars_nouveau"
 mandatory = true
 versionRange = "[2.5.0,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.ars_oscura]]
+modId = "bloodmagic"
+mandatory = true
+versionRange = "[3.2.6-40,)"
 ordering = "AFTER"
 side = "BOTH"
