@@ -6,6 +6,7 @@ import com.hollingsworth.arsnouveau.api.spell.SpellContext;
 import com.hollingsworth.arsnouveau.api.spell.SpellResolver;
 import com.hollingsworth.arsnouveau.api.spell.SpellValidationError;
 import com.hollingsworth.arsnouveau.common.util.PortUtil;
+import com.mystchonky.arsoscura.common.config.BaseConfig;
 import com.mystchonky.arsoscura.common.lang.ArsOscuraLang;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
@@ -17,8 +18,6 @@ import wayoftime.bloodmagic.util.helper.NetworkHelper;
 import java.util.List;
 
 public class BloodSpellResolver extends SpellResolver {
-
-    private static final int converion_rate = 10;
 
     private final ISpellValidator spellValidator;
 
@@ -48,7 +47,7 @@ public class BloodSpellResolver extends SpellResolver {
     boolean enoughMana(LivingEntity entity) {
         if (entity instanceof Player player) {
             if (player.isCreative()) return true;
-            int totalCost = getResolveCost() * converion_rate;
+            int totalCost = getResolveCost() * BaseConfig.COMMON.CONVERSION_RATE.get();
             SoulNetwork soulNetwork = NetworkHelper.getSoulNetwork(player.getUUID());
             //LOGGER.debug("Got soulnetwork for " + soulNetwork.getPlayer().getDisplayName().getString());
             int pool = soulNetwork.getCurrentEssence();
@@ -65,7 +64,7 @@ public class BloodSpellResolver extends SpellResolver {
     public void expendMana() {
         if (spellContext.getUnwrappedCaster() instanceof Player player) {
             if (!player.isCreative()) {
-                int totalCost = getResolveCost() * converion_rate;
+                int totalCost = getResolveCost() * BaseConfig.COMMON.CONVERSION_RATE.get();
                 SoulNetwork soulNetwork = NetworkHelper.getSoulNetwork(player.getUUID());
                 SoulTicket ticket = new SoulTicket(Component.literal("TomeOfBlood|" + player.getName()), totalCost);
                 soulNetwork.syphonAndDamage(player, ticket);

@@ -1,7 +1,6 @@
 package com.mystchonky.arsoscura.client.events;
 
 import com.mystchonky.arsoscura.ArsOscura;
-import com.mystchonky.arsoscura.client.gui.GuiLifeEssenceHUD;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -12,6 +11,6 @@ public class ClientEventHandler {
 
     @SubscribeEvent
     public static void registerOverlays(final RegisterGuiOverlaysEvent event) {
-        event.registerAboveAll("essence_hud", GuiLifeEssenceHUD.OVERLAY);
+//        event.registerAboveAll("essence_hud", GuiLifeEssenceHUD.OVERLAY);
     }
 }

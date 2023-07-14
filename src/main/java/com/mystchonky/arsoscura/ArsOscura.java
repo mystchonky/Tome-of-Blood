@@ -3,6 +3,7 @@ package com.mystchonky.arsoscura;
 import com.hollingsworth.arsnouveau.setup.ClientProxy;
 import com.hollingsworth.arsnouveau.setup.IProxy;
 import com.hollingsworth.arsnouveau.setup.ServerProxy;
+import com.mystchonky.arsoscura.common.config.BaseConfig;
 import com.mystchonky.arsoscura.common.items.ArsOscuraItems;
 import com.mystchonky.arsoscura.common.lang.ArsOscuraLang;
 import com.mystchonky.arsoscura.common.network.Networking;
@@ -16,12 +17,18 @@ import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.io.IOException;
+import java.nio.file.Files;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(ArsOscura.MODID)
@@ -44,12 +51,23 @@ public class ArsOscura {
     }
 
     public ArsOscura() {
-        IEventBus modbus = FMLJavaModLoadingContext.get().getModEventBus();
+        // Ensure the config subdirectory is present.
+        try {
+            Files.createDirectories(FMLPaths.CONFIGDIR.get().resolve(MODID));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Register config files
+        var ctx = ModLoadingContext.get();
+        ctx.registerConfig(ModConfig.Type.COMMON, BaseConfig.COMMON_SPEC, MODID + "/base-common.toml");
+        ctx.registerConfig(ModConfig.Type.CLIENT, BaseConfig.CLIENT_SPEC, MODID + "/base-client.toml");
 
         ArsOscuraItems.register();
         ArsOscuraLang.register();
         ArsNouveauRegistry.registerGlyphs();
 
+        IEventBus modbus = FMLJavaModLoadingContext.get().getModEventBus();
         modbus.addListener(this::setup);
         modbus.addListener(this::doClientStuff);
 
