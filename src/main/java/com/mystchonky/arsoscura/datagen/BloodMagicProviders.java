@@ -2,7 +2,7 @@ package com.mystchonky.arsoscura.datagen;
 
 import com.hollingsworth.arsnouveau.setup.ItemsRegistry;
 import com.mystchonky.arsoscura.ArsOscura;
-import com.mystchonky.arsoscura.common.items.ArsOscuraItems;
+import com.mystchonky.arsoscura.common.init.ArsOscuraItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;

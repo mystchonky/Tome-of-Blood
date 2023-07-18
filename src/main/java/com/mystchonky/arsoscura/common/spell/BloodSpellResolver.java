@@ -7,7 +7,7 @@ import com.hollingsworth.arsnouveau.api.spell.SpellResolver;
 import com.hollingsworth.arsnouveau.api.spell.SpellValidationError;
 import com.hollingsworth.arsnouveau.common.util.PortUtil;
 import com.mystchonky.arsoscura.common.config.BaseConfig;
-import com.mystchonky.arsoscura.common.lang.ArsOscuraLang;
+import com.mystchonky.arsoscura.common.init.ArsOscuraLang;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;

@@ -1,7 +1,9 @@
-package com.mystchonky.arsoscura.common.items;
+package com.mystchonky.arsoscura.common.init;
 
 import com.hollingsworth.arsnouveau.api.spell.SpellTier;
 import com.mystchonky.arsoscura.ArsOscura;
+import com.mystchonky.arsoscura.common.items.MintTeaItem;
+import com.mystchonky.arsoscura.common.items.TomeOfBlood;
 import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.util.entry.ItemEntry;
 
@@ -29,6 +31,12 @@ public class ArsOscuraItems {
             .tab(() -> ArsOscura.ArsOscuraTab)
             .model((ctx, prov) -> {
             })
+            .register();
+
+    public static final ItemEntry<MintTeaItem> MINT_TEA = REGISTRATE.item("mint_tea", MintTeaItem::new)
+            .lang("Mint Tea")
+            .properties((properties -> properties.stacksTo(1)))
+            .tab(() -> ArsOscura.ArsOscuraTab)
             .register();
 
 

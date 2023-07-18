@@ -4,8 +4,9 @@ import com.hollingsworth.arsnouveau.setup.ClientProxy;
 import com.hollingsworth.arsnouveau.setup.IProxy;
 import com.hollingsworth.arsnouveau.setup.ServerProxy;
 import com.mystchonky.arsoscura.common.config.BaseConfig;
-import com.mystchonky.arsoscura.common.items.ArsOscuraItems;
-import com.mystchonky.arsoscura.common.lang.ArsOscuraLang;
+import com.mystchonky.arsoscura.common.init.ArsOscuraItems;
+import com.mystchonky.arsoscura.common.init.ArsOscuraLang;
+import com.mystchonky.arsoscura.common.init.ArsOscuraPotionEffects;
 import com.mystchonky.arsoscura.common.network.Networking;
 import com.tterrag.registrate.Registrate;
 import net.minecraft.resources.ResourceLocation;
@@ -65,6 +66,7 @@ public class ArsOscura {
 
         ArsNouveauRegistry.registerGlyphs();
         ArsOscuraItems.register();
+        ArsOscuraPotionEffects.register();
         ArsOscuraLang.register();
 
         IEventBus modbus = FMLJavaModLoadingContext.get().getModEventBus();

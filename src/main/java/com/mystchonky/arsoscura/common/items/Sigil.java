@@ -1,6 +1,6 @@
 package com.mystchonky.arsoscura.common.items;
 
-import com.mystchonky.arsoscura.common.lang.ArsOscuraLang;
+import com.mystchonky.arsoscura.common.init.ArsOscuraLang;
 import com.mystchonky.arsoscura.common.util.TooltipUtil;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
