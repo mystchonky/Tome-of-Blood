@@ -1,4 +1,4 @@
-package com.mystchonky.arsoscura;
+package com.mystchonky.arsoscura.common.init;
 
 import com.hollingsworth.arsnouveau.api.ArsNouveauAPI;
 import com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart;

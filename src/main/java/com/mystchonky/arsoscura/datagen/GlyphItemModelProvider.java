@@ -1,7 +1,7 @@
 package com.mystchonky.arsoscura.datagen;
 
-import com.mystchonky.arsoscura.ArsNouveauRegistry;
 import com.mystchonky.arsoscura.ArsOscura;
+import com.mystchonky.arsoscura.common.init.ArsNouveauRegistry;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;

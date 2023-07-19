@@ -4,9 +4,7 @@ import com.hollingsworth.arsnouveau.setup.ClientProxy;
 import com.hollingsworth.arsnouveau.setup.IProxy;
 import com.hollingsworth.arsnouveau.setup.ServerProxy;
 import com.mystchonky.arsoscura.common.config.BaseConfig;
-import com.mystchonky.arsoscura.common.init.ArsOscuraItems;
-import com.mystchonky.arsoscura.common.init.ArsOscuraLang;
-import com.mystchonky.arsoscura.common.init.ArsOscuraPotionEffects;
+import com.mystchonky.arsoscura.common.init.*;
 import com.mystchonky.arsoscura.common.network.Networking;
 import com.tterrag.registrate.Registrate;
 import net.minecraft.resources.ResourceLocation;
@@ -65,6 +63,7 @@ public class ArsOscura {
         ctx.registerConfig(ModConfig.Type.CLIENT, BaseConfig.CLIENT_SPEC, MODID + "/base-client.toml");
 
         ArsNouveauRegistry.registerGlyphs();
+        LivingUpgradeRegistry.register();
         ArsOscuraItems.register();
         ArsOscuraPotionEffects.register();
         ArsOscuraLang.register();

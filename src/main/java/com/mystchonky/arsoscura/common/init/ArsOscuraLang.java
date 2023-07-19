@@ -1,6 +1,5 @@
 package com.mystchonky.arsoscura.common.init;
 
-import com.mystchonky.arsoscura.ArsNouveauRegistry;
 import com.mystchonky.arsoscura.ArsOscura;
 import com.tterrag.registrate.Registrate;
 import net.minecraft.network.chat.Component;
