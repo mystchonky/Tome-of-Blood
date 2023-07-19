@@ -55,14 +55,13 @@ public class EventHandler {
             if (LivingUtil.hasFullSet(player)) {
                 Spell spell = event.spell;
                 SpellContext spellContext = event.context;
+
                 int cost = spellContext.getSpell().getFinalCostAndReset() - getPlayerDiscounts(spellContext.getUnwrappedCaster(), spell);
                 cost = Math.max(cost, 0);
                 int xpAward = cost / 50;
+                LivingUtil.applyNewExperience(player, LivingUpgradeRegistry.MANA_UPGRADE, xpAward);
 
                 LivingStats stats = LivingStats.fromPlayer(player);
-                stats.addExperience(LivingUpgradeRegistry.MANA_UPGRADE.getKey(), xpAward);
-                LivingStats.toPlayer(player, stats);
-
                 int level = stats.getLevel(LivingUpgradeRegistry.MANA_UPGRADE.getKey());
                 float discount = level / 10;
                 spell.addDiscount((int) (spell.getNoDiscountCost() * discount));
