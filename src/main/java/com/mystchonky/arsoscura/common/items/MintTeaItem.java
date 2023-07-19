@@ -4,6 +4,7 @@ import com.mystchonky.arsoscura.common.init.ArsOscuraPotionEffects;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -20,7 +21,15 @@ public class MintTeaItem extends Item {
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
         if (!level.isClientSide && entity instanceof Player player) {
-            player.addEffect(new MobEffectInstance(ArsOscuraPotionEffects.SERENE_EFFECT.get(), 60 * 20));
+
+            if (level.random.nextDouble() < 0.05) {
+                player.addEffect(new MobEffectInstance(MobEffects.POISON, 5 * 20));
+                player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 5 * 20));
+
+            } else {
+                player.addEffect(new MobEffectInstance(ArsOscuraPotionEffects.SERENE_EFFECT.get(), 60 * 20));
+            }
+
             if (!player.isCreative()) {
                 stack.shrink(1);
             }
