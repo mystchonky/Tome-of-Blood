@@ -14,7 +14,6 @@ import com.hollingsworth.arsnouveau.common.datagen.ImbuementRecipeProvider;
 import com.hollingsworth.arsnouveau.common.datagen.patchouli.*;
 import com.mystchonky.arsoscura.ArsOscura;
 import com.mystchonky.arsoscura.common.init.ArsNouveauRegistry;
-import com.mystchonky.arsoscura.common.integration.bloodmagic.glyphs.EffectSentientHarm;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
@@ -23,7 +22,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.ItemLike;
-import wayoftime.bloodmagic.common.item.BloodMagicItems;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -44,7 +42,6 @@ public class ArsProviders {
         public void run(CachedOutput cache) throws IOException {
 
             Path output = this.generator.getOutputFolder();
-            recipes.add(get(EffectSentientHarm.INSTANCE).withItem(BloodMagicItems.PETTY_GEM));
 
             for (GlyphRecipe recipe : recipes) {
                 Path path = getScribeGlyphPath(output, recipe.output.getItem());

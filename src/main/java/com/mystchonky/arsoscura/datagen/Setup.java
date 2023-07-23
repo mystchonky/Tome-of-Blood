@@ -14,12 +14,13 @@ public class Setup {
     public static void gatherData(GatherDataEvent event) {
         DataGenerator gen = event.getGenerator();
 
-        gen.addProvider(event.includeServer(), new ArsProviders.ImbuementProvider(gen));
-        gen.addProvider(event.includeServer(), new ArsProviders.GlyphProvider(gen));
-        gen.addProvider(event.includeServer(), new ArsProviders.EnchantingAppProvider(gen));
+//        gen.addProvider(event.includeServer(), new ArsProviders.ImbuementProvider(gen));
+//        gen.addProvider(event.includeServer(), new ArsProviders.GlyphProvider(gen));
+//        gen.addProvider(event.includeServer(), new ArsProviders.EnchantingAppProvider(gen));
 
         gen.addProvider(event.includeServer(), new BloodMagicProviders.AltarProvider(gen));
         gen.addProvider(event.includeServer(), new BloodMagicProviders.AlchemyTableProvider(gen));
+        gen.addProvider(event.includeServer(), new BloodMagicProviders.GlyphProvider(gen));
 
         gen.addProvider(event.includeServer(), new ArsProviders.PatchouliProvider(gen));
 
