@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.2
+
+    - Refactor for multiple mod support
+    - Blood Magic is now an optional dependency
+
 ## 0.1.1
 
     - Added recipe of Mint Tea item
