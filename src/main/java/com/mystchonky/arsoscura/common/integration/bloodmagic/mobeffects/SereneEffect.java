@@ -1,4 +1,4 @@
-package com.mystchonky.arsoscura.common.potions;
+package com.mystchonky.arsoscura.common.integration.bloodmagic.mobeffects;
 
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;

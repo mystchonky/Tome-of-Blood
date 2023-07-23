@@ -2,23 +2,19 @@ package com.mystchonky.arsoscura.common.init;
 
 import com.hollingsworth.arsnouveau.api.ArsNouveauAPI;
 import com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart;
-import com.hollingsworth.arsnouveau.api.spell.SpellSchool;
-import com.mystchonky.arsoscura.common.glyphs.EffectSentientHarm;
+import com.mystchonky.arsoscura.common.integration.bloodmagic.BloodMagicIntegration;
+import net.minecraftforge.fml.ModList;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ArsNouveauRegistry {
 
-    public static SpellSchool BLOODMAGIC = new SpellSchool("bloodmagic");
-    public static List<AbstractSpellPart> registeredSpells = new ArrayList<>(); //this will come handy for datagen
+    public static List<AbstractSpellPart> registeredSpells = new ArrayList<>();
 
     public static void registerGlyphs() {
-        register(EffectSentientHarm.INSTANCE);
-//        register(EffectLifeSuck.INSTANCE);
-//        register(EffectSigilGenerate.INSTANCE);
-//        register(MethodSigil.INSTANCE);
-//        register(AugmentMimic.INSTANCE);
+        if (ModList.get().isLoaded("bloodmagic"))
+            BloodMagicIntegration.registerGlyphs(ArsNouveauRegistry::register);
     }
 
     public static void registerSounds() {

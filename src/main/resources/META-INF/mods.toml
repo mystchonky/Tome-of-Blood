@@ -69,7 +69,7 @@ side = "BOTH"
 
 [[dependencies.ars_oscura]]
 modId = "bloodmagic"
-mandatory = true
+mandatory = false
 versionRange = "[1.19.2-3.2.6-40,)"
 ordering = "AFTER"
 side = "BOTH"

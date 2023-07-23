@@ -1,10 +1,11 @@
-package com.mystchonky.arsoscura.common.glyphs;
+package com.mystchonky.arsoscura.common.integration.bloodmagic.glyphs;
 
 import com.hollingsworth.arsnouveau.api.spell.*;
 import com.hollingsworth.arsnouveau.common.potions.ModPotions;
 import com.hollingsworth.arsnouveau.common.spell.augment.*;
 import com.mystchonky.arsoscura.ArsOscura;
-import com.mystchonky.arsoscura.common.init.ArsNouveauRegistry;
+import com.mystchonky.arsoscura.common.glyphs.GlyphLibrary;
+import com.mystchonky.arsoscura.common.integration.bloodmagic.BloodMagicIntegration;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -25,7 +26,7 @@ public class EffectSentientHarm extends AbstractEffect implements IDamageEffect 
     public static EffectSentientHarm INSTANCE = new EffectSentientHarm();
 
     public EffectSentientHarm() {
-        super(ArsOscura.prefix(GlyphLib.EffectSentientHarmID), "Sentient Harm");
+        super(ArsOscura.prefix(GlyphLibrary.EffectSentientHarm), "Sentient Harm");
     }
 
     @Override
@@ -129,7 +130,7 @@ public class EffectSentientHarm extends AbstractEffect implements IDamageEffect 
     }
 
     public Set<SpellSchool> getSchools() {
-        return setOf(ArsNouveauRegistry.BLOODMAGIC);
+        return setOf(BloodMagicIntegration.BLOODMAGIC);
     }
 
 }

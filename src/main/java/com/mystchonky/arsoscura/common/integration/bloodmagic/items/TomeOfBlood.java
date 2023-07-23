@@ -1,12 +1,12 @@
-package com.mystchonky.arsoscura.common.items;
+package com.mystchonky.arsoscura.common.integration.bloodmagic.items;
 
 import com.hollingsworth.arsnouveau.api.spell.ISpellCaster;
 import com.hollingsworth.arsnouveau.api.spell.SpellContext;
 import com.hollingsworth.arsnouveau.api.spell.SpellResolver;
 import com.hollingsworth.arsnouveau.api.spell.SpellTier;
 import com.hollingsworth.arsnouveau.common.items.SpellBook;
-import com.mystchonky.arsoscura.client.renderer.item.TomeOfBloodRenderer;
-import com.mystchonky.arsoscura.common.spell.BloodSpellResolver;
+import com.mystchonky.arsoscura.client.integration.bloodmagic.renderer.item.TomeOfBloodRenderer;
+import com.mystchonky.arsoscura.common.integration.bloodmagic.spell.BloodSpellResolver;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;

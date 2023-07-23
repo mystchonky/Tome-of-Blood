@@ -1,6 +1,6 @@
-package com.mystchonky.arsoscura.common.items;
+package com.mystchonky.arsoscura.common.integration.bloodmagic.items;
 
-import com.mystchonky.arsoscura.common.init.ArsOscuraPotionEffects;
+import com.mystchonky.arsoscura.common.integration.bloodmagic.BloodMagicMobEffects;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -27,7 +27,7 @@ public class MintTeaItem extends Item {
                 player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 5 * 20));
 
             } else {
-                player.addEffect(new MobEffectInstance(ArsOscuraPotionEffects.SERENE_EFFECT.get(), 60 * 20));
+                player.addEffect(new MobEffectInstance(BloodMagicMobEffects.SERENE_EFFECT.get(), 60 * 20));
             }
 
             if (!player.isCreative()) {

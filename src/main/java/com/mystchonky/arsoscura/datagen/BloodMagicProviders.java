@@ -2,7 +2,7 @@ package com.mystchonky.arsoscura.datagen;
 
 import com.hollingsworth.arsnouveau.setup.ItemsRegistry;
 import com.mystchonky.arsoscura.ArsOscura;
-import com.mystchonky.arsoscura.common.init.ArsOscuraItems;
+import com.mystchonky.arsoscura.common.integration.bloodmagic.BloodMagicItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
@@ -33,9 +33,9 @@ public class BloodMagicProviders {
 
         @Override
         protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
-            BloodAltarRecipeBuilder.altar(Ingredient.of(ItemsRegistry.NOVICE_SPELLBOOK.get()), new ItemStack(ArsOscuraItems.NOVICE_TOME.get()), AltarTier.TWO.ordinal(), 10000, 20, 20).build(consumer, new ResourceLocation(ArsOscura.MODID, basePath + "novice_blood_tome"));
-            BloodAltarRecipeBuilder.altar(Ingredient.of(ItemsRegistry.APPRENTICE_SPELLBOOK.get()), new ItemStack(ArsOscuraItems.APPRENTICE_TOME.get()), AltarTier.THREE.ordinal(), 25000, 20, 20).build(consumer, new ResourceLocation(ArsOscura.MODID, basePath + "apprentice_blood_tome"));
-            BloodAltarRecipeBuilder.altar(Ingredient.of(ItemsRegistry.ARCHMAGE_SPELLBOOK.get()), new ItemStack(ArsOscuraItems.ARCHMAGE_TOME.get()), AltarTier.FOUR.ordinal(), 50000, 20, 20).build(consumer, new ResourceLocation(ArsOscura.MODID, basePath + "archmage_blood_tome"));
+            BloodAltarRecipeBuilder.altar(Ingredient.of(ItemsRegistry.NOVICE_SPELLBOOK.get()), new ItemStack(BloodMagicItems.NOVICE_TOME.get()), AltarTier.TWO.ordinal(), 10000, 20, 20).build(consumer, new ResourceLocation(ArsOscura.MODID, basePath + "novice_blood_tome"));
+            BloodAltarRecipeBuilder.altar(Ingredient.of(ItemsRegistry.APPRENTICE_SPELLBOOK.get()), new ItemStack(BloodMagicItems.APPRENTICE_TOME.get()), AltarTier.THREE.ordinal(), 25000, 20, 20).build(consumer, new ResourceLocation(ArsOscura.MODID, basePath + "apprentice_blood_tome"));
+            BloodAltarRecipeBuilder.altar(Ingredient.of(ItemsRegistry.ARCHMAGE_SPELLBOOK.get()), new ItemStack(BloodMagicItems.ARCHMAGE_TOME.get()), AltarTier.FOUR.ordinal(), 50000, 20, 20).build(consumer, new ResourceLocation(ArsOscura.MODID, basePath + "archmage_blood_tome"));
         }
     }
 
@@ -50,7 +50,7 @@ public class BloodMagicProviders {
         protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
             CompoundTag tag = new CompoundTag();
             tag.putString("Potion", ForgeRegistries.POTIONS.getKey(Potions.WATER).toString());
-            AlchemyTableRecipeBuilder.alchemyTable(new ItemStack(ArsOscuraItems.MINT_TEA.get()), 100, 100, 1).addIngredient(Ingredient.of(Items.SUGAR)).addIngredient(Ingredient.of(Items.SEAGRASS)).addIngredient(Ingredient.of(Items.SEAGRASS)).addIngredient(PartialNBTIngredient.of(Items.POTION, tag)).build(consumer, BloodMagic.rl(basePath + "mint_tea"));
+            AlchemyTableRecipeBuilder.alchemyTable(new ItemStack(BloodMagicItems.MINT_TEA.get()), 100, 100, 1).addIngredient(Ingredient.of(Items.SUGAR)).addIngredient(Ingredient.of(Items.SEAGRASS)).addIngredient(Ingredient.of(Items.SEAGRASS)).addIngredient(PartialNBTIngredient.of(Items.POTION, tag)).build(consumer, BloodMagic.rl(basePath + "mint_tea"));
         }
     }
 }
