@@ -217,3 +217,7 @@ if (System.getProperty("idea.sync.active") == "true") {
         }
     }
 }
+
+task printMCVersion {
+    println mc_version
+}

@@ -1,0 +1,51 @@
+name: Build and Publish
+
+on:
+  push:
+    tags:
+      - 'v**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up OpenJDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: temurin
+      - name: Get version from tag
+        id: tag_name
+        run: |
+            echo ::set-output name=current_version::${GITHUB_REF#refs/tags/v}
+        shell: bash
+      - name : Retrieve Minecraft Version
+        run: |
+            echo "::set-output name=result::$(${{github.workspace}}/gradlew -q printMCVersion)"
+        id: mc_version
+      - name: Build
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: build
+          gradle-home-cache-cleanup: true
+      - name: Get Changelog Entry
+        id: changelog_reader
+        uses: mindsers/changelog-reader-action@v2
+        with:
+          validation_level: warn
+          version: ${{ steps.tag_name.outputs.current_version }}
+          path: ./CHANGELOG.md
+      - name: Create Release
+        id: create_release
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          draft: false
+          name: Ars Oscura ${{ steps.mc_version.outputs.result }}-${{ steps.tag_name.outputs.version }}
+          body: ${{ steps.changelog_reader.outputs.changes }}
+          token: ${{ github.token }}
+          tag: ${{ github.ref }}
+          artifacts: ./build/libs/ars_oscura-${{ steps.mc_version.outputs.result }}-${{ steps.tag_name.outputs.result }}-all.jar
+          artifactContentType: application/java-archive

@@ -1,19 +1,31 @@
 # Changelog
 
-## 0.1.2
+## [0.1.3] - 2023-07-25
 
-    - Refactor for multiple mod support
-    - Blood Magic is now an optional dependency
+### Added
 
-## 0.1.1
+- automated workflows and releases
 
-    - Added recipe of Mint Tea item
-    - Added missing texture for Serene Effect
+## [0.1.2] - 2023-07-23
 
-## 0.1.0
+### Changes
 
-    - Initial build
-    - Adds 3 tiers/versions of Tome of Blood
-    - Adds Glyph of Sentient Harm
-    - Adds Mint tea item
-    - Adds Living Armor Upgrade for Mana attunement
+- Refactor for multiple mod support
+- Blood Magic is now an optional dependency
+
+## [0.1.1] - 2023-07-22
+
+### Added
+
+- recipe of Mint Tea item
+- missing texture for Serene Effect
+
+## [0.1.0] - 2023-07-19
+
+### Added
+
+- Initial build
+- 3 tiers/versions of Tome of Blood
+- Glyph of Sentient Harm
+- Mint tea item
+- Living Armor Upgrade for Mana attunement
