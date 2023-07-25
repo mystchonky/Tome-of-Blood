@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions: 
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -21,10 +23,9 @@ jobs:
         run: |
             echo ::set-output name=current_version::${GITHUB_REF#refs/tags/v}
         shell: bash
-      - name : Retrieve Minecraft Version
-        run: |
-            echo "::set-output name=result::$(${{github.workspace}}/gradlew -q printMCVersion)"
-        id: mc_version
+      - name: Read property from gradle.properties
+        id: read_property
+        run: echo "MC_VERSION=$(grep -Po 'mc_version=\K.*' gradle.properties)" >> $GITHUB_ENV
       - name: Build
         uses: gradle/gradle-build-action@v2
         with:
@@ -43,9 +44,30 @@ jobs:
         with:
           allowUpdates: true
           draft: false
-          name: Ars Oscura ${{ steps.mc_version.outputs.result }}-${{ steps.tag_name.outputs.version }}
+          name: Ars Oscura ${{ env.MC_VERSION }}-${{ steps.tag_name.outputs.current_version }}
           body: ${{ steps.changelog_reader.outputs.changes }}
-          token: ${{ github.token }}
           tag: ${{ github.ref }}
-          artifacts: ./build/libs/ars_oscura-${{ steps.mc_version.outputs.result }}-${{ steps.tag_name.outputs.result }}-all.jar
+          artifacts: ./build/libs/ars_oscura-${{ env.MC_VERSION }}-${{ steps.tag_name.outputs.current_version }}-all.jar
           artifactContentType: application/java-archive
+      - name: Upload to Mod Platforms
+        uses: Kir-Antipov/mc-publish@v3.3
+        with:
+          modrinth-id: sH3rOUEZ
+          modrinth-token: ${{ secrets.MODRINTH_API_KEY }}
+          # curseforge-id: 430636
+          # curseforge-token: ${{ secrets.CURSEFORGE_API_KEY }}
+
+          files: |
+            build/libs/ars_oscura-${{ env.MC_VERSION }}-${{ steps.tag_name.outputs.current_version }}-all.jar
+
+          name: Ars Oscura ${{ env.MC_VERSION }}-${{ steps.tag_name.outputs.current_version }}
+          version: ${{ env.MC_VERSION }}-${{ steps.tag_name.outputs.current_version }}
+          game-versions: |
+            ${{ env.MC_VERSION }}
+          changelog: |-
+            ${{ steps.changelog_reader.outputs.changes }}
+          dependencies: |
+            forge(required)
+            pathouli(required)
+            curios(required)
+            blood-magic(optional)
