@@ -68,6 +68,6 @@ jobs:
             ${{ steps.changelog_reader.outputs.changes }}
           dependencies: |
             forge(required)
-            pathouli(required)
+            patchouli(required)
             curios(required)
             blood-magic(optional)
