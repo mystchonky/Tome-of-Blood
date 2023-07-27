@@ -5,10 +5,11 @@ import com.hollingsworth.arsnouveau.setup.IProxy;
 import com.hollingsworth.arsnouveau.setup.ItemsRegistry;
 import com.hollingsworth.arsnouveau.setup.ServerProxy;
 import com.mystchonky.arsoscura.common.config.BaseConfig;
-import com.mystchonky.arsoscura.common.init.ArsNouveauRegistry;
+import com.mystchonky.arsoscura.common.init.ArsNouveauIntegration;
 import com.mystchonky.arsoscura.common.init.ArsOscuraItems;
 import com.mystchonky.arsoscura.common.init.ArsOscuraLang;
 import com.mystchonky.arsoscura.common.integration.bloodmagic.BloodMagicIntegration;
+import com.mystchonky.arsoscura.common.integration.occultism.OccultismIntegration;
 import com.mystchonky.arsoscura.common.network.Networking;
 import com.tterrag.registrate.Registrate;
 import net.minecraft.resources.ResourceLocation;
@@ -68,10 +69,12 @@ public class ArsOscura {
         ctx.registerConfig(ModConfig.Type.CLIENT, BaseConfig.CLIENT_SPEC, MODID + "/base-client.toml");
 
         ArsOscuraItems.register();
-        ArsNouveauRegistry.registerGlyphs();
+        ArsNouveauIntegration.init();
 
         if (ModList.get().isLoaded("bloodmagic"))
             BloodMagicIntegration.init();
+        if (ModList.get().isLoaded("occultism"))
+            OccultismIntegration.init();
 
         ArsOscuraLang.register();
 
@@ -87,8 +90,10 @@ public class ArsOscura {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-        ArsNouveauRegistry.registerSounds();
+        ArsNouveauIntegration.postInit();
         Networking.registerMessages();
+        if (ModList.get().isLoaded("occultism"))
+            OccultismIntegration.postInit();
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {

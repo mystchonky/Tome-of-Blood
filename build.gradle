@@ -129,7 +129,10 @@ repositories {
         }
     }
     maven {
-        url = "https://api.modrinth.com/maven"
+        url "https://api.modrinth.com/maven"
+        content {
+            includeGroup "maven.modrinth"
+        }
     }
     mavenCentral()
     mavenLocal()
@@ -142,7 +145,9 @@ dependencies {
 
     implementation fg.deobf("com.hollingsworth.ars_nouveau:ars_nouveau-${mc_version}:${ars_version}")
     implementation fg.deobf("maven.modrinth:blood-magic:${mc_version}-${bm_version}")
+    implementation fg.deobf("curse.maven:ars-omega-597007:4623885")
     implementation fg.deobf("maven.modrinth:occultism:${mc_version}-${occultism_version}")
+    implementation fg.deobf("maven.modrinth:smartbrainlib:R8SV4kEf")
 
     // Registrate
     implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
@@ -165,7 +170,6 @@ dependencies {
 //    // Occultism runtime dependencies
     runtimeOnly fg.deobf("maven.modrinth:modonomicon:${mc_version}-1.33.1")
     runtimeOnly fg.deobf("maven.modrinth:geckolib:lxzmD9V4")
-    runtimeOnly fg.deobf("maven.modrinth:smartbrainlib:R8SV4kEf")
 
 }
 

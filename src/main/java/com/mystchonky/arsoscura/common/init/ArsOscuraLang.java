@@ -21,7 +21,7 @@ public class ArsOscuraLang {
     public static final Component MANA_BONUS_UPGRADE = REGISTRATE.addLang("living_upgrade", ArsOscura.prefix("mana_bonus"), "Mana Attunement");
 
     public static void register() {
-        ArsNouveauRegistry.registeredSpells.forEach(spell -> {
+        ArsNouveauIntegration.registeredSpells.forEach(spell -> {
             REGISTRATE.addRawLang(ArsOscura.MODID + ".glyph_name." + spell.getRegistryName().getPath(), spell.getName());
             REGISTRATE.addRawLang(ArsOscura.MODID + ".glyph_desc." + spell.getRegistryName().getPath(), spell.getBookDescription());
         });
