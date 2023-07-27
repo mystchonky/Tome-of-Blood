@@ -1,13 +1,13 @@
 # Changelog
 
-## [0.2.0] - Unreleased
+## [0.2.0] - 2023-07-27
 
 ### Added
 
 - added Occultism integration
 - crushers spirits can now work from inside Ars Nouveau containment jars
     - player can right click on jar with ore and drop it nearby
-    
+
 ## [0.1.3] - 2023-07-25
 
 ### Added
