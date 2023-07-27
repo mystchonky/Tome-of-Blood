@@ -55,8 +55,8 @@ jobs:
         with:
           modrinth-id: sH3rOUEZ
           modrinth-token: ${{ secrets.MODRINTH_API_KEY }}
-          # curseforge-id: 430636
-          # curseforge-token: ${{ secrets.CURSEFORGE_API_KEY }}
+          curseforge-id: 895304
+          curseforge-token: ${{ secrets.CURSEFORGE_API_KEY }}
 
           files: |
             build/libs/ars_oscura-${{ env.MC_VERSION }}-${{ steps.tag_name.outputs.current_version }}-all.jar
@@ -69,6 +69,6 @@ jobs:
             ${{ steps.changelog_reader.outputs.changes }}
           dependencies: |
             forge(required)
-            patchouli(required)
-            curios(required)
+            ars-nouveau(required)
             blood-magic(optional)
+            occultism(optional)
