@@ -1,8 +1,8 @@
-package com.mystchonky.arsoscura.common.integration.bloodmagic;
+package com.mystchonky.arsoscura.integration.bloodmagic;
 
 import com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart;
 import com.hollingsworth.arsnouveau.api.spell.SpellSchool;
-import com.mystchonky.arsoscura.common.integration.bloodmagic.glyphs.EffectSentientHarm;
+import com.mystchonky.arsoscura.integration.bloodmagic.glyphs.EffectSentientHarm;
 import net.minecraftforge.common.MinecraftForge;
 
 import java.util.function.Consumer;

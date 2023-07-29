@@ -1,4 +1,4 @@
-package com.mystchonky.arsoscura.client.integration.bloodmagic.gui;
+package com.mystchonky.arsoscura.integration.bloodmagic.client.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;

@@ -1,11 +1,11 @@
-package com.mystchonky.arsoscura.common.integration.bloodmagic.glyphs;
+package com.mystchonky.arsoscura.integration.bloodmagic.glyphs;
 
 import com.hollingsworth.arsnouveau.api.spell.*;
 import com.hollingsworth.arsnouveau.common.potions.ModPotions;
 import com.hollingsworth.arsnouveau.common.spell.augment.*;
 import com.mystchonky.arsoscura.ArsOscura;
 import com.mystchonky.arsoscura.common.glyphs.GlyphLibrary;
-import com.mystchonky.arsoscura.common.integration.bloodmagic.BloodMagicIntegration;
+import com.mystchonky.arsoscura.integration.bloodmagic.BloodMagicIntegration;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;

@@ -1,9 +1,9 @@
-package com.mystchonky.arsoscura.common.integration.bloodmagic;
+package com.mystchonky.arsoscura.integration.bloodmagic;
 
 import com.hollingsworth.arsnouveau.api.spell.SpellTier;
 import com.mystchonky.arsoscura.ArsOscura;
-import com.mystchonky.arsoscura.common.integration.bloodmagic.items.MintTeaItem;
-import com.mystchonky.arsoscura.common.integration.bloodmagic.items.TomeOfBlood;
+import com.mystchonky.arsoscura.integration.bloodmagic.items.MintTeaItem;
+import com.mystchonky.arsoscura.integration.bloodmagic.items.TomeOfBlood;
 import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.util.entry.ItemEntry;
 

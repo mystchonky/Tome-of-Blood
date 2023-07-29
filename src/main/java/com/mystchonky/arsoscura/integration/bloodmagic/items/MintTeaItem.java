@@ -1,6 +1,6 @@
-package com.mystchonky.arsoscura.common.integration.bloodmagic.items;
+package com.mystchonky.arsoscura.integration.bloodmagic.items;
 
-import com.mystchonky.arsoscura.common.integration.bloodmagic.BloodMagicMobEffects;
+import com.mystchonky.arsoscura.integration.bloodmagic.BloodMagicMobEffects;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;

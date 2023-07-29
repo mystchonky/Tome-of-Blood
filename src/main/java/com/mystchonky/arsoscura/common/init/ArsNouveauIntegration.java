@@ -1,8 +1,10 @@
 package com.mystchonky.arsoscura.common.init;
 
 import com.hollingsworth.arsnouveau.api.ArsNouveauAPI;
+import com.hollingsworth.arsnouveau.api.familiar.AbstractFamiliarHolder;
 import com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart;
-import com.mystchonky.arsoscura.common.integration.bloodmagic.BloodMagicIntegration;
+import com.mystchonky.arsoscura.integration.bloodmagic.BloodMagicIntegration;
+import com.mystchonky.arsoscura.integration.occultism.OccultismIntegration;
 import net.minecraftforge.fml.ModList;
 
 import java.util.ArrayList;
@@ -11,9 +13,11 @@ import java.util.List;
 public class ArsNouveauIntegration {
 
     public static List<AbstractSpellPart> registeredSpells = new ArrayList<>();
+    public static List<AbstractFamiliarHolder> registeredFamiliars = new ArrayList<>();
 
     public static void init() {
         registerGlyphs();
+        registerFamiliars();
     }
 
     public static void postInit() {
@@ -25,12 +29,22 @@ public class ArsNouveauIntegration {
             BloodMagicIntegration.registerGlyphs(ArsNouveauIntegration::registerSpellPart);
     }
 
+    public static void registerFamiliars() {
+        if (ModList.get().isLoaded("occultism"))
+            OccultismIntegration.registerFamiliars(ArsNouveauIntegration::registerFamiliars);
+    }
+
     public static void registerSounds() {
     }
 
     public static void registerSpellPart(AbstractSpellPart spellPart) {
         ArsNouveauAPI.getInstance().registerSpell(spellPart);
         registeredSpells.add(spellPart);
+    }
+
+    public static void registerFamiliars(AbstractFamiliarHolder familiarHolder) {
+        ArsNouveauAPI.getInstance().registerFamiliar(familiarHolder);
+        registeredFamiliars.add(familiarHolder);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.mystchonky.arsoscura.common.integration.bloodmagic;
+package com.mystchonky.arsoscura.integration.bloodmagic;
 
 import com.hollingsworth.arsnouveau.api.event.SpellCastEvent;
 import com.hollingsworth.arsnouveau.api.spell.Spell;

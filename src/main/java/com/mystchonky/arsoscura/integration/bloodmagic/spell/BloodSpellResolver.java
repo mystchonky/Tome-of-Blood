@@ -1,4 +1,4 @@
-package com.mystchonky.arsoscura.common.integration.bloodmagic.spell;
+package com.mystchonky.arsoscura.integration.bloodmagic.spell;
 
 import com.hollingsworth.arsnouveau.api.ArsNouveauAPI;
 import com.hollingsworth.arsnouveau.api.spell.ISpellValidator;

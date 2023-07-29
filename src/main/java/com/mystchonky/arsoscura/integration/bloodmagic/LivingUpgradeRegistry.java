@@ -1,4 +1,4 @@
-package com.mystchonky.arsoscura.common.integration.bloodmagic;
+package com.mystchonky.arsoscura.integration.bloodmagic;
 
 import com.mystchonky.arsoscura.ArsOscura;
 import wayoftime.bloodmagic.core.LivingArmorRegistrar;

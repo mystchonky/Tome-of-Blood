@@ -1,7 +1,7 @@
 package com.mystchonky.arsoscura.common.init;
 
 import com.mystchonky.arsoscura.ArsOscura;
-import com.mystchonky.arsoscura.common.integration.bloodmagic.BloodMagicIntegration;
+import com.mystchonky.arsoscura.integration.bloodmagic.BloodMagicIntegration;
 import com.tterrag.registrate.Registrate;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;

@@ -1,7 +1,7 @@
-package com.mystchonky.arsoscura.common.integration.bloodmagic;
+package com.mystchonky.arsoscura.integration.bloodmagic;
 
 import com.mystchonky.arsoscura.ArsOscura;
-import com.mystchonky.arsoscura.common.integration.bloodmagic.mobeffects.SereneEffect;
+import com.mystchonky.arsoscura.integration.bloodmagic.mobeffects.SereneEffect;
 import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.world.effect.MobEffect;

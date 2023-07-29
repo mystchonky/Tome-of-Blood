@@ -1,4 +1,4 @@
-package com.mystchonky.arsoscura.client.integration.bloodmagic.renderer.item;
+package com.mystchonky.arsoscura.integration.bloodmagic.client.renderer.item;
 
 import com.hollingsworth.arsnouveau.client.renderer.item.SpellBookRenderer;
 import com.hollingsworth.arsnouveau.common.items.SpellBook;
