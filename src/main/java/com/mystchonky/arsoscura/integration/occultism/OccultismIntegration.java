@@ -4,7 +4,6 @@ import com.hollingsworth.arsnouveau.api.familiar.AbstractFamiliarHolder;
 import com.hollingsworth.arsnouveau.api.mob_jar.JarBehaviorRegistry;
 import com.klikli_dev.occultism.registry.OccultismEntities;
 import com.mystchonky.arsoscura.integration.occultism.client.ClientEventHandler;
-import com.mystchonky.arsoscura.integration.occultism.familiars.FamiliarDragonHolder;
 import com.mystchonky.arsoscura.integration.occultism.mob_jar.SpiritBehaviour;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -24,7 +23,7 @@ public class OccultismIntegration {
     }
 
     public static void registerFamiliars(Consumer<AbstractFamiliarHolder> register) {
-        register.accept(new FamiliarDragonHolder());
+//        register.accept(new FamiliarDragonHolder());
     }
 
 
