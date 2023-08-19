@@ -1,8 +1,8 @@
 package com.mystchonky.arsoscura.integration.bloodmagic.glyphs;
 
 import com.hollingsworth.arsnouveau.api.spell.*;
-import com.hollingsworth.arsnouveau.common.potions.ModPotions;
 import com.hollingsworth.arsnouveau.common.spell.augment.*;
+import com.hollingsworth.arsnouveau.setup.registry.ModPotions;
 import com.mystchonky.arsoscura.ArsOscura;
 import com.mystchonky.arsoscura.common.glyphs.GlyphLibrary;
 import com.mystchonky.arsoscura.integration.bloodmagic.BloodMagicIntegration;
@@ -66,7 +66,8 @@ public class EffectSentientHarm extends AbstractEffect implements IDamageEffect 
                 }
 
 
-                attemptDamage(world, shooter, spellStats, spellContext, resolver, entity, buildDamageSource(world, shooter).setMagic(), damage);
+                // TODO: Change to bloodmagic damage source later
+                attemptDamage(world, shooter, spellStats, spellContext, resolver, entity, buildDamageSource(world, shooter), damage);
             }
         }
 

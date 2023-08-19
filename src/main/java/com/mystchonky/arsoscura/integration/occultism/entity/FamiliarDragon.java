@@ -44,6 +44,6 @@ public class FamiliarDragon extends DragonFamiliarEntity implements IFamiliar {
 
     @Override
     public void setOwnerID(UUID uuid) {
-        setFamiliarOwner((LivingEntity) ((ServerLevel) level).getEntity(uuid));
+        setFamiliarOwner((LivingEntity) ((ServerLevel) level()).getEntity(uuid));
     }
 }

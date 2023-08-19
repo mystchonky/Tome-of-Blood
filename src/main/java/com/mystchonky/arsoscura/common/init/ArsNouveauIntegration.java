@@ -1,7 +1,8 @@
 package com.mystchonky.arsoscura.common.init;
 
-import com.hollingsworth.arsnouveau.api.ArsNouveauAPI;
 import com.hollingsworth.arsnouveau.api.familiar.AbstractFamiliarHolder;
+import com.hollingsworth.arsnouveau.api.registry.FamiliarRegistry;
+import com.hollingsworth.arsnouveau.api.registry.GlyphRegistry;
 import com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart;
 import com.mystchonky.arsoscura.integration.bloodmagic.BloodMagicIntegration;
 import com.mystchonky.arsoscura.integration.occultism.OccultismIntegration;
@@ -38,12 +39,12 @@ public class ArsNouveauIntegration {
     }
 
     public static void registerSpellPart(AbstractSpellPart spellPart) {
-        ArsNouveauAPI.getInstance().registerSpell(spellPart);
+        GlyphRegistry.registerSpell(spellPart);
         registeredSpells.add(spellPart);
     }
 
     public static void registerFamiliars(AbstractFamiliarHolder familiarHolder) {
-        ArsNouveauAPI.getInstance().registerFamiliar(familiarHolder);
+        FamiliarRegistry.registerFamiliar(familiarHolder);
         registeredFamiliars.add(familiarHolder);
     }
 

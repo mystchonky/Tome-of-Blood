@@ -59,7 +59,7 @@ public class MethodSigil extends AbstractCastMethod {
 
     @Override
     public CastResolveType onCastOnBlock(BlockHitResult blockRayTraceResult, LivingEntity caster, SpellStats spellStats, SpellContext spellContext, SpellResolver resolver) {
-        Level world = caster.level;
+        Level world = caster.level();
         Optional<ItemStack> item = getSigilFromCaster(caster);
         if (item.isPresent() && caster instanceof Player player) {
             if (!player.getCooldowns().isOnCooldown(item.get().getItem())) {
@@ -71,7 +71,7 @@ public class MethodSigil extends AbstractCastMethod {
 
     @Override
     public CastResolveType onCastOnEntity(@Nullable ItemStack stack, LivingEntity caster, Entity target, InteractionHand hand, SpellStats spellStats, SpellContext spellContext, SpellResolver resolver) {
-        Level world = caster.level;
+        Level world = caster.level();
         Optional<ItemStack> item = getSigilFromCaster(caster);
         if (item.isPresent() && caster instanceof Player player) {
             if (!player.getCooldowns().isOnCooldown(item.get().getItem())) {

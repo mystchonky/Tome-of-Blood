@@ -51,7 +51,7 @@ public class SpiritBehaviour<T extends SpiritEntity> extends JarBehavior<T> {
             spirit.init();
 
         if (tile.getLevel().getRandom().nextInt(20) == 0) {
-            List<ItemEntity> itemEntities = spirit.level.getEntitiesOfClass(ItemEntity.class, new AABB(tile.getBlockPos()).inflate(3), ItemEntity::isAlive);
+            List<ItemEntity> itemEntities = spirit.level().getEntitiesOfClass(ItemEntity.class, new AABB(tile.getBlockPos()).inflate(3), ItemEntity::isAlive);
             if (!itemEntities.isEmpty()) {
                 ItemEntity itemEntity = itemEntities.stream().filter(item -> OccultismAPI.get().canPickupItem(spirit, item).orElse(false)).findFirst().orElse(null);
                 if (itemEntity != null) {

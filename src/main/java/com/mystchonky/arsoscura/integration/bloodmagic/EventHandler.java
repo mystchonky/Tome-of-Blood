@@ -1,6 +1,7 @@
 package com.mystchonky.arsoscura.integration.bloodmagic;
 
 import com.hollingsworth.arsnouveau.api.event.SpellCastEvent;
+import com.hollingsworth.arsnouveau.api.event.SpellCostCalcEvent;
 import com.hollingsworth.arsnouveau.api.spell.Spell;
 import com.hollingsworth.arsnouveau.api.spell.SpellContext;
 import net.minecraft.world.entity.player.Player;
@@ -20,21 +21,29 @@ class EventHandler {
     }
 
     @SubscribeEvent
+    public static void spellDiscount(SpellCostCalcEvent event) {
+        if (event.context.getUnwrappedCaster() instanceof Player player) {
+            if (LivingUtil.hasFullSet(player)) {
+                LivingStats stats = LivingStats.fromPlayer(player);
+                int level = stats.getLevel(LivingUpgradeRegistry.MANA_UPGRADE.getKey());
+                float discount = level / 10;
+                event.currentCost *= 1 - discount;
+            }
+        }
+
+    }
+
+    @SubscribeEvent
     public static void awardXPForSpellCast(SpellCastEvent event) {
         if (event.context.getUnwrappedCaster() instanceof Player player) {
             if (LivingUtil.hasFullSet(player)) {
                 Spell spell = event.spell;
                 SpellContext spellContext = event.context;
 
-                int cost = spellContext.getSpell().getFinalCostAndReset() - getPlayerDiscounts(spellContext.getUnwrappedCaster(), spell);
+                int cost = spellContext.getSpell().getCost() - getPlayerDiscounts(spellContext.getUnwrappedCaster(), spell, spellContext.getCasterTool());
                 cost = Math.max(cost, 0);
                 int xpAward = cost / 50;
                 LivingUtil.applyNewExperience(player, LivingUpgradeRegistry.MANA_UPGRADE, xpAward);
-
-                LivingStats stats = LivingStats.fromPlayer(player);
-                int level = stats.getLevel(LivingUpgradeRegistry.MANA_UPGRADE.getKey());
-                float discount = level / 10;
-                spell.addDiscount((int) (spell.getNoDiscountCost() * discount));
             }
         }
     }
