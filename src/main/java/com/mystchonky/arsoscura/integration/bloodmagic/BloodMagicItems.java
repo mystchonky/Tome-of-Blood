@@ -16,7 +16,6 @@ public class BloodMagicItems {
     public static final ItemEntry<TomeOfBlood> NOVICE_TOME = REGISTRATE.item("novice_tome_of_blood", (properties) -> new TomeOfBlood(properties, SpellTier.ONE))
             .lang("Novice Tome of Blood")
             .properties((properties -> properties.stacksTo(1)))
-            .tab(() -> ArsOscura.ArsOscuraTab)
             .model((ctx, prov) -> {
             })
             .register();
@@ -24,14 +23,12 @@ public class BloodMagicItems {
     public static final ItemEntry<TomeOfBlood> APPRENTICE_TOME = REGISTRATE.item("apprentice_tome_of_blood", (properties) -> new TomeOfBlood(properties, SpellTier.TWO))
             .lang("Apprentice Tome of Blood")
             .properties((properties -> properties.stacksTo(1)))
-            .tab(() -> ArsOscura.ArsOscuraTab)
             .model((ctx, prov) -> {
             })
             .register();
     public static final ItemEntry<TomeOfBlood> ARCHMAGE_TOME = REGISTRATE.item("archmage_tome_of_blood", (properties) -> new TomeOfBlood(properties, SpellTier.THREE))
             .lang("Archmage Tome of Blood")
             .properties((properties -> properties.stacksTo(1)))
-            .tab(() -> ArsOscura.ArsOscuraTab)
             .model((ctx, prov) -> {
             })
             .register();
@@ -39,7 +36,6 @@ public class BloodMagicItems {
     public static final ItemEntry<MintTeaItem> MINT_TEA = REGISTRATE.item("mint_tea", MintTeaItem::new)
             .lang("Mint Tea")
             .properties((properties -> properties.stacksTo(1)))
-            .tab(() -> ArsOscura.ArsOscuraTab)
             .register();
 
     public static void register() {

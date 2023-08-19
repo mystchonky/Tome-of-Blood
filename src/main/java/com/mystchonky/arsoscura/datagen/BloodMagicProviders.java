@@ -2,13 +2,13 @@ package com.mystchonky.arsoscura.datagen;
 
 import com.hollingsworth.arsnouveau.common.crafting.recipes.GlyphRecipe;
 import com.hollingsworth.arsnouveau.common.datagen.GlyphRecipeProvider;
-import com.hollingsworth.arsnouveau.setup.ItemsRegistry;
+import com.hollingsworth.arsnouveau.setup.registry.ItemsRegistry;
 import com.mystchonky.arsoscura.ArsOscura;
 import com.mystchonky.arsoscura.integration.bloodmagic.BloodMagicItems;
 import com.mystchonky.arsoscura.integration.bloodmagic.glyphs.EffectSentientHarm;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.DataProvider;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.nbt.CompoundTag;
@@ -24,12 +24,11 @@ import wayoftime.bloodmagic.altar.AltarTier;
 import wayoftime.bloodmagic.common.data.recipe.builder.AlchemyTableRecipeBuilder;
 import wayoftime.bloodmagic.common.data.recipe.builder.BloodAltarRecipeBuilder;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
-import static com.hollingsworth.arsnouveau.api.RegistryHelper.getRegistryName;
+import static com.hollingsworth.arsnouveau.setup.registry.RegistryHelper.getRegistryName;
 
 public class BloodMagicProviders {
 
@@ -41,27 +40,28 @@ public class BloodMagicProviders {
 
         String basePath = "altar/";
 
-        public AltarProvider(DataGenerator dataGenerator) {
-            super(dataGenerator);
+        public AltarProvider(PackOutput packOutput) {
+            super(packOutput);
         }
 
         @Override
-        protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
+        protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
             bloodmagicRecipe(BloodAltarRecipeBuilder.altar(Ingredient.of(ItemsRegistry.NOVICE_SPELLBOOK.get()), new ItemStack(BloodMagicItems.NOVICE_TOME.get()), AltarTier.TWO.ordinal(), 10000, 20, 20)::build, consumer, new ResourceLocation(ArsOscura.MODID, basePath + "novice_blood_tome"));
             bloodmagicRecipe(BloodAltarRecipeBuilder.altar(Ingredient.of(ItemsRegistry.APPRENTICE_SPELLBOOK.get()), new ItemStack(BloodMagicItems.APPRENTICE_TOME.get()), AltarTier.THREE.ordinal(), 25000, 20, 20)::build, consumer, new ResourceLocation(ArsOscura.MODID, basePath + "apprentice_blood_tome"));
             bloodmagicRecipe(BloodAltarRecipeBuilder.altar(Ingredient.of(ItemsRegistry.ARCHMAGE_SPELLBOOK.get()), new ItemStack(BloodMagicItems.ARCHMAGE_TOME.get()), AltarTier.FOUR.ordinal(), 50000, 20, 20)::build, consumer, new ResourceLocation(ArsOscura.MODID, basePath + "archmage_blood_tome"));
         }
+
     }
 
     public static class AlchemyTableProvider extends RecipeProvider {
         String basePath = "alchemytable/";
 
-        public AlchemyTableProvider(DataGenerator dataGenerator) {
-            super(dataGenerator);
+        public AlchemyTableProvider(PackOutput packOutput) {
+            super(packOutput);
         }
 
         @Override
-        protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
+        protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
             CompoundTag tag = new CompoundTag();
             tag.putString("Potion", ForgeRegistries.POTIONS.getKey(Potions.WATER).toString());
 
@@ -76,14 +76,12 @@ public class BloodMagicProviders {
         }
 
         @Override
-        public void run(CachedOutput cache) throws IOException {
-
-            Path output = this.generator.getOutputFolder();
+        public void collectJsons(CachedOutput pOutput) {
             recipes.add(get(EffectSentientHarm.INSTANCE).withItem(wayoftime.bloodmagic.common.item.BloodMagicItems.PETTY_GEM));
 
             for (GlyphRecipe recipe : recipes) {
                 Path path = getScribeGlyphPath(output, recipe.output.getItem());
-                DataProvider.saveStable(cache, RecipeUtil.modCompatGlyphRecipe("bloodmagic", recipe.asRecipe()), path);
+                saveStable(pOutput, RecipeUtil.modCompatGlyphRecipe("bloodmagic", recipe.asRecipe()), path);
             }
 
         }

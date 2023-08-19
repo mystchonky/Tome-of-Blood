@@ -1,9 +1,9 @@
 package com.mystchonky.arsoscura;
 
-import com.hollingsworth.arsnouveau.setup.ClientProxy;
-import com.hollingsworth.arsnouveau.setup.IProxy;
-import com.hollingsworth.arsnouveau.setup.ItemsRegistry;
-import com.hollingsworth.arsnouveau.setup.ServerProxy;
+import com.hollingsworth.arsnouveau.setup.proxy.ClientProxy;
+import com.hollingsworth.arsnouveau.setup.proxy.IProxy;
+import com.hollingsworth.arsnouveau.setup.proxy.ServerProxy;
+import com.hollingsworth.arsnouveau.setup.registry.ItemsRegistry;
 import com.mystchonky.arsoscura.common.config.BaseConfig;
 import com.mystchonky.arsoscura.common.init.ArsNouveauIntegration;
 import com.mystchonky.arsoscura.common.init.ArsOscuraItems;
@@ -13,8 +13,6 @@ import com.mystchonky.arsoscura.integration.bloodmagic.BloodMagicIntegration;
 import com.mystchonky.arsoscura.integration.occultism.OccultismIntegration;
 import com.tterrag.registrate.Registrate;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.Lazy;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -41,15 +39,8 @@ public class ArsOscura {
     public static final String MODID = "ars_oscura";
     public static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new); //TODO: Change to our own
 
-    private static final Lazy<Registrate> REGISTRATE = Lazy.of(() -> Registrate.create(MODID));
+    private static final Lazy<Registrate> REGISTRATE = Lazy.of(() -> Registrate.create(MODID).defaultCreativeTab(tab -> tab.icon(() -> ItemsRegistry.WAND.get().getDefaultInstance())).build());
     public static final Logger LOGGER = LogManager.getLogger();
-
-    public static CreativeModeTab ArsOscuraTab = new CreativeModeTab(CreativeModeTab.getGroupCountSafe(), MODID) {
-        @Override
-        public ItemStack makeIcon() {
-            return ItemsRegistry.WAND.get().getDefaultInstance();
-        }
-    };
 
     public static Registrate registrate() {
         return REGISTRATE.get();
