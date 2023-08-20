@@ -45,6 +45,11 @@ public class BloodMagicProviders {
         }
 
         @Override
+        public String getName() {
+            return "Altar recipes";
+        }
+
+        @Override
         protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
             bloodmagicRecipe(BloodAltarRecipeBuilder.altar(Ingredient.of(ItemsRegistry.NOVICE_SPELLBOOK.get()), new ItemStack(BloodMagicItems.NOVICE_TOME.get()), AltarTier.TWO.ordinal(), 10000, 20, 20)::build, consumer, new ResourceLocation(ArsOscura.MODID, basePath + "novice_blood_tome"));
             bloodmagicRecipe(BloodAltarRecipeBuilder.altar(Ingredient.of(ItemsRegistry.APPRENTICE_SPELLBOOK.get()), new ItemStack(BloodMagicItems.APPRENTICE_TOME.get()), AltarTier.THREE.ordinal(), 25000, 20, 20)::build, consumer, new ResourceLocation(ArsOscura.MODID, basePath + "apprentice_blood_tome"));
@@ -58,6 +63,11 @@ public class BloodMagicProviders {
 
         public AlchemyTableProvider(PackOutput packOutput) {
             super(packOutput);
+        }
+
+        @Override
+        public String getName() {
+            return "Alchemy Table recipes";
         }
 
         @Override

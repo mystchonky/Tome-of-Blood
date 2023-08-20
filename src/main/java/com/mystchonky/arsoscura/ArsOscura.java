@@ -3,7 +3,6 @@ package com.mystchonky.arsoscura;
 import com.hollingsworth.arsnouveau.setup.proxy.ClientProxy;
 import com.hollingsworth.arsnouveau.setup.proxy.IProxy;
 import com.hollingsworth.arsnouveau.setup.proxy.ServerProxy;
-import com.hollingsworth.arsnouveau.setup.registry.ItemsRegistry;
 import com.mystchonky.arsoscura.common.config.BaseConfig;
 import com.mystchonky.arsoscura.common.init.ArsNouveauIntegration;
 import com.mystchonky.arsoscura.common.init.ArsOscuraItems;
@@ -39,7 +38,7 @@ public class ArsOscura {
     public static final String MODID = "ars_oscura";
     public static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new); //TODO: Change to our own
 
-    private static final Lazy<Registrate> REGISTRATE = Lazy.of(() -> Registrate.create(MODID).defaultCreativeTab(tab -> tab.icon(() -> ItemsRegistry.WAND.get().getDefaultInstance())).build());
+    private static final Lazy<Registrate> REGISTRATE = Lazy.of(() -> Registrate.create(MODID));
     public static final Logger LOGGER = LogManager.getLogger();
 
     public static Registrate registrate() {
