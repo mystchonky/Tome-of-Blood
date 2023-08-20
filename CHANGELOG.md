@@ -1,12 +1,16 @@
 # Changelog
 
+## [1.0.0] - Unreleased
+
+Port to 1.20.x and build for NeoForge. The Mod has also been rewritten for Kotlin and requires Kotlin-for-Forge now
+
 ## [0.2.0] - 2023-07-27
 
 ### Added
 
 - added Occultism integration
 - crushers spirits can now work from inside Ars Nouveau containment jars
-    - player can right click on jar with ore and drop it nearby
+  - player can right click on jar with ore and drop it nearby
 
 ## [0.1.3] - 2023-07-25
 
@@ -16,7 +20,7 @@
 
 ## [0.1.2] - 2023-07-23
 
-### Changes
+### Changed
 
 - Refactor for multiple mod support
 - Blood Magic is now an optional dependency
