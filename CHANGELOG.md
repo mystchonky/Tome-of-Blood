@@ -2,7 +2,13 @@
 
 ## [1.0.0] - Unreleased
 
-Port to 1.20.x and build for NeoForge. The Mod has also been rewritten for Kotlin and requires Kotlin-for-Forge now
+Port to 1.20.x and build for NeoForge.
+
+### Added
+
+- Janitor Spirit can now push items to any inventory on top of the Jar
+- Containment jar containing spirits now expose the spirit's item capability. Hoppers and pipes should work with Jars
+  now.
 
 ## [0.2.0] - 2023-07-27
 
