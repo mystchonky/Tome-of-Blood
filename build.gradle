@@ -111,9 +111,9 @@ repositories {
     maven {
         name = "Modrinth"
         url = "https://api.modrinth.com/maven"
-        content {
-            includeGroup "maven.modrinth"
-        }
+//        content {
+//            includeGroup "maven.modrinth"
+//        }
     }
     mavenCentral()
     mavenLocal()

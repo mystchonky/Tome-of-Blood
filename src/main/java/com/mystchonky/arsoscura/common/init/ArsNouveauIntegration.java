@@ -13,25 +13,32 @@ import java.util.List;
 
 public class ArsNouveauIntegration {
 
+    public static boolean isBloodMagicLoaded = false;
+    public static boolean isOccultismLoaded = false;
+
     public static List<AbstractSpellPart> registeredSpells = new ArrayList<>();
     public static List<AbstractFamiliarHolder> registeredFamiliars = new ArrayList<>();
 
     public static void init() {
+        isBloodMagicLoaded = ModList.get().isLoaded("bloodmagic");
+        isOccultismLoaded = ModList.get().isLoaded("occultism");
+
         registerGlyphs();
         registerFamiliars();
     }
 
     public static void postInit() {
         registerSounds();
+        registerPerkProviders();
     }
 
     public static void registerGlyphs() {
-        if (ModList.get().isLoaded("bloodmagic"))
+        if (isBloodMagicLoaded)
             BloodMagicIntegration.registerGlyphs(ArsNouveauIntegration::registerSpellPart);
     }
 
     public static void registerFamiliars() {
-        if (ModList.get().isLoaded("occultism"))
+        if (isOccultismLoaded)
             OccultismIntegration.registerFamiliars(ArsNouveauIntegration::registerFamiliars);
     }
 
@@ -46,6 +53,11 @@ public class ArsNouveauIntegration {
     public static void registerFamiliars(AbstractFamiliarHolder familiarHolder) {
         FamiliarRegistry.registerFamiliar(familiarHolder);
         registeredFamiliars.add(familiarHolder);
+    }
+
+    public static void registerPerkProviders() {
+        if (isBloodMagicLoaded)
+            BloodMagicIntegration.registerPerkProviders();
     }
 
 }
