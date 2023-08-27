@@ -34,6 +34,11 @@ public class BloodMagicIntegration {
         PerkRegistry.registerPerkProvider(BloodMagicItems.LIVING_MAGE_HOOD.get(), stack -> new ArmorPerkHolder(stack, List.of(
                 List.of(PerkSlot.ONE),
                 List.of(PerkSlot.TWO),
+                List.of(PerkSlot.TWO, PerkSlot.ONE)
+        )));
+        PerkRegistry.registerPerkProvider(BloodMagicItems.LIVING_MAGE_ROBES.get(), stack -> new ArmorPerkHolder(stack, List.of(
+                List.of(PerkSlot.ONE),
+                List.of(PerkSlot.TWO),
                 List.of(PerkSlot.THREE)
         )));
         PerkRegistry.registerPerkProvider(BloodMagicItems.LIVING_MAGE_LEGGINGS.get(), stack -> new ArmorPerkHolder(stack, List.of(

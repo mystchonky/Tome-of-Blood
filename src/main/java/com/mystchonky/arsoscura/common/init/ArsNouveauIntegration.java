@@ -4,6 +4,7 @@ import com.hollingsworth.arsnouveau.api.familiar.AbstractFamiliarHolder;
 import com.hollingsworth.arsnouveau.api.registry.FamiliarRegistry;
 import com.hollingsworth.arsnouveau.api.registry.GlyphRegistry;
 import com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart;
+import com.mystchonky.arsoscura.ArsOscura;
 import com.mystchonky.arsoscura.integration.bloodmagic.BloodMagicIntegration;
 import com.mystchonky.arsoscura.integration.occultism.OccultismIntegration;
 import net.minecraftforge.fml.ModList;
@@ -13,15 +14,11 @@ import java.util.List;
 
 public class ArsNouveauIntegration {
 
-    public static boolean isBloodMagicLoaded = false;
-    public static boolean isOccultismLoaded = false;
 
     public static List<AbstractSpellPart> registeredSpells = new ArrayList<>();
     public static List<AbstractFamiliarHolder> registeredFamiliars = new ArrayList<>();
 
     public static void init() {
-        isBloodMagicLoaded = ModList.get().isLoaded("bloodmagic");
-        isOccultismLoaded = ModList.get().isLoaded("occultism");
 
         registerGlyphs();
         registerFamiliars();
@@ -33,12 +30,12 @@ public class ArsNouveauIntegration {
     }
 
     public static void registerGlyphs() {
-        if (isBloodMagicLoaded)
+        if (ArsOscura.isBloodMagicLoaded)
             BloodMagicIntegration.registerGlyphs(ArsNouveauIntegration::registerSpellPart);
     }
 
     public static void registerFamiliars() {
-        if (isOccultismLoaded)
+        if (ArsOscura.isOccultismLoaded)
             OccultismIntegration.registerFamiliars(ArsNouveauIntegration::registerFamiliars);
     }
 
@@ -56,7 +53,7 @@ public class ArsNouveauIntegration {
     }
 
     public static void registerPerkProviders() {
-        if (isBloodMagicLoaded)
+        if (ArsOscura.isBloodMagicLoaded)
             BloodMagicIntegration.registerPerkProviders();
     }
 

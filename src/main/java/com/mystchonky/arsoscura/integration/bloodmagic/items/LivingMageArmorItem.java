@@ -53,6 +53,7 @@ public class LivingMageArmorItem extends AnimatedMagicArmor implements ILivingCo
     @Override
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, Level world, List<Component> tooltip, TooltipFlag flag) {
+        super.appendHoverText(stack, world, tooltip, flag);
         ILivingContainer.appendLivingTooltip(stack, getLivingStats(stack), tooltip, true);
     }
 

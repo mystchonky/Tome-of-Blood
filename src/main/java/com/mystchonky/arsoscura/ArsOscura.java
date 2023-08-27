@@ -40,6 +40,8 @@ public class ArsOscura {
 
     private static final Lazy<Registrate> REGISTRATE = Lazy.of(() -> Registrate.create(MODID));
     public static final Logger LOGGER = LogManager.getLogger();
+    public static final boolean isBloodMagicLoaded = ModList.get().isLoaded("bloodmagic");
+    public static final boolean isOccultismLoaded = ModList.get().isLoaded("occultism");
 
     public static Registrate registrate() {
         return REGISTRATE.get();
@@ -61,9 +63,9 @@ public class ArsOscura {
         ArsOscuraItems.register();
         ArsNouveauIntegration.init();
 
-        if (ModList.get().isLoaded("bloodmagic"))
+        if (isBloodMagicLoaded)
             BloodMagicIntegration.init();
-        if (ModList.get().isLoaded("occultism"))
+        if (isOccultismLoaded)
             OccultismIntegration.init();
 
         ArsOscuraLang.register();
@@ -82,7 +84,7 @@ public class ArsOscura {
     private void setup(final FMLCommonSetupEvent event) {
         ArsNouveauIntegration.postInit();
         Networking.registerMessages();
-        if (ModList.get().isLoaded("occultism"))
+        if (isOccultismLoaded)
             OccultismIntegration.postInit();
     }
 
