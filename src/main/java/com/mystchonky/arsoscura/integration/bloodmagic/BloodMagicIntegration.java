@@ -9,6 +9,8 @@ import com.hollingsworth.arsnouveau.api.spell.SpellSchool;
 import com.mystchonky.arsoscura.integration.bloodmagic.client.ClientEventHandler;
 import com.mystchonky.arsoscura.integration.bloodmagic.glyphs.EffectSentientHarm;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,7 +25,7 @@ public class BloodMagicIntegration {
         BloodMagicMobEffects.register();
 
         MinecraftForge.EVENT_BUS.register(EventHandler.class);
-        MinecraftForge.EVENT_BUS.register(ClientEventHandler.class);
+        FMLJavaModLoadingContext.get().getModEventBus().register(ClientEventHandler.class);
     }
 
     public static void registerGlyphs(Consumer<AbstractSpellPart> register) {

@@ -6,6 +6,7 @@ import com.klikli_dev.occultism.registry.OccultismEntities;
 import com.mystchonky.arsoscura.integration.occultism.client.ClientEventHandler;
 import com.mystchonky.arsoscura.integration.occultism.mob_jar.SpiritBehaviour;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import java.util.function.Consumer;
 
@@ -15,7 +16,7 @@ public class OccultismIntegration {
         OccultismItems.register();
 
         MinecraftForge.EVENT_BUS.register(EventHandler.class);
-        MinecraftForge.EVENT_BUS.register(ClientEventHandler.class);
+        FMLJavaModLoadingContext.get().getModEventBus().register(ClientEventHandler.class);
     }
 
     public static void postInit() {
