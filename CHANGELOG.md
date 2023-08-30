@@ -1,44 +1,8 @@
 # Changelog
 
-## [1.0.0] - Unreleased
+## [0.1.0] - Unreleased
 
 Port to 1.20.x and build for NeoForge.
-
-### Added
-
-- Janitor Spirit can now push items to any inventory on top of the Jar
-- Containment jar containing spirits now expose the spirit's item capability. Hoppers and pipes should work with Jars
-  now.
-
-## [0.2.0] - 2023-07-27
-
-### Added
-
-- added Occultism integration
-- crushers spirits can now work from inside Ars Nouveau containment jars
-  - player can right click on jar with ore and drop it nearby
-
-## [0.1.3] - 2023-07-25
-
-### Added
-
-- automated workflows and releases
-
-## [0.1.2] - 2023-07-23
-
-### Changed
-
-- Refactor for multiple mod support
-- Blood Magic is now an optional dependency
-
-## [0.1.1] - 2023-07-22
-
-### Added
-
-- recipe of Mint Tea item
-- missing texture for Serene Effect
-
-## [0.1.0] - 2023-07-19
 
 ### Added
 
