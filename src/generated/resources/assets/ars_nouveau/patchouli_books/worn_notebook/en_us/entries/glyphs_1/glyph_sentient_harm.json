@@ -1,6 +1,6 @@
 {
   "category": "ars_nouveau:glyphs_1",
-  "icon": "ars_oscura:glyph_sentient_harm",
+  "icon": "tomeofblood:glyph_sentient_harm",
   "name": "ars_nouveau.glyph_name.glyph_sentient_harm",
   "pages": [
     {
@@ -9,7 +9,7 @@
     },
     {
       "type": "ars_nouveau:glyph_recipe",
-      "recipe": "ars_oscura:glyph_sentient_harm"
+      "recipe": "tomeofblood:glyph_sentient_harm"
     }
   ],
   "sortnum": 2
