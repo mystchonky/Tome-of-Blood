@@ -1,7 +1,6 @@
 package com.mystchonky.tomeofblood.common.registry;
 
 import com.hollingsworth.arsnouveau.api.spell.SpellTier;
-import com.hollingsworth.arsnouveau.setup.registry.ItemsRegistry;
 import com.mystchonky.tomeofblood.TomeOfBlood;
 import com.mystchonky.tomeofblood.common.items.LivingMageArmorItem;
 import com.mystchonky.tomeofblood.common.items.MintTeaItem;
@@ -12,13 +11,15 @@ import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+import wayoftime.bloodmagic.common.registries.BloodMagicCreativeTabs;
 import wayoftime.bloodmagic.core.living.LivingStats;
 
 public class ItemRegistry {
     private static final Registrate REGISTRATE = TomeOfBlood.registrate();
 
     public static final RegistryEntry<CreativeModeTab> CREATIVE_TAB = REGISTRATE.defaultCreativeTab("tome_of_blood",
-                    tab -> tab.icon(() -> ItemsRegistry.WAND.get().getDefaultInstance())
+                    tab -> tab.icon(() -> ItemRegistry.ARCHMAGE_TOME.get().getDefaultInstance())
+                            .withTabsBefore(BloodMagicCreativeTabs.BLOODMAGIC_UPGRADES.getKey())
                             .build()
             )
             .register();
