@@ -136,9 +136,6 @@ dependencies {
 
     implementation fg.deobf("maven.modrinth:blood-magic:${mc_version}-${bm_version}")
 
-    implementation fg.deobf("maven.modrinth:occultism:${mc_version}-${occultism_version}")
-    implementation fg.deobf("maven.modrinth:smartbrainlib:${smartbrainlib}")
-
     // Registrate
     implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
     jarJar(group: 'com.tterrag.registrate', name: 'Registrate', version: "[${registrate_version}]")
@@ -154,9 +151,6 @@ dependencies {
     implementation /*compileOnly*/ fg.deobf("com.github.glitchfiend:TerraBlender-forge:${mc_version}-${terrablender}")
 
     annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
-
-//    // Occultism runtime dependencies
-    runtimeOnly fg.deobf("maven.modrinth:modonomicon:${mc_version}-${modonomicon}")
 
 }
 
