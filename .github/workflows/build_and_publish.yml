@@ -70,4 +70,4 @@ jobs:
           dependencies: |
             forge(required)
             ars-nouveau(required)
-            blood-magic(optional)
+            blood-magic(required)
