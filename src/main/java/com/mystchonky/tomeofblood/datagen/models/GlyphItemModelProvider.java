@@ -1,4 +1,4 @@
-package com.mystchonky.tomeofblood.datagen;
+package com.mystchonky.tomeofblood.datagen.models;
 
 import com.mystchonky.tomeofblood.TomeOfBlood;
 import com.mystchonky.tomeofblood.common.registry.IntegrationRegistry;
