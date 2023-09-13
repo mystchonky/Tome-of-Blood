@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.1] - 2023-09-13
+
+### Added
+
+- recipes for Tome of Blood upgrades
+- recipe of Living Mage Armor
+
+
 ## [0.1.0] - 2023-09-09
 
 ### Added
