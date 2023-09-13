@@ -10,7 +10,7 @@
       ],
       "recipe": {
         "type": "bloodmagic:altar",
-        "altarSyphon": 50000,
+        "altarSyphon": 25000,
         "consumptionRate": 20,
         "drainRate": 20,
         "input": {
@@ -19,7 +19,7 @@
         "output": {
           "item": "tomeofblood:archmage_tome_of_blood"
         },
-        "upgradeLevel": 3
+        "upgradeLevel": 2
       }
     }
   ]

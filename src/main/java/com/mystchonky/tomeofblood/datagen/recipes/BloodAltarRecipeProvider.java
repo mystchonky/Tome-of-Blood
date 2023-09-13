@@ -30,9 +30,9 @@ public class BloodAltarRecipeProvider extends RecipeProvider {
 
     @Override
     protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
-        RecipeUtil.bloodmagicRecipe(BloodAltarRecipeBuilder.altar(Ingredient.of(ItemsRegistry.NOVICE_SPELLBOOK.get()), new ItemStack(ItemRegistry.NOVICE_TOME.get()), AltarTier.TWO.ordinal(), 10000, 20, 20)::build, consumer, new ResourceLocation(TomeOfBlood.MODID, basePath + "novice_blood_tome"));
-        RecipeUtil.bloodmagicRecipe(BloodAltarRecipeBuilder.altar(Ingredient.of(ItemsRegistry.APPRENTICE_SPELLBOOK.get()), new ItemStack(ItemRegistry.APPRENTICE_TOME.get()), AltarTier.THREE.ordinal(), 25000, 20, 20)::build, consumer, new ResourceLocation(TomeOfBlood.MODID, basePath + "apprentice_blood_tome"));
-        RecipeUtil.bloodmagicRecipe(BloodAltarRecipeBuilder.altar(Ingredient.of(ItemsRegistry.ARCHMAGE_SPELLBOOK.get()), new ItemStack(ItemRegistry.ARCHMAGE_TOME.get()), AltarTier.FOUR.ordinal(), 50000, 20, 20)::build, consumer, new ResourceLocation(TomeOfBlood.MODID, basePath + "archmage_blood_tome"));
+        RecipeUtil.bloodmagicRecipe(BloodAltarRecipeBuilder.altar(Ingredient.of(ItemsRegistry.NOVICE_SPELLBOOK.get()), new ItemStack(ItemRegistry.NOVICE_TOME.get()), AltarTier.ONE.ordinal(), 5000, 20, 20)::build, consumer, new ResourceLocation(TomeOfBlood.MODID, basePath + "novice_blood_tome"));
+        RecipeUtil.bloodmagicRecipe(BloodAltarRecipeBuilder.altar(Ingredient.of(ItemsRegistry.APPRENTICE_SPELLBOOK.get()), new ItemStack(ItemRegistry.APPRENTICE_TOME.get()), AltarTier.TWO.ordinal(), 10000, 20, 20)::build, consumer, new ResourceLocation(TomeOfBlood.MODID, basePath + "apprentice_blood_tome"));
+        RecipeUtil.bloodmagicRecipe(BloodAltarRecipeBuilder.altar(Ingredient.of(ItemsRegistry.ARCHMAGE_SPELLBOOK.get()), new ItemStack(ItemRegistry.ARCHMAGE_TOME.get()), AltarTier.THREE.ordinal(), 25000, 20, 20)::build, consumer, new ResourceLocation(TomeOfBlood.MODID, basePath + "archmage_blood_tome"));
     }
 
 }

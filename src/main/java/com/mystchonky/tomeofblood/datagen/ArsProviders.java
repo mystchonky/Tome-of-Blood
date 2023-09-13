@@ -1,10 +1,8 @@
 package com.mystchonky.tomeofblood.datagen;
 
-import com.hollingsworth.arsnouveau.api.enchanting_apparatus.EnchantingApparatusRecipe;
 import com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart;
 import com.hollingsworth.arsnouveau.common.crafting.recipes.GlyphRecipe;
 import com.hollingsworth.arsnouveau.common.crafting.recipes.ImbuementRecipe;
-import com.hollingsworth.arsnouveau.common.datagen.ApparatusRecipeProvider;
 import com.hollingsworth.arsnouveau.common.datagen.GlyphRecipeProvider;
 import com.hollingsworth.arsnouveau.common.datagen.ImbuementRecipeProvider;
 import com.mystchonky.tomeofblood.TomeOfBlood;
@@ -44,44 +42,6 @@ public class ArsProviders {
         @Override
         public String getName() {
             return "Example Glyph Recipes";
-        }
-    }
-
-    public static class EnchantingAppProvider extends ApparatusRecipeProvider {
-
-        public EnchantingAppProvider(DataGenerator generatorIn) {
-            super(generatorIn);
-        }
-
-        @Override
-        public void collectJsons(CachedOutput pOutput) {
-            //example of an apparatus recipe
-            /*
-            recipes.add(builder()
-                    .withReagent(ItemsRegistry.SOURCE_GEM)
-                    .withPedestalItem(4, Recipes.SOURCE_GEM)
-                    .withResult(ItemsRegistry.BUCKET_OF_SOURCE)
-                    .withSource(100)
-                    .build()
-            );
-             */
-
-            for (EnchantingApparatusRecipe g : recipes) {
-                if (g != null) {
-                    Path path = getRecipePath(output, g.getId().getPath());
-                    saveStable(pOutput, g.asRecipe(), path);
-                }
-            }
-
-        }
-
-        protected static Path getRecipePath(Path pathIn, String str) {
-            return pathIn.resolve("data/" + root + "/recipes/" + str + ".json");
-        }
-
-        @Override
-        public String getName() {
-            return "Example Apparatus";
         }
     }
 
