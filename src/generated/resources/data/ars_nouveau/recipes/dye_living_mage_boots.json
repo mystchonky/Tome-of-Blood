@@ -1,0 +1,14 @@
+{
+  "type": "ars_nouveau:dye",
+  "ingredients": [
+    {
+      "tag": "forge:dyes"
+    },
+    {
+      "item": "tomeofblood:living_mage_boots"
+    }
+  ],
+  "result": {
+    "item": "tomeofblood:living_mage_boots"
+  }
+}

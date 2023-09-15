@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-        "layer0": "ars_nouveau:item/medium_armor/arcanists_hat_tint",
-        "layer1": "ars_nouveau:item/medium_armor/arcanists_hat_gold"
+        "layer0": "tomeofblood:item/living_mage_armor/living_mage_hood",
+        "layer1": "tomeofblood:item/living_mage_armor/living_mage_hood_gold"
   }
 }

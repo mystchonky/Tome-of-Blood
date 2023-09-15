@@ -1,7 +1,6 @@
 package com.mystchonky.tomeofblood.datagen;
 
 import com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart;
-import com.hollingsworth.arsnouveau.common.crafting.recipes.GlyphRecipe;
 import com.hollingsworth.arsnouveau.common.crafting.recipes.ImbuementRecipe;
 import com.hollingsworth.arsnouveau.common.datagen.GlyphRecipeProvider;
 import com.hollingsworth.arsnouveau.common.datagen.ImbuementRecipeProvider;
@@ -9,11 +8,8 @@ import com.mystchonky.tomeofblood.TomeOfBlood;
 import com.mystchonky.tomeofblood.common.registry.IntegrationRegistry;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.world.item.Item;
 
 import java.nio.file.Path;
-
-import static com.hollingsworth.arsnouveau.setup.registry.RegistryHelper.getRegistryName;
 
 
 public class ArsProviders {
@@ -24,24 +20,6 @@ public class ArsProviders {
 
         public GlyphProvider(DataGenerator generatorIn) {
             super(generatorIn);
-        }
-
-        @Override
-        public void collectJsons(CachedOutput pOutput) {
-            for (GlyphRecipe recipe : recipes) {
-                Path path = getScribeGlyphPath(output, recipe.output.getItem());
-                saveStable(pOutput, recipe.asRecipe(), path);
-            }
-
-        }
-
-        protected static Path getScribeGlyphPath(Path pathIn, Item glyph) {
-            return pathIn.resolve("data/" + root + "/recipes/" + getRegistryName(glyph).getPath() + ".json");
-        }
-
-        @Override
-        public String getName() {
-            return "Example Glyph Recipes";
         }
     }
 

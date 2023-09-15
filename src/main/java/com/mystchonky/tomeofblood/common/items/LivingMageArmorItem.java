@@ -1,8 +1,10 @@
 package com.mystchonky.tomeofblood.common.items;
 
-import com.hollingsworth.arsnouveau.client.renderer.tile.GenericModel;
 import com.hollingsworth.arsnouveau.common.armor.AnimatedMagicArmor;
+import com.mystchonky.tomeofblood.client.renderer.ToBGenericModel;
+import com.mystchonky.tomeofblood.client.renderer.item.LivingMageArmorRenderer;
 import com.mystchonky.tomeofblood.common.registry.ItemRegistry;
+import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -13,6 +15,9 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.extensions.common.IClientItemExtensions;
+import org.jetbrains.annotations.NotNull;
+import software.bernie.geckolib.renderer.GeoArmorRenderer;
 import wayoftime.bloodmagic.common.item.ArmorMaterialLiving;
 import wayoftime.bloodmagic.common.item.ExpandedArmor;
 import wayoftime.bloodmagic.common.item.ItemLivingArmor;
@@ -26,7 +31,7 @@ import java.util.function.Consumer;
 
 public class LivingMageArmorItem extends AnimatedMagicArmor implements ILivingContainer, ExpandedArmor {
     public LivingMageArmorItem(Type slot) {
-        super(ArmorMaterialLiving.INSTANCE, slot, new GenericModel<LivingMageArmorItem>("medium_armor", "item/medium_armor").withEmptyAnim());
+        super(ArmorMaterialLiving.INSTANCE, slot, new ToBGenericModel<LivingMageArmorItem>("living_mage_armor", "item/living_mage_armor").withEmptyAnim());
     }
 
     @Override
@@ -74,5 +79,23 @@ public class LivingMageArmorItem extends AnimatedMagicArmor implements ILivingCo
             return LivingStats.fromPlayer((Player) entity, true).getLevel(LivingArmorRegistrar.UPGRADE_ELYTRA.get().getKey()) > 0;
         else
             return false;
+    }
+
+    @Override
+    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
+        super.initializeClient(consumer);
+        consumer.accept(new IClientItemExtensions() {
+            private GeoArmorRenderer<?> renderer;
+
+            @Override
+            public @NotNull HumanoidModel<?> getHumanoidArmorModel(LivingEntity livingEntity, ItemStack itemStack,
+                                                                   EquipmentSlot equipmentSlot, HumanoidModel<?> original) {
+                if (renderer == null) {
+                    renderer = new LivingMageArmorRenderer(getArmorModel());
+                }
+                renderer.prepForRender(livingEntity, itemStack, equipmentSlot, original);
+                return this.renderer;
+            }
+        });
     }
 }

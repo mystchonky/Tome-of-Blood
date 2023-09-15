@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-        "layer0": "ars_nouveau:item/medium_armor/arcanists_pants_tint"
+        "layer0": "tomeofblood:item/living_mage_armor/living_mage_leggings",
+        "layer1": "tomeofblood:item/living_mage_armor/living_mage_leggings_gold"
   }
 }
