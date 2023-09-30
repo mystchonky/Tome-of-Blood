@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.1.2] - 2023-09-30
+
+### Added
+
+- New textures for Living Mage Armor (Thanks to Grongleworth!)
+
+### Fixes
+
+- Fixed living armor modifiers not applying
+
 ## [0.1.1] - 2023-09-13
 
 ### Added
