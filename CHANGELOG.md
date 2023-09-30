@@ -4,7 +4,7 @@
 
 ### Added
 
-- New textures for Living Mage Armor (Thanks to Grongleworth!)
+- New textures for Living Mage Armor (Thanks to Gronglegrowth!)
 
 ### Fixes
 
