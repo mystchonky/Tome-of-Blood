@@ -1,5 +1,7 @@
 package com.mystchonky.tomeofblood.common.items;
 
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
 import com.hollingsworth.arsnouveau.common.armor.AnimatedMagicArmor;
 import com.mystchonky.tomeofblood.client.renderer.ToBGenericModel;
 import com.mystchonky.tomeofblood.client.renderer.item.LivingMageArmorRenderer;
@@ -9,6 +11,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -27,6 +31,7 @@ import wayoftime.bloodmagic.core.living.LivingStats;
 import wayoftime.bloodmagic.core.living.LivingUtil;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.function.Consumer;
 
 public class LivingMageArmorItem extends AnimatedMagicArmor implements ILivingContainer, ExpandedArmor {
@@ -56,10 +61,21 @@ public class LivingMageArmorItem extends AnimatedMagicArmor implements ILivingCo
     }
 
     @Override
-    @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, Level world, List<Component> tooltip, TooltipFlag flag) {
-        super.appendHoverText(stack, world, tooltip, flag);
-        ILivingContainer.appendLivingTooltip(stack, getLivingStats(stack), tooltip, true);
+    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlot slot, ItemStack stack) {
+
+        Multimap<Attribute, AttributeModifier> modifiers = HashMultimap.create();
+        modifiers.putAll(super.getAttributeModifiers(slot, stack));
+        if (slot == EquipmentSlot.CHEST) {
+            LivingStats stats = getLivingStats(stack);
+            if (stats != null) {
+                stats.getUpgrades().forEach((k, v) -> {
+                    if (k.getAttributeProvider() != null)
+                        k.getAttributeProvider().handleAttributes(stats, modifiers, UUID.nameUUIDFromBytes(k.getKey().toString().getBytes()), k, k.getLevel(v.intValue()));
+                });
+            }
+        }
+
+        return modifiers;
     }
 
     @Override
@@ -79,6 +95,13 @@ public class LivingMageArmorItem extends AnimatedMagicArmor implements ILivingCo
             return LivingStats.fromPlayer((Player) entity, true).getLevel(LivingArmorRegistrar.UPGRADE_ELYTRA.get().getKey()) > 0;
         else
             return false;
+    }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public void appendHoverText(ItemStack stack, Level world, List<Component> tooltip, TooltipFlag flag) {
+        super.appendHoverText(stack, world, tooltip, flag);
+        ILivingContainer.appendLivingTooltip(stack, getLivingStats(stack), tooltip, true);
     }
 
     @Override
