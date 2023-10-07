@@ -2,8 +2,7 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'maven-publish'
-    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
-//    id 'net.neoforged.gradle' version '[6.0.18,6.2)'
+    id 'net.neoforged.gradle' version '[6.0.18,6.2)'
     id 'org.spongepowered.mixin' version '0.7.+'
     id 'org.parchmentmc.librarian.forgegradle' version '1.+'
 }
@@ -127,8 +126,7 @@ repositories {
 jarJar.enable()
 
 dependencies {
-    minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
-//    minecraft "net.neoforged:forge:${mc_version}-${forge_version}"
+    minecraft "net.neoforged:forge:${mc_version}-${neoforge_version}"
 
     implementation fg.deobf("com.hollingsworth.ars_nouveau:ars_nouveau-${mc_version}:${ars_version}")
     implementation fg.deobf("software.bernie.geckolib:geckolib-forge-${mc_version}:${gecko_version}")
@@ -137,7 +135,8 @@ dependencies {
 
 ////    implementation fg.deobf("curse.maven:ars-omega-597007:4623885")
 
-    implementation fg.deobf("maven.modrinth:blood-magic:${mc_version}-${bm_version}")
+//    implementation fg.deobf("maven.modrinth:blood-magic:${mc_version}-${bm_version}")
+    implementation fg.deobf("maven.modrinth:blood-magic:${bm_version}")
 
     // Registrate
     implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")

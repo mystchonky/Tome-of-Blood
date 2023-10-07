@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.2.0] - Unreleased
+
+### Changed
+
+- Built against Neoforge. Requires newer versions of Ars Nouveau and Blood Magic
+
+### Fixed
+
+- Sentient Harm Glyph causing server crash due to older version of Ars Nouveau
+
 ## [0.1.2] - 2023-09-30
 
 ### Added
