@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.2.0] - Unreleased
+## [0.2.0] - 2023-10-07
 
 Configs have changed. It is recommended to delete the old `tomeofblood` config and let it regenerate.
 
