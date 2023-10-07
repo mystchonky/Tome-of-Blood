@@ -5,6 +5,7 @@ import com.hollingsworth.arsnouveau.common.spell.augment.*;
 import com.hollingsworth.arsnouveau.setup.registry.ModPotions;
 import com.mystchonky.tomeofblood.TomeOfBlood;
 import com.mystchonky.tomeofblood.common.registry.IntegrationRegistry;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -12,12 +13,14 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
+import net.minecraftforge.common.ForgeConfigSpec;
 import org.jetbrains.annotations.NotNull;
 import wayoftime.bloodmagic.api.compat.EnumDemonWillType;
 import wayoftime.bloodmagic.common.item.soul.ItemSentientSword;
 import wayoftime.bloodmagic.potion.BloodMagicPotions;
 import wayoftime.bloodmagic.will.PlayerDemonWillHandler;
 
+import java.util.Map;
 import java.util.Set;
 
 public class SentientHarmEffect extends AbstractEffect implements IDamageEffect {
@@ -34,12 +37,11 @@ public class SentientHarmEffect extends AbstractEffect implements IDamageEffect 
             EnumDemonWillType type = PlayerDemonWillHandler.getLargestWillType(player);
             int souls = (int) PlayerDemonWillHandler.getTotalDemonWill(type, player);
 
-
             int bracket = getBracket(type, souls);
             Entity entity = rayTraceResult.getEntity();
             if (entity instanceof LivingEntity livingEntity) {
                 int time = spellStats.getDurationInTicks();
-                float damage = (float) (4.0f + (2.0f * getExtraDamage(spellContext, type, souls)) + (2.0f * spellStats.getAmpMultiplier()));
+                float damage = (float) (DAMAGE.get() + getExtraDamage(spellContext, type, souls) + (AMP_VALUE.get() * spellStats.getAmpMultiplier()));
                 livingEntity.addEffect(new MobEffectInstance(BloodMagicPotions.SOUL_SNARE.get(), 300, 0));
 
                 switch (type) {
@@ -64,7 +66,6 @@ public class SentientHarmEffect extends AbstractEffect implements IDamageEffect 
                         break;
                 }
 
-
                 // TODO: Change to bloodmagic damage source later
                 attemptDamage(world, shooter, spellStats, spellContext, resolver, entity, buildDamageSource(world, shooter), damage);
             }
@@ -73,24 +74,16 @@ public class SentientHarmEffect extends AbstractEffect implements IDamageEffect 
     }
 
     public float getExtraDamage(SpellContext spellContext, EnumDemonWillType type, int souls) {
-
-
         int bracket = getBracket(type, souls);
         if (bracket < 0) {
             return 0;
         }
-        switch (type) {
-            case CORROSIVE:
-            case DEFAULT:
-                return (float) ItemSentientSword.defaultDamageAdded[bracket];
-            case DESTRUCTIVE:
-                return (float) ItemSentientSword.destructiveDamageAdded[bracket];
-            case VENGEFUL:
-                return (float) ItemSentientSword.vengefulDamageAdded[bracket];
-            case STEADFAST:
-                return (float) ItemSentientSword.steadfastDamageAdded[bracket];
-        }
-        return 0;
+        return switch (type) {
+            case CORROSIVE, DEFAULT -> (float) ItemSentientSword.defaultDamageAdded[bracket];
+            case DESTRUCTIVE -> (float) ItemSentientSword.destructiveDamageAdded[bracket];
+            case VENGEFUL -> (float) ItemSentientSword.vengefulDamageAdded[bracket];
+            case STEADFAST -> (float) ItemSentientSword.steadfastDamageAdded[bracket];
+        };
     }
 
     public int getBracket(EnumDemonWillType type, int souls) {
@@ -103,16 +96,23 @@ public class SentientHarmEffect extends AbstractEffect implements IDamageEffect 
         return bracket;
     }
 
+    @Override
+    public void buildConfig(ForgeConfigSpec.Builder builder) {
+        super.buildConfig(builder);
+        addDamageConfig(builder, 4.0);
+        addAmpConfig(builder, 2.0);
+        addPotionConfig(builder, 5);
+        addExtendTimeConfig(builder, 5);
+    }
+
+    @Override
+    protected void addDefaultAugmentLimits(Map<ResourceLocation, Integer> defaults) {
+        defaults.put(AugmentAmplify.INSTANCE.getRegistryName(), 2);
+    }
 
     @Override
     public int getDefaultManaCost() {
-        return 50;
-    }
-
-
-    @Override
-    public SpellTier defaultTier() {
-        return SpellTier.ONE;
+        return 30;
     }
 
     @Override
