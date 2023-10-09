@@ -24,7 +24,6 @@ import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.renderer.GeoArmorRenderer;
 import wayoftime.bloodmagic.common.item.ArmorMaterialLiving;
 import wayoftime.bloodmagic.common.item.ExpandedArmor;
-import wayoftime.bloodmagic.common.item.ItemLivingArmor;
 import wayoftime.bloodmagic.core.LivingArmorRegistrar;
 import wayoftime.bloodmagic.core.living.ILivingContainer;
 import wayoftime.bloodmagic.core.living.LivingStats;
@@ -91,7 +90,7 @@ public class LivingMageArmorItem extends AnimatedMagicArmor implements ILivingCo
     }
 
     public boolean hasElytraUpgrade(ItemStack stack, LivingEntity entity) {
-        if (stack.getItem() instanceof ItemLivingArmor && entity instanceof Player && LivingUtil.hasFullSet((Player) entity))
+        if (stack.getItem() instanceof LivingMageArmorItem && entity instanceof Player && LivingUtil.hasFullSet((Player) entity))
             return LivingStats.fromPlayer((Player) entity, true).getLevel(LivingArmorRegistrar.UPGRADE_ELYTRA.get().getKey()) > 0;
         else
             return false;
