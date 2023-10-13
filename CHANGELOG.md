@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.3.0] - Unreleased
+
+### Changed
+
+- Reworked Tome of blood. It now lets you cast without mana limits. It uses mana first and then LP.
+
 ## [0.2.1] - 2023-10-09
 
 ### Fixed
