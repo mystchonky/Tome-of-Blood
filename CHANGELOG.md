@@ -2,9 +2,14 @@
 
 ## [0.3.0] - Unreleased
 
+Configs have changed. It is recommended to delete the old `tomeofblood` config and let it regenerate.
+
 ### Changed
 
 - Reworked Tome of blood. It now lets you cast without mana limits. It uses mana first and then LP.
+- Living Mage Armor now gains experience slower than its normal blood magic counterpart (exact scale configurable in
+  configs)
+- Mana Attunement trait has been rebalanced
 
 ## [0.2.1] - 2023-10-09
 

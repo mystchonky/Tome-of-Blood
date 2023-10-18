@@ -6,14 +6,18 @@ import com.hollingsworth.arsnouveau.api.spell.Spell;
 import com.hollingsworth.arsnouveau.api.spell.SpellContext;
 import com.mystchonky.tomeofblood.TomeOfBlood;
 import com.mystchonky.tomeofblood.client.ClientInfo;
-import com.mystchonky.tomeofblood.common.registry.MobEffectRegistry;
+import com.mystchonky.tomeofblood.common.config.BaseConfig;
+import com.mystchonky.tomeofblood.common.items.LivingMageArmorItem;
 import com.mystchonky.tomeofblood.common.registry.LivingUpgradeRegistry;
+import com.mystchonky.tomeofblood.common.registry.MobEffectRegistry;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import wayoftime.bloodmagic.core.living.LivingStats;
 import wayoftime.bloodmagic.core.living.LivingUtil;
+import wayoftime.bloodmagic.event.LivingEquipmentEvent;
 import wayoftime.bloodmagic.event.SacrificeKnifeUsedEvent;
 
 import static com.hollingsworth.arsnouveau.api.util.ManaUtil.getPlayerDiscounts;
@@ -40,11 +44,19 @@ public class EventHandler {
             if (LivingUtil.hasFullSet(player)) {
                 LivingStats stats = LivingStats.fromPlayer(player);
                 int level = stats.getLevel(LivingUpgradeRegistry.MANA_UPGRADE.getKey());
-                float discount = level / 10;
-                event.currentCost *= 1 - discount;
+                double discount = level * 0.05;
+                event.currentCost *= (int) (1 - discount);
             }
         }
 
+    }
+
+    // LivingMageArmor trains slower than Normal living armor
+    @SubscribeEvent
+    public static void reduceExpGain(LivingEquipmentEvent.GainExperience event) {
+        if (event.getPlayer().getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof LivingMageArmorItem) {
+            event.setExperience(event.getExperience() * BaseConfig.COMMON.LIVING_MAGE_SCALE.get());
+        }
     }
 
     @SubscribeEvent
@@ -56,7 +68,7 @@ public class EventHandler {
 
                 int cost = spellContext.getSpell().getCost() - getPlayerDiscounts(spellContext.getUnwrappedCaster(), spell, spellContext.getCasterTool());
                 cost = Math.max(cost, 0);
-                int xpAward = cost / 50;
+                int xpAward = cost / 100;
                 LivingUtil.applyNewExperience(player, LivingUpgradeRegistry.MANA_UPGRADE, xpAward);
             }
         }
