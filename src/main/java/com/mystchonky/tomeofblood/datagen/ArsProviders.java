@@ -1,11 +1,9 @@
 package com.mystchonky.tomeofblood.datagen;
 
-import com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart;
 import com.hollingsworth.arsnouveau.common.crafting.recipes.ImbuementRecipe;
 import com.hollingsworth.arsnouveau.common.datagen.GlyphRecipeProvider;
 import com.hollingsworth.arsnouveau.common.datagen.ImbuementRecipeProvider;
 import com.mystchonky.tomeofblood.TomeOfBlood;
-import com.mystchonky.tomeofblood.common.registry.IntegrationRegistry;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataGenerator;
 
@@ -54,28 +52,6 @@ public class ArsProviders {
             return "Example Imbuement";
         }
 
-    }
-
-    public static class PatchouliProvider extends com.hollingsworth.arsnouveau.common.datagen.PatchouliProvider {
-
-        public PatchouliProvider(DataGenerator generatorIn) {
-            super(generatorIn);
-        }
-
-        @Override
-        public void addEntries() {
-            for (AbstractSpellPart spell : IntegrationRegistry.registeredSpells) {
-                addGlyphPage(spell);
-            }
-        }
-
-        /**
-         * Gets a name for this provider, to use in logging.
-         */
-        @Override
-        public String getName() {
-            return "Example Patchouli Datagen";
-        }
     }
 
 }

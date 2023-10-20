@@ -2,7 +2,11 @@ package com.mystchonky.tomeofblood.datagen;
 
 import com.mystchonky.tomeofblood.TomeOfBlood;
 import com.mystchonky.tomeofblood.datagen.models.GlyphItemModelProvider;
-import com.mystchonky.tomeofblood.datagen.recipes.*;
+import com.mystchonky.tomeofblood.datagen.recipes.AlchemyTableRecipeProvider;
+import com.mystchonky.tomeofblood.datagen.recipes.BloodAltarRecipeProvider;
+import com.mystchonky.tomeofblood.datagen.recipes.DyeRecipeProvider;
+import com.mystchonky.tomeofblood.datagen.recipes.EnchantingAppRecipeProvider;
+import com.mystchonky.tomeofblood.datagen.recipes.ToBGlyphRecipeProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.data.event.GatherDataEvent;
@@ -27,7 +31,7 @@ public class DataProviders {
         gen.addProvider(event.includeServer(), new AlchemyTableRecipeProvider(output));
         gen.addProvider(event.includeServer(), new ToBGlyphRecipeProvider(gen));
 
-        gen.addProvider(event.includeServer(), new ArsProviders.PatchouliProvider(gen));
+        gen.addProvider(event.includeServer(), new PatchouliProvider(gen));
 
         gen.addProvider(event.includeClient(), new GlyphItemModelProvider(output, event.getExistingFileHelper()));
     }
