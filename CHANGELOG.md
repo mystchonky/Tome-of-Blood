@@ -4,9 +4,14 @@
 
 Configs have changed. It is recommended to delete the old `tomeofblood` config and let it regenerate.
 
+### Added
+
+- Basic documentation in patchouli based `worn_notebook`
+
 ### Changed
 
 - Reworked Tome of blood. It now lets you cast without mana limits. It uses mana first and then LP.
+- Tome of blood textures have been updated!
 - Living Mage Armor now gains experience slower than its normal blood magic counterpart (exact scale configurable in
   configs)
 - Mana Attunement trait has been rebalanced
