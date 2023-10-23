@@ -53,8 +53,8 @@ public class IntegrationRegistry {
     public static void registerPerkProviders() {
         PerkRegistry.registerPerkProvider(ItemRegistry.LIVING_MAGE_HOOD.get(), stack -> new ArmorPerkHolder(stack, List.of(
                 List.of(PerkSlot.ONE),
-                List.of(PerkSlot.TWO),
-                List.of(PerkSlot.TWO, PerkSlot.ONE)
+                List.of(PerkSlot.ONE, PerkSlot.TWO),
+                List.of(PerkSlot.ONE, PerkSlot.THREE)
         )));
         PerkRegistry.registerPerkProvider(ItemRegistry.LIVING_MAGE_ROBES.get(), stack -> new ArmorPerkHolder(stack, List.of(
                 List.of(),
@@ -63,13 +63,13 @@ public class IntegrationRegistry {
         )));
         PerkRegistry.registerPerkProvider(ItemRegistry.LIVING_MAGE_LEGGINGS.get(), stack -> new ArmorPerkHolder(stack, List.of(
                 List.of(PerkSlot.ONE),
-                List.of(PerkSlot.ONE, PerkSlot.ONE),
-                List.of(PerkSlot.TWO, PerkSlot.ONE)
+                List.of(PerkSlot.ONE, PerkSlot.TWO),
+                List.of(PerkSlot.ONE, PerkSlot.ONE, PerkSlot.THREE)
         )));
         PerkRegistry.registerPerkProvider(ItemRegistry.LIVING_MAGE_BOOTS.get(), stack -> new ArmorPerkHolder(stack, List.of(
                 List.of(PerkSlot.ONE),
                 List.of(PerkSlot.ONE, PerkSlot.ONE),
-                List.of(PerkSlot.TWO, PerkSlot.ONE, PerkSlot.ONE)
+                List.of(PerkSlot.ONE, PerkSlot.ONE, PerkSlot.TWO)
         )));
     }
 

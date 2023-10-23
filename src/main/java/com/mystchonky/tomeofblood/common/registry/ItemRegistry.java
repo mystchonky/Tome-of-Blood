@@ -50,12 +50,12 @@ public class ItemRegistry {
             .register();
 
     public static final ItemEntry<LivingMageArmorItem> LIVING_MAGE_HOOD = REGISTRATE.item("living_mage_hood", (prop) -> new LivingMageArmorItem(ArmorItem.Type.HELMET))
-            .lang("Living Mage Hood")
+            .lang("Heretic's Hood")
             .model((ctx, prov) -> {
             })
             .register();
     public static final ItemEntry<LivingMageArmorItem> LIVING_MAGE_ROBES = REGISTRATE.item("living_mage_robes", (prop) -> new LivingMageArmorItem(ArmorItem.Type.CHESTPLATE))
-            .lang("Living Mage Robes")
+            .lang("Heretic's Robes")
             .model((ctx, prov) -> {
             })
             .tab(ItemRegistry.CREATIVE_TAB.getKey(), modifier -> {
@@ -66,12 +66,12 @@ public class ItemRegistry {
             })
             .register();
     public static final ItemEntry<LivingMageArmorItem> LIVING_MAGE_LEGGINGS = REGISTRATE.item("living_mage_leggings", (prop) -> new LivingMageArmorItem(ArmorItem.Type.LEGGINGS))
-            .lang("Living Mage Leggings")
+            .lang("Heretic's Leggings")
             .model((ctx, prov) -> {
             })
             .register();
     public static final ItemEntry<LivingMageArmorItem> LIVING_MAGE_BOOTS = REGISTRATE.item("living_mage_boots", (prop) -> new LivingMageArmorItem(ArmorItem.Type.BOOTS))
-            .lang("Living Mage Boots")
+            .lang("Heretic's Boots")
             .model((ctx, prov) -> {
             })
             .register();
