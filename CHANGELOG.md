@@ -16,7 +16,7 @@ Configs have changed. It is recommended to delete the old `tomeofblood` config a
 - Heretic's Armor now gains experience slower than its normal blood magic counterpart (exact scale configurable in
   configs)
 - Default color for Heretic's Armor is now Red instead of Purple
-- Mana Attunement trait has been rebalanced
+- Mana Attunement trait has been rebalanced (Documentation has also been added)
 
 ## [0.2.1] - 2023-10-09
 
