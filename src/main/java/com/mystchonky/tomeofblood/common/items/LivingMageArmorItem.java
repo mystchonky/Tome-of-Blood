@@ -2,6 +2,9 @@ package com.mystchonky.tomeofblood.common.items;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import com.hollingsworth.arsnouveau.api.perk.ArmorPerkHolder;
+import com.hollingsworth.arsnouveau.api.perk.IPerkHolder;
+import com.hollingsworth.arsnouveau.api.util.PerkUtil;
 import com.hollingsworth.arsnouveau.client.renderer.tile.GenericModel;
 import com.hollingsworth.arsnouveau.common.armor.AnimatedMagicArmor;
 import com.mystchonky.tomeofblood.TomeOfBlood;
@@ -106,6 +109,15 @@ public class LivingMageArmorItem extends AnimatedMagicArmor implements ILivingCo
     public void appendHoverText(ItemStack stack, Level world, List<Component> tooltip, TooltipFlag flag) {
         super.appendHoverText(stack, world, tooltip, flag);
         ILivingContainer.appendLivingTooltip(stack, getLivingStats(stack), tooltip, true);
+    }
+
+    @Override
+    public String getColor(ItemStack object) {
+        IPerkHolder<ItemStack> perkHolder = PerkUtil.getPerkHolder(object);
+        if (!(perkHolder instanceof ArmorPerkHolder data)) {
+            return "red";
+        }
+        return data.getColor() == null || data.getColor().isEmpty() ? "red" : data.getColor();
     }
 
     @Override

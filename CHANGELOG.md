@@ -15,6 +15,7 @@ Configs have changed. It is recommended to delete the old `tomeofblood` config a
 - Living Mage Armor is now called Heretic's Armor
 - Heretic's Armor now gains experience slower than its normal blood magic counterpart (exact scale configurable in
   configs)
+- Default color for Heretic's Armor is now Red instead of Purple
 - Mana Attunement trait has been rebalanced
 
 ## [0.2.1] - 2023-10-09
