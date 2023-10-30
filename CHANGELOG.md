@@ -1,6 +1,13 @@
 # Changelog
 
-## [0.3.0] - Unreleased
+## [0.3.1] - 2023-10-30
+
+### Changed
+
+- Removed the experience reduction of Heretic's Armor which caused upgrade tomes to be buggy
+- Changed Mana Attunement discount calculation to fix 0 spell cost due to integer conversion
+
+## [0.3.0] - 2023-10-28
 
 Configs have changed. It is recommended to delete the old `tomeofblood` config and let it regenerate.
 

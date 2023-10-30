@@ -25,3 +25,7 @@ For a full overview, check the `Tome of Blood` section of the Worn Notebook (Ars
 ### License
 
 - All the code in this repository is under **LGPLv3 License**.
+
+#### Notes:
+
+A part of the assets are made by Gronglegrowth and are under CC BY 4.0 License.
