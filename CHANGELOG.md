@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.2] - Unreleased
+
+## Changed
+
+- Updated textures for Heretics Armor! Thanks Gronglegrowth/Eset!
+- Sentient Harm Glyph now consumes will when on successful damage. The values are similar to Sentient Sword.
+
 ## [0.3.1] - 2023-10-30
 
 ### Changed
