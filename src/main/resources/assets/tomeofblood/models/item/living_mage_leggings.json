@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-        "layer0": "tomeofblood:item/living_mage_armor/living_mage_leggings",
-        "layer1": "tomeofblood:item/living_mage_armor/living_mage_leggings_gold"
+        "layer0": "tomeofblood:item/living_mage_armor/living_leggings",
+        "layer1": "tomeofblood:item/living_mage_armor/living_leggings_gold"
   }
 }

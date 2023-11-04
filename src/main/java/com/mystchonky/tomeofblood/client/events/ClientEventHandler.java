@@ -21,13 +21,14 @@ public class ClientEventHandler {
         event.register((stack, color) -> color > 0 ? -1 : colorFromArmor(stack), ItemRegistry.LIVING_MAGE_HOOD);
         event.register((stack, color) -> color > 0 ? -1 : colorFromArmor(stack), ItemRegistry.LIVING_MAGE_ROBES);
         event.register((stack, color) -> color > 0 ? -1 : colorFromArmor(stack), ItemRegistry.LIVING_MAGE_LEGGINGS);
+        event.register((stack, color) -> color > 0 ? -1 : colorFromArmor(stack), ItemRegistry.LIVING_MAGE_BOOTS);
     }
 
 
     public static int colorFromArmor(ItemStack stack) {
         IPerkHolder<ItemStack> holder = getPerkHolder(stack);
         if (!(holder instanceof ArmorPerkHolder armorPerkHolder))
-            return DyeColor.PURPLE.getTextColor();
+            return DyeColor.RED.getTextColor();
         return DyeColor.byName(armorPerkHolder.getColor(), DyeColor.RED).getTextColor();
     }
 

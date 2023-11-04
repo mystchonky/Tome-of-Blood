@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-        "layer0": "tomeofblood:item/living_mage_armor/living_mage_hood",
-        "layer1": "tomeofblood:item/living_mage_armor/living_mage_hood_gold"
+        "layer0": "tomeofblood:item/living_mage_armor/living_hat",
+        "layer1": "tomeofblood:item/living_mage_armor/living_hat_gold"
   }
 }
