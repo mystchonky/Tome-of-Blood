@@ -1,11 +1,13 @@
 # Changelog
 
-## [0.3.2] - Unreleased
+## [0.3.2] - 2023-11-04
 
 ## Changed
 
 - Updated textures for Heretics Armor! Thanks Gronglegrowth/Eset!
 - Sentient Harm Glyph now consumes will when on successful damage. The values are similar to Sentient Sword.
+- Tome of Blood should now remember the old spells when crafting (the blood altar one works for now while the alchemy
+  table recipes need an upstream(Blood Magic) fix)
 
 ## [0.3.1] - 2023-10-30
 
