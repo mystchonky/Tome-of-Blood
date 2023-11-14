@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.3.3] - Unreleased
+
+### Fixed
+
+- Fixed a crash when player doesn't have any will in inventory.
+
 ## [0.3.2] - 2023-11-04
 
 ### Changed

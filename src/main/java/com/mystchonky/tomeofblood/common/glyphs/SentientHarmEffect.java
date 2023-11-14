@@ -49,36 +49,34 @@ public class SentientHarmEffect extends AbstractEffect implements IDamageEffect 
 
             int bracket = getBracket(type, souls);
             Entity entity = rayTraceResult.getEntity();
-            if (entity instanceof LivingEntity livingEntity) {
+            if (entity instanceof LivingEntity target) {
                 int time = spellStats.getDurationInTicks();
                 float damage = (float) (DAMAGE.get() + getExtraDamage(spellContext, type, souls) + (AMP_VALUE.get() * spellStats.getAmpMultiplier()));
-                livingEntity.addEffect(new MobEffectInstance(BloodMagicPotions.SOUL_SNARE.get(), 300, 0));
+                target.addEffect(new MobEffectInstance(BloodMagicPotions.SOUL_SNARE.get(), 300, 0, false, false));
 
-                switch (type) {
-                    case CORROSIVE:
-                        livingEntity.addEffect(new MobEffectInstance(MobEffects.WITHER, (time > 0) ? (ItemSentientSword.poisonTime[bracket] * time) : (ItemSentientSword.poisonTime[bracket]), ItemSentientSword.poisonLevel[bracket] + 1));
-                        break;
-                    case DEFAULT:
-                        break;
-                    case DESTRUCTIVE:
-                        break;
-                    case VENGEFUL:
-                        if ((livingEntity.getHealth() < damage)) {
-                            player.addEffect(new MobEffectInstance(ModPotions.MANA_REGEN_EFFECT.get(), (time > 0) ? (ItemSentientSword.absorptionTime[bracket] * time) : (ItemSentientSword.absorptionTime[bracket]), ItemSentientSword.absorptionTime[bracket], false, false));
+                if (time > 0) {
+                    switch (type) {
+                        case CORROSIVE -> target.addEffect(new MobEffectInstance(MobEffects.WITHER, time, 1));
+                        case VENGEFUL -> {
+                            if (target.getHealth() < damage) {
+                                player.addEffect(new MobEffectInstance(ModPotions.MANA_REGEN_EFFECT.get(), time, 1, false, false));
+                            }
                         }
-                        break;
-                    case STEADFAST:
-                        if ((livingEntity).getHealth() < damage) {
-                            float absorption = player.getAbsorptionAmount();
-                            player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, (time > 0) ? (ItemSentientSword.absorptionTime[bracket] * time) : (ItemSentientSword.absorptionTime[bracket]), 127, false, false));
-                            player.setAbsorptionAmount((float) Math.min(absorption + ((LivingEntity) entity).getMaxHealth() * 0.25f, ItemSentientSword.maxAbsorptionHearts));
+                        case STEADFAST -> {
+                            if (target.getHealth() < damage) {
+                                float absorption = player.getAbsorptionAmount();
+                                player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, time, 127, false, false));
+                                player.setAbsorptionAmount((float) Math.min(absorption + target.getMaxHealth() * 0.25f, ItemSentientSword.maxAbsorptionHearts));
+                            }
                         }
-                        break;
+                        case DEFAULT, DESTRUCTIVE -> {
+                        }
+                    }
                 }
 
                 // TODO: Change to bloodmagic damage source later
                 boolean damaged = attemptDamage(world, shooter, spellStats, spellContext, resolver, entity, buildDamageSource(world, shooter), damage);
-                if (damaged) {
+                if (damaged && bracket >= 0) {
                     PlayerDemonWillHandler.consumeDemonWill(type, player, ItemSentientSword.soulDrainPerSwing[bracket]);
                 }
             }
@@ -130,11 +128,7 @@ public class SentientHarmEffect extends AbstractEffect implements IDamageEffect 
 
     @Override
     public Set<AbstractAugment> getCompatibleAugments() {
-        return augmentSetOf(
-                AugmentAmplify.INSTANCE, AugmentDampen.INSTANCE,
-                AugmentExtendTime.INSTANCE, AugmentDurationDown.INSTANCE,
-                AugmentFortune.INSTANCE
-        );
+        return augmentSetOf(AugmentAmplify.INSTANCE, AugmentDampen.INSTANCE, AugmentExtendTime.INSTANCE, AugmentDurationDown.INSTANCE, AugmentFortune.INSTANCE);
     }
 
     @Override
