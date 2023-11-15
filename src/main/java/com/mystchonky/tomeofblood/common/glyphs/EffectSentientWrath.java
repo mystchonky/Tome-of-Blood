@@ -16,10 +16,10 @@ import com.hollingsworth.arsnouveau.common.spell.augment.AugmentDurationDown;
 import com.hollingsworth.arsnouveau.common.spell.augment.AugmentExtendTime;
 import com.hollingsworth.arsnouveau.common.spell.augment.AugmentFortune;
 import com.mystchonky.tomeofblood.TomeOfBlood;
+import com.mystchonky.tomeofblood.client.registry.ParticleRegistry;
 import com.mystchonky.tomeofblood.common.registry.IntegrationRegistry;
 import com.mystchonky.tomeofblood.common.registry.MobEffectRegistry;
 import com.mystchonky.tomeofblood.common.util.DemonWillUtil;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -67,6 +67,7 @@ public class EffectSentientWrath extends AbstractEffect implements IDamageEffect
             for (LivingEntity mob : world.getEntitiesOfClass(LivingEntity.class, new AABB(target.position().add(range, range, range), target.position().subtract(range, range, range)))) {
                 if (mob.equals(target) || mob.equals(shooter))
                     continue;
+                vec = mob.position();
                 heavyAttack(vec, level, shooter, mob, spellStats, spellContext, resolver, duration, damage);
             }
         }
@@ -78,7 +79,7 @@ public class EffectSentientWrath extends AbstractEffect implements IDamageEffect
     public void heavyAttack(Vec3 vec, ServerLevel level, LivingEntity shooter, LivingEntity target, SpellStats stats, SpellContext context, SpellResolver resolver, int duration, float baseDamage) {
         // calculate heavy damage
         if (attemptDamage(level, shooter, stats, context, resolver, target, buildDamageSource(level, shooter), baseDamage)) {
-            level.sendParticles(ParticleTypes.SWEEP_ATTACK, vec.x, vec.y + 0.5, vec.z, 10,
+            level.sendParticles(ParticleRegistry.WRATH_SLASH.get(), vec.x, vec.y + 0.5, vec.z, 1,
                     ParticleUtil.inRange(-0.1, 0.1), ParticleUtil.inRange(-0.1, 0.1), ParticleUtil.inRange(-0.1, 0.1), 0.3);
             target.addEffect(new MobEffectInstance(MobEffectRegistry.CURSED.get(), 20 * duration));
         }
@@ -90,8 +91,8 @@ public class EffectSentientWrath extends AbstractEffect implements IDamageEffect
         super.buildConfig(builder);
         addDamageConfig(builder, 6.0);
         addAmpConfig(builder, 2.5);
-        addPotionConfig(builder, 5);
-        addExtendTimeConfig(builder, 1);
+        addPotionConfig(builder, 10);
+        addExtendTimeConfig(builder, 5);
     }
 
     @Override
