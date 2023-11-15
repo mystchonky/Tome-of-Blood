@@ -4,10 +4,12 @@ import com.hollingsworth.arsnouveau.common.crafting.recipes.GlyphRecipe;
 import com.hollingsworth.arsnouveau.common.datagen.GlyphRecipeProvider;
 import com.mystchonky.tomeofblood.TomeOfBlood;
 import com.mystchonky.tomeofblood.common.glyphs.EffectSentientHarm;
+import com.mystchonky.tomeofblood.common.glyphs.EffectSentientWrath;
 import com.mystchonky.tomeofblood.datagen.RecipeUtil;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.Item;
+import wayoftime.bloodmagic.common.item.BloodMagicItems;
 
 import java.nio.file.Path;
 
@@ -20,7 +22,9 @@ public class ToBGlyphRecipeProvider extends GlyphRecipeProvider {
 
     @Override
     public void collectJsons(CachedOutput pOutput) {
-        recipes.add(get(EffectSentientHarm.INSTANCE).withItem(wayoftime.bloodmagic.common.item.BloodMagicItems.PETTY_GEM));
+        recipes.add(get(EffectSentientHarm.INSTANCE).withItem(BloodMagicItems.PETTY_GEM));
+        recipes.add(get(EffectSentientWrath.INSTANCE).withItem(BloodMagicItems.SENTIENT_SCYTHE));
+
 
         for (GlyphRecipe recipe : recipes) {
             Path path = getScribeGlyphPath(output, recipe.output.getItem());

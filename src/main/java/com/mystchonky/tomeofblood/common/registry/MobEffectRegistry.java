@@ -15,7 +15,7 @@ public class MobEffectRegistry {
     //TODO: figure out a way to datagen lang automatically
     public static final RegistryEntry<MobEffect> SERENE = REGISTRATE.simple("serene", ForgeRegistries.MOB_EFFECTS.getRegistryKey(), () -> new PublicEffect(MobEffectCategory.BENEFICIAL, 16435708));
     public static final RegistryEntry<MobEffect> VULNERABLE = REGISTRATE.simple("vulnerable", ForgeRegistries.MOB_EFFECTS.getRegistryKey(), () -> new PublicEffect(MobEffectCategory.BENEFICIAL, 16435708));
-    public static final RegistryEntry<MobEffect> CURSED = REGISTRATE.simple("cursed", ForgeRegistries.MOB_EFFECTS.getRegistryKey(), () -> new PublicEffect(MobEffectCategory.HARMFUL, 16435708));
+    public static final RegistryEntry<MobEffect> MARKED = REGISTRATE.simple("marked", ForgeRegistries.MOB_EFFECTS.getRegistryKey(), () -> new PublicEffect(MobEffectCategory.HARMFUL, 16435708));
 
     public static void register() {
     }

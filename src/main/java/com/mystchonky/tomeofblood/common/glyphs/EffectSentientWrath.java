@@ -67,8 +67,8 @@ public class EffectSentientWrath extends AbstractEffect implements IDamageEffect
 
         List<LivingEntity> targets = new ArrayList<>();
 
-        if (!target.hasEffect(MobEffectRegistry.CURSED.get())) {
-            target.addEffect(new MobEffectInstance(MobEffectRegistry.CURSED.get(), 20 * duration, 1));
+        if (!target.hasEffect(MobEffectRegistry.MARKED.get())) {
+            target.addEffect(new MobEffectInstance(MobEffectRegistry.MARKED.get(), 20 * duration, 1));
             attemptDamage(level, shooter, spellStats, spellContext, resolver, target, buildDamageSource(level, shooter), baseDamage);
             targets.add(target);
         } else {
@@ -101,7 +101,7 @@ public class EffectSentientWrath extends AbstractEffect implements IDamageEffect
         if (attemptDamage(level, shooter, stats, context, resolver, target, buildDamageSource(level, shooter), damage)) {
             level.sendParticles(ParticleRegistry.WRATH_SLASH.get(), vec.x, vec.y + 0.5, vec.z, 1,
                     ParticleUtil.inRange(-0.1, 0.1), ParticleUtil.inRange(-0.1, 0.1), ParticleUtil.inRange(-0.1, 0.1), 0.3);
-            target.addEffect(new MobEffectInstance(MobEffectRegistry.CURSED.get(), 20 * duration));
+            target.addEffect(new MobEffectInstance(MobEffectRegistry.MARKED.get(), 20 * duration));
         }
 
     }
