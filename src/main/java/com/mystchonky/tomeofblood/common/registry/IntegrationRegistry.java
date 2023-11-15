@@ -9,6 +9,7 @@ import com.hollingsworth.arsnouveau.api.registry.PerkRegistry;
 import com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart;
 import com.hollingsworth.arsnouveau.api.spell.SpellSchool;
 import com.mystchonky.tomeofblood.common.glyphs.EffectSentientHarm;
+import com.mystchonky.tomeofblood.common.glyphs.EffectSentientWrath;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,7 @@ public class IntegrationRegistry {
 
     public static void registerGlyphs() {
         registerSpellPart(EffectSentientHarm.INSTANCE);
+        registerSpellPart(EffectSentientWrath.INSTANCE);
     }
 
     public static void registerFamiliars() {

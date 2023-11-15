@@ -16,6 +16,7 @@ import com.hollingsworth.arsnouveau.common.spell.augment.AugmentFortune;
 import com.mystchonky.tomeofblood.TomeOfBlood;
 import com.mystchonky.tomeofblood.common.registry.IntegrationRegistry;
 import com.mystchonky.tomeofblood.common.registry.MobEffectRegistry;
+import com.mystchonky.tomeofblood.common.util.DemonWillUtil;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -47,9 +48,9 @@ public class EffectSentientHarm extends AbstractEffect implements IDamageEffect,
         if (shooter instanceof Player player && rayTraceResult.getEntity() instanceof LivingEntity target) {
             EnumDemonWillType type = PlayerDemonWillHandler.getLargestWillType(player);
             int souls = (int) PlayerDemonWillHandler.getTotalDemonWill(type, player);
-            int bracket = getBracket(type, souls);
+            int bracket = DemonWillUtil.getBracket(type, souls);
             int time = (int) spellStats.getDurationMultiplier();
-            float damage = (float) (DAMAGE.get() + getExtraDamage(type, souls) + (AMP_VALUE.get() * spellStats.getAmpMultiplier()));
+            float damage = (float) (DAMAGE.get() + DemonWillUtil.getExtraDamage(type, souls) + (AMP_VALUE.get() * spellStats.getAmpMultiplier()));
 
             target.addEffect(new MobEffectInstance(BloodMagicPotions.SOUL_SNARE.get(), 300, 0, false, false));
             applyConfigPotion(target, BloodMagicPotions.SOUL_SNARE.get(), spellStats, false);
@@ -67,18 +68,6 @@ public class EffectSentientHarm extends AbstractEffect implements IDamageEffect,
 
     }
 
-    public float getExtraDamage(EnumDemonWillType type, int bracket) {
-        if (bracket < 0) {
-            return 0;
-        }
-        return switch (type) {
-            case CORROSIVE, DEFAULT -> (float) ItemSentientSword.defaultDamageAdded[bracket];
-            case DESTRUCTIVE -> (float) ItemSentientSword.destructiveDamageAdded[bracket];
-            case VENGEFUL -> (float) ItemSentientSword.vengefulDamageAdded[bracket];
-            case STEADFAST -> (float) ItemSentientSword.steadfastDamageAdded[bracket];
-        };
-    }
-
     public MobEffect getEffectType(EnumDemonWillType type) {
         return switch (type) {
             case DEFAULT -> MobEffects.POISON;
@@ -87,16 +76,6 @@ public class EffectSentientHarm extends AbstractEffect implements IDamageEffect,
             case STEADFAST -> MobEffects.MOVEMENT_SLOWDOWN;
             case DESTRUCTIVE -> MobEffectRegistry.VULNERABLE.get();
         };
-    }
-
-    public int getBracket(EnumDemonWillType type, int souls) {
-        int bracket = -1;
-        for (int i = 0; i < ItemSentientSword.soulBracket.length; i++) {
-            if (souls >= ItemSentientSword.soulBracket[i]) {
-                bracket = i;
-            }
-        }
-        return bracket;
     }
 
     @Override
@@ -115,7 +94,7 @@ public class EffectSentientHarm extends AbstractEffect implements IDamageEffect,
 
     @Override
     public int getDefaultManaCost() {
-        return 30;
+        return 25;
     }
 
     @Override
