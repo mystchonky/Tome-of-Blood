@@ -3,7 +3,7 @@ package com.mystchonky.tomeofblood.datagen.recipes;
 import com.hollingsworth.arsnouveau.common.crafting.recipes.GlyphRecipe;
 import com.hollingsworth.arsnouveau.common.datagen.GlyphRecipeProvider;
 import com.mystchonky.tomeofblood.TomeOfBlood;
-import com.mystchonky.tomeofblood.common.glyphs.SentientHarmEffect;
+import com.mystchonky.tomeofblood.common.glyphs.EffectSentientHarm;
 import com.mystchonky.tomeofblood.datagen.RecipeUtil;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataGenerator;
@@ -20,7 +20,7 @@ public class ToBGlyphRecipeProvider extends GlyphRecipeProvider {
 
     @Override
     public void collectJsons(CachedOutput pOutput) {
-        recipes.add(get(SentientHarmEffect.INSTANCE).withItem(wayoftime.bloodmagic.common.item.BloodMagicItems.PETTY_GEM));
+        recipes.add(get(EffectSentientHarm.INSTANCE).withItem(wayoftime.bloodmagic.common.item.BloodMagicItems.PETTY_GEM));
 
         for (GlyphRecipe recipe : recipes) {
             Path path = getScribeGlyphPath(output, recipe.output.getItem());

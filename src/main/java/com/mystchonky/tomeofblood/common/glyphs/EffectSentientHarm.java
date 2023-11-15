@@ -34,11 +34,11 @@ import wayoftime.bloodmagic.will.PlayerDemonWillHandler;
 import java.util.Map;
 import java.util.Set;
 
-public class SentientHarmEffect extends AbstractEffect implements IDamageEffect, IPotionEffect {
+public class EffectSentientHarm extends AbstractEffect implements IDamageEffect, IPotionEffect {
 
-    public static SentientHarmEffect INSTANCE = new SentientHarmEffect();
+    public static EffectSentientHarm INSTANCE = new EffectSentientHarm();
 
-    public SentientHarmEffect() {
+    public EffectSentientHarm() {
         super(TomeOfBlood.prefix(GlyphLibrary.EffectSentientHarm), "Sentient Harm");
     }
 
@@ -49,7 +49,7 @@ public class SentientHarmEffect extends AbstractEffect implements IDamageEffect,
             int souls = (int) PlayerDemonWillHandler.getTotalDemonWill(type, player);
             int bracket = getBracket(type, souls);
             int time = (int) spellStats.getDurationMultiplier();
-            float damage = (float) (DAMAGE.get() + getExtraDamage(spellContext, type, souls) + (AMP_VALUE.get() * spellStats.getAmpMultiplier()));
+            float damage = (float) (DAMAGE.get() + getExtraDamage(type, souls) + (AMP_VALUE.get() * spellStats.getAmpMultiplier()));
 
             target.addEffect(new MobEffectInstance(BloodMagicPotions.SOUL_SNARE.get(), 300, 0, false, false));
             applyConfigPotion(target, BloodMagicPotions.SOUL_SNARE.get(), spellStats, false);
@@ -67,8 +67,7 @@ public class SentientHarmEffect extends AbstractEffect implements IDamageEffect,
 
     }
 
-    public float getExtraDamage(SpellContext spellContext, EnumDemonWillType type, int souls) {
-        int bracket = getBracket(type, souls);
+    public float getExtraDamage(EnumDemonWillType type, int bracket) {
         if (bracket < 0) {
             return 0;
         }
