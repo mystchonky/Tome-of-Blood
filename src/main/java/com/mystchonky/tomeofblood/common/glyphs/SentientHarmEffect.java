@@ -3,6 +3,7 @@ package com.mystchonky.tomeofblood.common.glyphs;
 import com.hollingsworth.arsnouveau.api.spell.AbstractAugment;
 import com.hollingsworth.arsnouveau.api.spell.AbstractEffect;
 import com.hollingsworth.arsnouveau.api.spell.IDamageEffect;
+import com.hollingsworth.arsnouveau.api.spell.IPotionEffect;
 import com.hollingsworth.arsnouveau.api.spell.SpellContext;
 import com.hollingsworth.arsnouveau.api.spell.SpellResolver;
 import com.hollingsworth.arsnouveau.api.spell.SpellSchool;
@@ -12,13 +13,13 @@ import com.hollingsworth.arsnouveau.common.spell.augment.AugmentDampen;
 import com.hollingsworth.arsnouveau.common.spell.augment.AugmentDurationDown;
 import com.hollingsworth.arsnouveau.common.spell.augment.AugmentExtendTime;
 import com.hollingsworth.arsnouveau.common.spell.augment.AugmentFortune;
-import com.hollingsworth.arsnouveau.setup.registry.ModPotions;
 import com.mystchonky.tomeofblood.TomeOfBlood;
 import com.mystchonky.tomeofblood.common.registry.IntegrationRegistry;
+import com.mystchonky.tomeofblood.common.registry.MobEffectRegistry;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -33,7 +34,7 @@ import wayoftime.bloodmagic.will.PlayerDemonWillHandler;
 import java.util.Map;
 import java.util.Set;
 
-public class SentientHarmEffect extends AbstractEffect implements IDamageEffect {
+public class SentientHarmEffect extends AbstractEffect implements IDamageEffect, IPotionEffect {
 
     public static SentientHarmEffect INSTANCE = new SentientHarmEffect();
 
@@ -43,39 +44,21 @@ public class SentientHarmEffect extends AbstractEffect implements IDamageEffect 
 
     @Override
     public void onResolveEntity(EntityHitResult rayTraceResult, Level world, @NotNull LivingEntity shooter, SpellStats spellStats, SpellContext spellContext, SpellResolver resolver) {
-        if (shooter instanceof Player player) {
+        if (shooter instanceof Player player && rayTraceResult.getEntity() instanceof LivingEntity target) {
             EnumDemonWillType type = PlayerDemonWillHandler.getLargestWillType(player);
             int souls = (int) PlayerDemonWillHandler.getTotalDemonWill(type, player);
-
             int bracket = getBracket(type, souls);
-            Entity entity = rayTraceResult.getEntity();
-            if (entity instanceof LivingEntity target) {
-                int time = spellStats.getDurationInTicks();
-                float damage = (float) (DAMAGE.get() + getExtraDamage(spellContext, type, souls) + (AMP_VALUE.get() * spellStats.getAmpMultiplier()));
-                target.addEffect(new MobEffectInstance(BloodMagicPotions.SOUL_SNARE.get(), 300, 0, false, false));
+            int time = (int) spellStats.getDurationMultiplier();
+            float damage = (float) (DAMAGE.get() + getExtraDamage(spellContext, type, souls) + (AMP_VALUE.get() * spellStats.getAmpMultiplier()));
 
-                if (time > 0) {
-                    switch (type) {
-                        case CORROSIVE -> target.addEffect(new MobEffectInstance(MobEffects.WITHER, time, 1));
-                        case VENGEFUL -> {
-                            if (target.getHealth() < damage) {
-                                player.addEffect(new MobEffectInstance(ModPotions.MANA_REGEN_EFFECT.get(), time, 1, false, false));
-                            }
-                        }
-                        case STEADFAST -> {
-                            if (target.getHealth() < damage) {
-                                float absorption = player.getAbsorptionAmount();
-                                player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, time, 127, false, false));
-                                player.setAbsorptionAmount((float) Math.min(absorption + target.getMaxHealth() * 0.25f, ItemSentientSword.maxAbsorptionHearts));
-                            }
-                        }
-                        case DEFAULT, DESTRUCTIVE -> {
-                        }
-                    }
-                }
+            target.addEffect(new MobEffectInstance(BloodMagicPotions.SOUL_SNARE.get(), 300, 0, false, false));
+            applyConfigPotion(target, BloodMagicPotions.SOUL_SNARE.get(), spellStats, false);
 
+            if (time > 0) {
+                applyConfigPotion(target, getEffectType(type), spellStats);
+            } else {
                 // TODO: Change to bloodmagic damage source later
-                boolean damaged = attemptDamage(world, shooter, spellStats, spellContext, resolver, entity, buildDamageSource(world, shooter), damage);
+                boolean damaged = attemptDamage(world, shooter, spellStats, spellContext, resolver, target, buildDamageSource(world, shooter), damage);
                 if (damaged && bracket >= 0) {
                     PlayerDemonWillHandler.consumeDemonWill(type, player, ItemSentientSword.soulDrainPerSwing[bracket]);
                 }
@@ -94,6 +77,16 @@ public class SentientHarmEffect extends AbstractEffect implements IDamageEffect 
             case DESTRUCTIVE -> (float) ItemSentientSword.destructiveDamageAdded[bracket];
             case VENGEFUL -> (float) ItemSentientSword.vengefulDamageAdded[bracket];
             case STEADFAST -> (float) ItemSentientSword.steadfastDamageAdded[bracket];
+        };
+    }
+
+    public MobEffect getEffectType(EnumDemonWillType type) {
+        return switch (type) {
+            case DEFAULT -> MobEffects.POISON;
+            case CORROSIVE -> MobEffects.WITHER;
+            case VENGEFUL -> MobEffects.WEAKNESS;
+            case STEADFAST -> MobEffects.MOVEMENT_SLOWDOWN;
+            case DESTRUCTIVE -> MobEffectRegistry.VULNERABLE.get();
         };
     }
 
@@ -127,17 +120,27 @@ public class SentientHarmEffect extends AbstractEffect implements IDamageEffect 
     }
 
     @Override
-    public Set<AbstractAugment> getCompatibleAugments() {
+    public @NotNull Set<AbstractAugment> getCompatibleAugments() {
         return augmentSetOf(AugmentAmplify.INSTANCE, AugmentDampen.INSTANCE, AugmentExtendTime.INSTANCE, AugmentDurationDown.INSTANCE, AugmentFortune.INSTANCE);
     }
 
     @Override
     public String getBookDescription() {
-        return "An advanced spell, that utilizes your collected demonic will to improve your damage output.";
+        return "An advanced spell that utilizes your collected demonic will to improve your damage output.";
     }
 
     public Set<SpellSchool> getSchools() {
         return setOf(IntegrationRegistry.BLOODMAGIC);
     }
 
+    @Override
+    public int getBaseDuration() {
+        return POTION_TIME == null ? 30 : POTION_TIME.get();
+    }
+
+    @Override
+    public int getExtendTimeDuration() {
+        return EXTEND_TIME == null ? 8 : EXTEND_TIME.get();
+    }
 }
+

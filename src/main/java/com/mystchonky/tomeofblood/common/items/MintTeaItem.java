@@ -27,7 +27,7 @@ public class MintTeaItem extends Item {
                 player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 5 * 20));
 
             } else {
-                player.addEffect(new MobEffectInstance(MobEffectRegistry.SERENE_EFFECT.get(), 60 * 20));
+                player.addEffect(new MobEffectInstance(MobEffectRegistry.SERENE.get(), 60 * 20));
             }
 
             if (!player.isCreative()) {
