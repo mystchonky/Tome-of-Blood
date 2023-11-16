@@ -57,7 +57,7 @@ public class EffectSentientWrath extends AbstractEffect implements IDamageEffect
         if (!(shooter instanceof Player player))
             return;
 
-        EnumDemonWillType type = PlayerDemonWillHandler.getLargestWillType(player);
+        EnumDemonWillType type = DemonWillUtil.getActiveTypeFromPlayer(spellContext);
         int souls = (int) PlayerDemonWillHandler.getTotalDemonWill(type, player);
         int bracket = DemonWillUtil.getBracket(type, souls);
         Vec3 vec = safelyGetHitPos(rayTraceResult);
@@ -155,7 +155,7 @@ public class EffectSentientWrath extends AbstractEffect implements IDamageEffect
 
     @Override
     public String getBookDescription() {
-        return "Curse your target and unleash demon's wrath";
+        return "Mark your target and unleash demon's wrath";
     }
 
     @Override
@@ -167,17 +167,4 @@ public class EffectSentientWrath extends AbstractEffect implements IDamageEffect
     protected @NotNull Set<SpellSchool> getSchools() {
         return setOf(IntegrationRegistry.BLOODMAGIC);
     }
-
-    //                        case VENGEFUL -> {
-//        if (target.getHealth() < damage) {
-//            player.addEffect(new MobEffectInstance(ModPotions.MANA_REGEN_EFFECT.get(), time, 1, false, false));
-//        }
-//    }
-//                        case STEADFAST -> {
-//        if (target.getHealth() < damage) {
-//            float absorption = player.getAbsorptionAmount();
-//            player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, time, 127, false, false));
-//            player.setAbsorptionAmount((float) Math.min(absorption + target.getMaxHealth() * 0.25f, ItemSentientSword.maxAbsorptionHearts));
-//        }
-//    }
 }

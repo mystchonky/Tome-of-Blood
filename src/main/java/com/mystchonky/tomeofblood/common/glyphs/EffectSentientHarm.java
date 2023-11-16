@@ -46,7 +46,7 @@ public class EffectSentientHarm extends AbstractEffect implements IDamageEffect,
     @Override
     public void onResolveEntity(EntityHitResult rayTraceResult, Level world, @NotNull LivingEntity shooter, SpellStats spellStats, SpellContext spellContext, SpellResolver resolver) {
         if (shooter instanceof Player player && rayTraceResult.getEntity() instanceof LivingEntity target) {
-            EnumDemonWillType type = PlayerDemonWillHandler.getLargestWillType(player);
+            EnumDemonWillType type = DemonWillUtil.getActiveTypeFromPlayer(spellContext);
             int souls = (int) PlayerDemonWillHandler.getTotalDemonWill(type, player);
             int bracket = DemonWillUtil.getBracket(type, souls);
             int time = (int) spellStats.getDurationMultiplier();
