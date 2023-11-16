@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.4.0] - Unreleased
+
+### Added
+
+- Sentient Wrath Glyph: Tier 2 spell that marks the target when hit. If a target is already marked, it does a heavy
+  attack on it and its surrounding. It also gives small bonuses to player on kill
+
+### Changed
+
+- Sentient Harm is slightly changed. When using it along with `Duration` Augments, the glyph becomes into a effect spell
+  and doesn't do the initial scaling damage.
+- Selection of Will type for attacks have changed. Earlier they used the type that has the most amount in the player
+  inventory. Now it is a priority based system based on slot and inventory position.
+
 ## [0.3.3] - 2023-11-14
 
 ### Fixed
