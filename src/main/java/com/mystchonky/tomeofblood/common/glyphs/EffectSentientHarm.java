@@ -50,7 +50,7 @@ public class EffectSentientHarm extends AbstractEffect implements IDamageEffect,
             int souls = (int) PlayerDemonWillHandler.getTotalDemonWill(type, player);
             int bracket = DemonWillUtil.getBracket(type, souls);
             int time = (int) spellStats.getDurationMultiplier();
-            float damage = (float) (DAMAGE.get() + DemonWillUtil.getExtraDamage(type, souls) + (AMP_VALUE.get() * spellStats.getAmpMultiplier()));
+            float damage = (float) (DAMAGE.get() + DemonWillUtil.getExtraDamage(type, bracket) + (AMP_VALUE.get() * spellStats.getAmpMultiplier()));
 
             target.addEffect(new MobEffectInstance(BloodMagicPotions.SOUL_SNARE.get(), 300, 0, false, false));
             applyConfigPotion(target, BloodMagicPotions.SOUL_SNARE.get(), spellStats, false);
