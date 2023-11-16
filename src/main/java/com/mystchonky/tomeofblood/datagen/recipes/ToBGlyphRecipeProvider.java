@@ -2,6 +2,7 @@ package com.mystchonky.tomeofblood.datagen.recipes;
 
 import com.hollingsworth.arsnouveau.common.crafting.recipes.GlyphRecipe;
 import com.hollingsworth.arsnouveau.common.datagen.GlyphRecipeProvider;
+import com.hollingsworth.arsnouveau.setup.registry.ItemsRegistry;
 import com.mystchonky.tomeofblood.TomeOfBlood;
 import com.mystchonky.tomeofblood.common.glyphs.EffectSentientHarm;
 import com.mystchonky.tomeofblood.common.glyphs.EffectSentientWrath;
@@ -22,9 +23,14 @@ public class ToBGlyphRecipeProvider extends GlyphRecipeProvider {
 
     @Override
     public void collectJsons(CachedOutput pOutput) {
-        recipes.add(get(EffectSentientHarm.INSTANCE).withItem(BloodMagicItems.PETTY_GEM));
-        recipes.add(get(EffectSentientWrath.INSTANCE).withItem(BloodMagicItems.SENTIENT_SCYTHE));
 
+        recipes.add(get(EffectSentientHarm.INSTANCE)
+                .withItem(BloodMagicItems.SENTIENT_SWORD));
+
+        recipes.add(get(EffectSentientWrath.INSTANCE)
+                .withItem(BloodMagicItems.SENTIENT_SCYTHE)
+                .withItem(BloodMagicItems.THROWING_DAGGER)
+                .withItem(ItemsRegistry.CONJURATION_ESSENCE));
 
         for (GlyphRecipe recipe : recipes) {
             Path path = getScribeGlyphPath(output, recipe.output.getItem());

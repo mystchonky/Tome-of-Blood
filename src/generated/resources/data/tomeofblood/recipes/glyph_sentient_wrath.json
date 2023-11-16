@@ -13,6 +13,16 @@
       "item": {
         "item": "bloodmagic:soulscythe"
       }
+    },
+    {
+      "item": {
+        "item": "bloodmagic:throwing_dagger"
+      }
+    },
+    {
+      "item": {
+        "item": "ars_nouveau:conjuration_essence"
+      }
     }
   ],
   "output": "tomeofblood:glyph_sentient_wrath"
