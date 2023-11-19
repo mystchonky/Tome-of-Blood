@@ -104,7 +104,8 @@ public class EffectSentientHarm extends AbstractEffect implements IDamageEffect,
 
     @Override
     public String getBookDescription() {
-        return "An advanced spell that utilizes your collected demonic will to improve your damage output.";
+        return "Consume Demon Will and attack your target (damage scales with will in inventory). Target drops Raw will on kill. $(br2)Extend Time applies potion effect based on Will type. $(br2)" +
+                "Raw - Poison $(br)Corrosive - Withering $(br)Vengeful - Weakness $(br)Steadfast - Slowness $(br)Destructive - Vulnerable ";
     }
 
     public Set<SpellSchool> getSchools() {

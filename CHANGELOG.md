@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.1] - 2023-11-19
+
+### Changed
+
+- Updated glyph documentation for Sentient Harm and Sentient Wrath.
+
 ## [0.4.0] - 2023-11-17
 
 ### Added

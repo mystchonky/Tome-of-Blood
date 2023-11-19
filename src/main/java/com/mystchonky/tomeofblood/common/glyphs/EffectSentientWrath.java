@@ -155,7 +155,8 @@ public class EffectSentientWrath extends AbstractEffect implements IDamageEffect
 
     @Override
     public String getBookDescription() {
-        return "Mark your target and unleash demon's wrath";
+        return "Marks a target on first hit. Attacking a marked target will do a scaling heavy attack in a radius and Marks all targets. Consumes Will. $(br2)Grants player bonuses on kill when not using Raw will.$(br2)" +
+                "Corrosive - Resistance$(br)Vengeful - Speed$(br)Steadfast - Absorption$(br)Destructive - Spell Power";
     }
 
     @Override
