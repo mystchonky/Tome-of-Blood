@@ -21,4 +21,7 @@ public class ParticleRegistry {
     public static void registerProviders(RegisterParticleProvidersEvent event) {
         event.registerSpriteSet(WRATH_SLASH.get(), WrathSlashParticle.Provider::new);
     }
+
+    public static void register() {
+    }
 }

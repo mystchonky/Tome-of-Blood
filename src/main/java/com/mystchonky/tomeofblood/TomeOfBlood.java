@@ -3,9 +3,14 @@ package com.mystchonky.tomeofblood;
 import com.hollingsworth.arsnouveau.setup.proxy.ClientProxy;
 import com.hollingsworth.arsnouveau.setup.proxy.IProxy;
 import com.hollingsworth.arsnouveau.setup.proxy.ServerProxy;
+import com.mystchonky.tomeofblood.client.registry.ParticleRegistry;
 import com.mystchonky.tomeofblood.common.config.BaseConfig;
-import com.mystchonky.tomeofblood.common.registry.*;
 import com.mystchonky.tomeofblood.common.network.Networking;
+import com.mystchonky.tomeofblood.common.registry.IntegrationRegistry;
+import com.mystchonky.tomeofblood.common.registry.ItemRegistry;
+import com.mystchonky.tomeofblood.common.registry.LangRegistry;
+import com.mystchonky.tomeofblood.common.registry.LivingUpgradeRegistry;
+import com.mystchonky.tomeofblood.common.registry.MobEffectRegistry;
 import com.tterrag.registrate.Registrate;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -56,6 +61,7 @@ public class TomeOfBlood {
         ItemRegistry.register();
         LivingUpgradeRegistry.register();
         MobEffectRegistry.register();
+        ParticleRegistry.register();
         IntegrationRegistry.init();
 
         LangRegistry.register();

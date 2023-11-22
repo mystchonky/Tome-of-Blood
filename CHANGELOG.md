@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.2] - 2023-11-23
+
+### Fixed
+
+- Fixed Particle Type Registration on server side. Server wont crash anymore
+
 ## [0.4.1] - 2023-11-19
 
 ### Changed
