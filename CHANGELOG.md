@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.3] - 2023-11-25
+
+### Fixed
+
+- Fixed crash due to no will when using SentientWrath
+
 ## [0.4.2] - 2023-11-23
 
 ### Fixed

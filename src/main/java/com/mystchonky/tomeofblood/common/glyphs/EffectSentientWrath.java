@@ -87,7 +87,7 @@ public class EffectSentientWrath extends AbstractEffect implements IDamageEffect
         }
 
         // Consume will
-        double willCost = ItemSentientSword.soulDrainPerSwing[bracket] * targets.size() * (targets.size() > 1 ? 0.75 : 1);
+        double willCost = ItemSentientSword.soulDrainPerSwing[Math.max(bracket, 0)] * targets.size() * (targets.size() > 1 ? 0.75 : 1);
         PlayerDemonWillHandler.consumeDemonWill(type, player, willCost);
 
         //trigger on hit
