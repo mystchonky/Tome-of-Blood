@@ -1,0 +1,17 @@
+{
+  "alert.tomeofblood.no_lp": "Ваша душа испытывает слабость...",
+  "ars_nouveau.school.bloodmagic": "Магия крови",
+  "effect.tomeofblood.serene": "Умиротворённый",
+  "item.tomeofblood.apprentice_tome_of_blood": "Фолиант крови подмастерья",
+  "item.tomeofblood.archmage_tome_of_blood": "Фолиант крови верховного мага",
+  "item.tomeofblood.living_mage_boots": "Живые сапоги мага",
+  "item.tomeofblood.living_mage_hood": "Живой капюшон мага",
+  "item.tomeofblood.living_mage_leggings": "Живые поножи мага",
+  "item.tomeofblood.living_mage_robes": "Живая мантия мага",
+  "item.tomeofblood.mint_tea": "Мятный чай",
+  "item.tomeofblood.novice_tome_of_blood": "Фолиант крови новичка",
+  "itemGroup.tomeofblood.tome_of_blood": "Фолиант крови",
+  "living_upgrade.tomeofblood.mana_bonus": "Гармония с маной",
+  "tomeofblood.glyph_desc.glyph_sentient_harm": "Продвинутое заклинание использует вашу собранную волю демона для повышения исходящего урона.",
+  "tomeofblood.glyph_name.glyph_sentient_harm": "Разумный вред"
+}
